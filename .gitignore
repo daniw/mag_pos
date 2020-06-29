@@ -11,3 +11,11 @@ Project Outputs*
 # FEMM output
 *.ans
 *_distance.txt
+
+# Code composer studio
+Debug
+Release
+.xdchelp
+.config
+.launches
+targetConfigs
