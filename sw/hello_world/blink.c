@@ -1,6 +1,7 @@
 #include <msp430.h>				
 
-#define SLEEPCNT 30000
+#define SLEEPCNT_SLOW 30000
+#define SLEEPCNT_FAST SLEEPCNT_SLOW/10
 
 #define STATE_OFF       0
 #define STATE_RED       1
@@ -8,6 +9,8 @@
 #define STATE_BLUE      3
 #define STATE_YELLOW    4
 #define STATE_WHITE     5
+
+#define PORT1_SW        1<<3
 
 #define PORT1_OFF       0x00
 #define PORT1_RED       1<<0
@@ -23,7 +26,7 @@
 #define PORT2_YELLOW    1<<7
 #define PORT2_WHITE     1<<5
 
-void sleep();
+void sleep(unsigned int sleepcnt);
 void led_ctrl();
 
 /**
@@ -44,12 +47,18 @@ void main(void)
     P2DIR |= PORT2_YELLOW;          // configure LED as output (yellow)
     P2DIR |= PORT2_WHITE;           // configure LED as output (white)
 
-    P2SEL = 0x00;
+    P2SEL = 0x00;                   // Disable crystal oscillator
+
+    P1REN |= 1<<3;                  // Enable Pull up resistor for button
 
 	while(1)
 	{
-	    led_ctrl();
-	    sleep();
+        led_ctrl();
+	    if ((P1IN&(PORT1_SW)) == 0) {
+	        sleep(SLEEPCNT_FAST);
+	    } else {
+	        sleep(SLEEPCNT_SLOW);
+	    }
 	}
 }
 
@@ -59,31 +68,31 @@ void led_ctrl(){
     switch (state)
     {
     case STATE_OFF:
-        P1OUT = PORT1_OFF;
+        P1OUT = PORT1_OFF|PORT1_SW;
         P2OUT = PORT2_OFF;
         break;
     case STATE_RED:
-        P1OUT = PORT1_RED;
+        P1OUT = PORT1_RED|PORT1_SW;
         P2OUT = PORT2_RED;
         break;
     case STATE_GREEN:
-        P1OUT = PORT1_GREEN;
+        P1OUT = PORT1_GREEN|PORT1_SW;
         P2OUT = PORT2_GREEN;
         break;
     case STATE_BLUE:
-        P1OUT = PORT1_BLUE;
+        P1OUT = PORT1_BLUE|PORT1_SW;
         P2OUT = PORT2_BLUE;
         break;
     case STATE_YELLOW:
-        P1OUT = PORT1_YELLOW;
+        P1OUT = PORT1_YELLOW|PORT1_SW;
         P2OUT = PORT2_YELLOW;
         break;
     case STATE_WHITE:
-        P1OUT = PORT1_WHITE;
+        P1OUT = PORT1_WHITE|PORT1_SW;
         P2OUT = PORT2_WHITE;
         break;
     default:
-        P1OUT = PORT1_OFF;
+        P1OUT = PORT1_OFF|PORT1_SW;
         P2OUT = PORT2_OFF;
         state = 0;
     }
@@ -93,8 +102,8 @@ void led_ctrl(){
     }
 }
 
-void sleep(){
+void sleep(unsigned int sleepcnt){
     volatile unsigned int i;        // volatile to prevent optimization
-    for(i=SLEEPCNT; i>0; i--);      // delay
+    for(i=sleepcnt; i>0; i--);      // delay
     return;
 }
