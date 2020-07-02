@@ -21,4 +21,5 @@ Release
 targetConfigs
 
 # Datasheets
-datasheet/*.pdf
+datasheet
+!datasheet.sh
