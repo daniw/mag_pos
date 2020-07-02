@@ -19,3 +19,6 @@ Release
 .config
 .launches
 targetConfigs
+
+# Datasheets
+datasheet/*.pdf
