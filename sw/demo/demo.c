@@ -27,7 +27,7 @@ void main(void)
 	while(1)
 	{
         led_ctrl();
-	    if ((P1IN&(PORT1_SW)) == 0) {
+	    if (SW_READ) {
 	        sleep(SLEEPCNT_FAST);
 	    } else {
 	        sleep(SLEEPCNT_SLOW);
