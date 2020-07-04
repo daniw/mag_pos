@@ -1,8 +1,9 @@
 #include <msp430.h>
 
+#include "clock.h"
 #include "gpio.h"
 
-#define SLEEPCNT_SLOW 16384
+#define SLEEPCNT_SLOW 65535
 #define SLEEPCNT_FAST SLEEPCNT_SLOW/8
 
 #define STATE_OFF       0
@@ -20,19 +21,21 @@ void led_ctrl();
  */
 void main(void)
 {
-	WDTCTL = WDTPW | WDTHOLD;		// stop watchdog timer
+    WDTCTL = WDTPW | WDTHOLD;		// stop watchdog timer
 
-	init_gpio();
+    init_clock();
 
-	while(1)
-	{
+    init_gpio();
+
+    while(1)
+    {
         led_ctrl();
-	    if (SW_READ) {
-	        sleep(SLEEPCNT_FAST);
-	    } else {
-	        sleep(SLEEPCNT_SLOW);
-	    }
-	}
+        if (SW_READ) {
+            sleep(SLEEPCNT_FAST);
+        } else {
+            sleep(SLEEPCNT_SLOW);
+        }
+    }
 }
 
 void led_ctrl(){
