@@ -22,3 +22,43 @@ targetConfigs
 
 # Datasheets
 datasheet/*.pdf
+sw/.jxbrowser-data/Login Data-journal
+sw/.jxbrowser-data/Cache/data_0
+sw/.jxbrowser-data/Cache/data_1
+sw/.jxbrowser-data/Cache/data_2
+sw/.jxbrowser-data/Cache/data_3
+sw/.jxbrowser-data/Cache/f_000001
+sw/.jxbrowser-data/Cache/f_000002
+sw/.jxbrowser-data/Cache/f_000003
+sw/.jxbrowser-data/Cache/f_000004
+sw/.jxbrowser-data/Cache/f_000005
+sw/.jxbrowser-data/Cache/index
+sw/.jxbrowser-data/ChannelIDS
+sw/.jxbrowser-data/ChannelIDS-journal
+sw/.jxbrowser-data/Cookies
+sw/.jxbrowser-data/Cookies-journal
+sw/.jxbrowser-data/Favicons
+sw/.jxbrowser-data/Favicons-journal
+sw/.jxbrowser-data/GPUCache/data_0
+sw/.jxbrowser-data/GPUCache/data_1
+sw/.jxbrowser-data/GPUCache/data_2
+sw/.jxbrowser-data/GPUCache/data_3
+sw/.jxbrowser-data/GPUCache/index
+sw/.jxbrowser-data/History-journal
+sw/.jxbrowser-data/Local Storage - EXT/file_null.localstorage
+sw/.jxbrowser-data/Local Storage/leveldb/000003.log
+sw/.jxbrowser-data/Local Storage/leveldb/CURRENT
+sw/.jxbrowser-data/Local Storage/leveldb/LOCK
+sw/.jxbrowser-data/Local Storage/leveldb/LOG
+sw/.jxbrowser-data/Local Storage/leveldb/MANIFEST-000001
+sw/.jxbrowser-data/Login Data
+sw/.jxbrowser-data/Sync Data/LevelDB/000003.log
+sw/.jxbrowser-data/Sync Data/LevelDB/CURRENT
+sw/.jxbrowser-data/Sync Data/LevelDB/LOCK
+sw/.jxbrowser-data/Sync Data/LevelDB/LOG
+sw/.jxbrowser-data/Sync Data/LevelDB/MANIFEST-000001
+sw/.jxbrowser-data/user_prefs.json
+sw/.jxbrowser-data/Visited Links
+sw/.jxbrowser-data/Web Data
+sw/.jxbrowser-data/Web Data-journal
+sw/RemoteSystemsTempFiles/.project
