@@ -42,7 +42,13 @@
 #define MASK_YELLOW     (1<<LED_YELLOW_PIN)
 #define MASK_WHITE      (1<<LED_WHITE_PIN)
 
-#define SW_READ		((SW_PORT&(MASK_SW)) == 0)
+#define SW_READ	        ((SW_PORT&(MASK_SW)) == 0)
+
+#define RXD             1
+#define TXD             2
+
+#define MASK_RXD        (1<<RXD)
+#define MASK_TXD        (1<<TXD)
 
 void init_gpio(void);
 void led_off(void);

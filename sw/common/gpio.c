@@ -17,6 +17,10 @@ void init_gpio(void)
     LED_WHITE_DIR   |= 1<<LED_WHITE_PIN;
 
     P2SEL = 0x00;                   // Disable crystal oscillator
+//#ifdef PL_HAS_UART
+    P1SEL  |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
+    P1SEL2 |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
+//#endif
 
     SW_PU |= MASK_SW;               // Enable Pull up resistor for button
 }

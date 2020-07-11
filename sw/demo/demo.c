@@ -1,7 +1,10 @@
 #include <msp430.h>
 
+#define PL_HAS_UART
+
 #include "clock.h"
 #include "gpio.h"
+#include "uart.h"
 
 #define SLEEPCNT_SLOW 65535
 #define SLEEPCNT_FAST SLEEPCNT_SLOW/8
@@ -24,10 +27,12 @@ void main(void)
     WDTCTL = WDTPW | WDTHOLD;		// stop watchdog timer
 
     init_clock();
-
     init_gpio();
+    init_uart();
 
-    while(1)
+    __bis_SR_register(GIE); // Enable global interrupts
+
+     while(1)
     {
         led_ctrl();
         if (SW_READ) {

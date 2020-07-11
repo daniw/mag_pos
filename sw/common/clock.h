@@ -11,7 +11,7 @@
 #include <msp430.h>
 
 #ifndef CLOCK_FREQ
-    #define CLOCK_FREQ 16000000
+    #define CLOCK_FREQ 1000000
 #endif
 
 #if CLOCK_FREQ == 1000000
