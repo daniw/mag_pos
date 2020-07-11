@@ -52,10 +52,30 @@
 
 void init_gpio(void);
 void led_off(void);
+
 void led_red(void);
+void led_red_on(void);
+void led_red_off(void);
+void led_red_toggle(void);
+
 void led_green(void);
+void led_green_on(void);
+void led_green_off(void);
+void led_green_toggle(void);
+
 void led_blue(void);
+void led_blue_on(void);
+void led_blue_off(void);
+void led_blue_toggle(void);
+
 void led_yellow(void);
+void led_yellow_on(void);
+void led_yellow_off(void);
+void led_yellow_toggle(void);
+
 void led_white(void);
+void led_white_on(void);
+void led_white_off(void);
+void led_white_toggle(void);
 
 #endif /* GPIO_H_ */

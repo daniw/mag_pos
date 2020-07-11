@@ -9,6 +9,7 @@
 #define COMMON_UART_H_
 
 #include <msp430.h>
+#include "gpio.h"
 
 void init_uart(void);
 

@@ -22,11 +22,31 @@ void init_uart(void){
 #pragma vector=USCIAB0RX_VECTOR
 __interrupt void USCI0RX_ISR(void)
 {
-   if (UCA0RXBUF == 'a') // 'u' received?
+   if (UCA0RXBUF == 'h') // 'h' received?
    {
       i = 0;
       UC0IE |= UCA0TXIE; // Enable USCI_A0 TX interrupt
       UCA0TXBUF = string[i++];
+   }
+   else if (UCA0RXBUF == 'r') // 'r' received?
+   {
+       led_red_toggle();
+   }
+   else if (UCA0RXBUF == 'g') // 'g' received?
+   {
+       led_green_toggle();
+   }
+   else if (UCA0RXBUF == 'b') // 'b' received?
+   {
+       led_blue_toggle();
+   }
+   else if (UCA0RXBUF == 'y') // 'y' received?
+   {
+       led_yellow_toggle();
+   }
+   else if (UCA0RXBUF == 'w') // 'w' received?
+   {
+       led_white_toggle();
    }
 }
 

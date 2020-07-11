@@ -34,7 +34,7 @@ void main(void)
 
      while(1)
     {
-        led_ctrl();
+        //led_ctrl();
         if (SW_READ) {
             sleep(SLEEPCNT_FAST);
         } else {
