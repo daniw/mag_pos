@@ -30,23 +30,27 @@ __interrupt void USCI0RX_ISR(void)
    }
    else if (UCA0RXBUF == 'r') // 'r' received?
    {
-       led_red_toggle();
+       LED_RED_TOGGLE();
    }
    else if (UCA0RXBUF == 'g') // 'g' received?
    {
-       led_green_toggle();
+       LED_GREEN_TOGGLE();
    }
    else if (UCA0RXBUF == 'b') // 'b' received?
    {
-       led_blue_toggle();
+       LED_BLUE_TOGGLE();
    }
    else if (UCA0RXBUF == 'y') // 'y' received?
    {
-       led_yellow_toggle();
+       LED_YELLOW_TOGGLE();
    }
    else if (UCA0RXBUF == 'w') // 'w' received?
    {
-       led_white_toggle();
+       LED_WHITE_TOGGLE();
+   }
+   else if (UCA0RXBUF == 'd') // 'd' received?
+   {
+       led_off();
    }
 }
 

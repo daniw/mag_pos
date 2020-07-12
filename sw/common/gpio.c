@@ -39,46 +39,10 @@ void led_red(void)
     return;
 }
 
-void led_red_on(void)
-{
-    LED_RED_PORT |= MASK_RED;
-    return;
-}
-
-void led_red_off(void)
-{
-    LED_RED_PORT &= ~MASK_RED;
-    return;
-}
-
-void led_red_toggle(void)
-{
-    LED_RED_PORT ^= MASK_RED;
-    return;
-}
-
 void led_green(void)
 {
     led_off();
     LED_GREEN_PORT |= MASK_GREEN;
-    return;
-}
-
-void led_green_on(void)
-{
-    LED_GREEN_PORT |= MASK_GREEN;
-    return;
-}
-
-void led_green_off(void)
-{
-    LED_GREEN_PORT &= ~MASK_GREEN;
-    return;
-}
-
-void led_green_toggle(void)
-{
-    LED_GREEN_PORT ^= MASK_GREEN;
     return;
 }
 
@@ -89,24 +53,6 @@ void led_blue(void)
     return;
 }
 
-void led_blue_on(void)
-{
-    LED_BLUE_PORT |= MASK_BLUE;
-    return;
-}
-
-void led_blue_off(void)
-{
-    LED_BLUE_PORT &= ~MASK_BLUE;
-    return;
-}
-
-void led_blue_toggle(void)
-{
-    LED_BLUE_PORT ^= MASK_BLUE;
-    return;
-}
-
 void led_yellow(void)
 {
     led_off();
@@ -114,45 +60,9 @@ void led_yellow(void)
     return;
 }
 
-void led_yellow_on(void)
-{
-    LED_YELLOW_PORT |= MASK_YELLOW;
-    return;
-}
-
-void led_yellow_off(void)
-{
-    LED_YELLOW_PORT &= ~MASK_YELLOW;
-    return;
-}
-
-void led_yellow_toggle(void)
-{
-    LED_YELLOW_PORT ^= MASK_YELLOW;
-    return;
-}
-
 void led_white(void)
 {
     led_off();
     LED_WHITE_PORT |= MASK_WHITE;
-    return;
-}
-
-void led_white_on(void)
-{
-    LED_WHITE_PORT |= MASK_WHITE;
-    return;
-}
-
-void led_white_off(void)
-{
-    LED_WHITE_PORT &= ~MASK_WHITE;
-    return;
-}
-
-void led_white_toggle(void)
-{
-    LED_WHITE_PORT ^= MASK_WHITE;
     return;
 }

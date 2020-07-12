@@ -53,29 +53,29 @@
 void init_gpio(void);
 void led_off(void);
 
+#define LED_RED_ON()        LED_RED_PORT |= MASK_RED
+#define LED_RED_OFF()       LED_RED_PORT &= ~MASK_RED
+#define LED_RED_TOGGLE()    LED_RED_PORT ^= MASK_RED
+
+#define LED_GREEN_ON()      LED_GREEN_PORT |= MASK_GREEN
+#define LED_GREEN_OFF()     LED_GREEN_PORT &= ~MASK_GREEN
+#define LED_GREEN_TOGGLE()  LED_GREEN_PORT ^= MASK_GREEN
+
+#define LED_BLUE_ON()       LED_BLUE_PORT |= MASK_BLUE
+#define LED_BLUE_OFF()      LED_BLUE_PORT &= ~MASK_BLUE
+#define LED_BLUE_TOGGLE()   LED_BLUE_PORT ^= MASK_BLUE
+
+#define LED_YELLOW_ON()     LED_YELLOW_PORT |= MASK_YELLOW
+#define LED_YELLOW_OFF()    LED_YELLOW_PORT &= ~MASK_YELLOW
+#define LED_YELLOW_TOGGLE() LED_YELLOW_PORT ^= MASK_YELLOW
+
+#define LED_WHITE_ON()      LED_WHITE_PORT |= MASK_WHITE
+#define LED_WHITE_OFF()     LED_WHITE_PORT &= ~MASK_WHITE
+#define LED_WHITE_TOGGLE()  LED_WHITE_PORT ^= MASK_WHITE
+
 void led_red(void);
-void led_red_on(void);
-void led_red_off(void);
-void led_red_toggle(void);
-
 void led_green(void);
-void led_green_on(void);
-void led_green_off(void);
-void led_green_toggle(void);
-
 void led_blue(void);
-void led_blue_on(void);
-void led_blue_off(void);
-void led_blue_toggle(void);
-
 void led_yellow(void);
-void led_yellow_on(void);
-void led_yellow_off(void);
-void led_yellow_toggle(void);
-
 void led_white(void);
-void led_white_on(void);
-void led_white_off(void);
-void led_white_toggle(void);
-
 #endif /* GPIO_H_ */
