@@ -11,10 +11,10 @@ const char string[] = { "Hello World\r\n" };
 unsigned int i; //Counter
 
 void init_uart(void){
-    UCA0CTL1 |= UCSSEL_2; // SMCLK
-    UCA0BR0 = 0x08; // 1MHz 115200
-    UCA0BR1 = 0x00; // 1MHz 115200
-    UCA0MCTL = UCBRS2 + UCBRS0; // Modulation UCBRSx = 5
+    UCA0CTL1 |= UCA0CTL1_INIT;
+    UCA0BR0 = UCA0BR0_INIT;
+    UCA0BR1 = UCA0BR1_INIT;
+    UCA0MCTL = UCA0MCTL_INIT;
     UCA0CTL1 &= ~UCSWRST; // **Initialize USCI state machine**
     UC0IE |= UCA0RXIE; // Enable USCI_A0 RX interrupt
 }

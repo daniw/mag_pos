@@ -12,13 +12,13 @@
 
 /* Clock frequency selection */
 #ifndef DCO_FREQ
-    #define DCO_FREQ 8000000
+    #define DCO_FREQ 16000000
 #endif
 #ifndef MCLK_FREQ
-    #define MCLK_FREQ 8000000
+    #define MCLK_FREQ 16000000
 #endif
 #ifndef SMCLK_FREQ
-    #define SMCLK_FREQ 1000000
+    #define SMCLK_FREQ 16000000
 #endif
 
 /* DCO Setup */
