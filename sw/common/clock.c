@@ -12,6 +12,6 @@ void init_clock(void){
     BCSCTL1 = CALBC1_INIT; // Set range
     DCOCTL  = CALDCO_INIT; // Set DCO step + modulation
     /* Use VCO as main clock without Prescaler */
-    BCSCTL2 = SELM_0 | DIVM_0;
+    BCSCTL2 = SELM_INIT | DIVM_INIT | SELS_INIT | DIVS_INIT;
     return;
 }
