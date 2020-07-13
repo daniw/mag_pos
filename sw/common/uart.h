@@ -19,9 +19,11 @@
 
 #define UCA0CTL1_INIT UCSSEL_2 /* Use SMCLK */
 #define UART_INPUT_FREQ SMCLK_FREQ
+/* UCBR_INIT = floor(Input freq / Baud) */
 #define UCA0BR0_INIT  ((UART_INPUT_FREQ / UART_BAUD) % 256)
 #define UCA0BR1_INIT  ((UART_INPUT_FREQ / UART_BAUD) / 256)
-#define UCBRS_VALUE ((UART_INPUT_FREQ * 8 / UART_BAUD) % 8)
+/* UCBRS_VALUE = mod(round(Input freq * 8 / Baud), 8) */
+#define UCBRS_VALUE (((UART_INPUT_FREQ * 8 + (UART_BAUD/2)) / UART_BAUD) % 8)
 #if UCBRS_VALUE == 0
     #define UCBRS_INIT UCBRS_0
 #elif UCBRS_VALUE == 1
