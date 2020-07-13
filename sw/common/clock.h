@@ -10,6 +10,7 @@
 
 #include <msp430.h>
 
+/* Clock frequency selection */
 #ifndef DCO_FREQ
     #define DCO_FREQ 8000000
 #endif
@@ -52,7 +53,7 @@
 #endif
 
 /* SMCLK selection */
-#define SELS_INIT SELS_0 // Use DCO as SMCLK source
+#define SELS_INIT 0 // Use DCO as SMCLK source
 #if SMCLK_FREQ == DCO_FREQ / 1
     #define DIVS_INIT DIVS_0 // Divider 1
 #elif SMCLK_FREQ == DCO_FREQ / 2
@@ -62,8 +63,10 @@
 #elif SMCLK_FREQ == DCO_FREQ / 8
     #define DIVS_INIT DIVS_3 // Divider 8
 #else
-    #error "Invalid MCLK frequency selected. Check MCLK_FREQ and DCO_FREQ"
+    #error "Invalid SMCLK frequency selected. Check SMCLK_FREQ and DCO_FREQ"
 #endif
+
+#define BCSCTL2_INIT (SELM_INIT | DIVM_INIT | SELS_INIT | DIVS_INIT)
 
 void init_clock(void);
 

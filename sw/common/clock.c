@@ -11,7 +11,8 @@ void init_clock(void){
     DCOCTL  = 0x00; // Select lowest DCOx and MODx settings
     BCSCTL1 = CALBC1_INIT; // Set range
     DCOCTL  = CALDCO_INIT; // Set DCO step + modulation
-    /* Use VCO as main clock without Prescaler */
-    BCSCTL2 = SELM_INIT | DIVM_INIT | SELS_INIT | DIVS_INIT;
+    #if BCSCTL2_INIT != 0
+        BCSCTL2 = BCSCTL2_INIT;
+    #endif
     return;
 }
