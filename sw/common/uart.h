@@ -5,8 +5,8 @@
  *      Author: daniw
  */
 
-#ifndef COMMON_UART_H_
-#define COMMON_UART_H_
+#ifndef UART_H_
+#define UART_H_
 
 #include <msp430.h>
 #include "clock.h"
@@ -47,4 +47,4 @@
 
 void init_uart(void);
 
-#endif /* COMMON_UART_H_ */
+#endif /* UART_H_ */

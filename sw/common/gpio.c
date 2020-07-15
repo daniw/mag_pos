@@ -5,64 +5,56 @@
  *      Author: daniw
  */
 
+#include "platform.h"
 #include "gpio.h"
 
 void init_gpio(void)
 {
     // Set LEDs as outputs
-    LED_RED_DIR     |= 1<<LED_RED_PIN;
-    LED_GREEN_DIR   |= 1<<LED_GREEN_PIN;
-    LED_BLUE_DIR    |= 1<<LED_BLUE_PIN;
-    LED_YELLOW_DIR  |= 1<<LED_YELLOW_PIN;
-    LED_WHITE_DIR   |= 1<<LED_WHITE_PIN;
+    #if PL_HAS_LED_RED
+        LED_RED_DIR     |= 1<<LED_RED_PIN;
+    #endif /* PL_HAS_LED_RED */
+    #if PL_HAS_LED_GREEN
+        LED_GREEN_DIR   |= 1<<LED_GREEN_PIN;
+    #endif /* PL_HAS_LED_GREEN */
+    #if PL_HAS_LED_BLUE
+        LED_BLUE_DIR    |= 1<<LED_BLUE_PIN;
+    #endif /* PL_HAS_LED_BLUE */
+    #if PL_HAS_LED_YELLOW
+        LED_YELLOW_DIR  |= 1<<LED_YELLOW_PIN;
+    #endif /* PL_HAS_LED_YELLOW */
+    #if PL_HAS_LED_WHITE
+        LED_WHITE_DIR   |= 1<<LED_WHITE_PIN;
+    #endif /* PL_HAS_LED_WHITE */
 
-    P2SEL = 0x00;                   // Disable crystal oscillator
-//#ifdef PL_HAS_UART
-    P1SEL  |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
-    P1SEL2 |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
-//#endif
+    P2SEL &= (1<<6) | (1<<7);                   // Disable crystal oscillator
 
-    SW_PU |= MASK_SW;               // Enable Pull up resistor for button
+    #if PL_HAS_UART
+        P1SEL  |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
+        P1SEL2 |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
+    #endif
+
+    #if PL_HAS_SW
+        SW_PU |= MASK_SW;               // Enable Pull up resistor for button
+    #endif /* PL_HAS_SW */
 }
 
 void led_off(void)
 {
-    P1OUT = PORT1_OFF|MASK_SW;
-    P2OUT = PORT2_OFF;
-    return;
-}
-
-void led_red(void)
-{
-    led_off();
-    LED_RED_PORT |= MASK_RED;
-    return;
-}
-
-void led_green(void)
-{
-    led_off();
-    LED_GREEN_PORT |= MASK_GREEN;
-    return;
-}
-
-void led_blue(void)
-{
-    led_off();
-    LED_BLUE_PORT |= MASK_BLUE;
-    return;
-}
-
-void led_yellow(void)
-{
-    led_off();
-    LED_YELLOW_PORT |= MASK_YELLOW;
-    return;
-}
-
-void led_white(void)
-{
-    led_off();
-    LED_WHITE_PORT |= MASK_WHITE;
+    #if PL_HAS_LED_RED
+        LED_RED_OFF();
+    #endif /* PL_HAS_LED_RED */
+    #if PL_HAS_LED_GREEN
+        LED_GREEN_OFF();
+    #endif /* PL_HAS_LED_GREEN */
+    #if PL_HAS_LED_BLUE
+        LED_BLUE_OFF();
+    #endif /* PL_HAS_LED_BLUE */
+    #if PL_HAS_LED_YELLOW
+        LED_YELLOW_OFF();
+    #endif /* PL_HAS_LED_YELLOW */
+    #if PL_HAS_LED_WHITE
+        LED_WHITE_OFF();
+    #endif /* PL_HAS_LED_WHITE */
     return;
 }

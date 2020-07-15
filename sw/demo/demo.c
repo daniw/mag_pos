@@ -1,7 +1,8 @@
 #include <msp430.h>
 
-#define PL_HAS_UART
+#define PL_IS_DEMO
 
+#include "platform.h"
 #include "clock.h"
 #include "gpio.h"
 #include "uart.h"

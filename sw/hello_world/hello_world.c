@@ -44,19 +44,24 @@ void led_ctrl(){
         led_off();
         break;
     case STATE_RED:
-        led_red();
+        led_off();
+        LED_RED_ON();
         break;
     case STATE_GREEN:
-        led_green();
+        led_off();
+        LED_GREEN_ON();
         break;
     case STATE_BLUE:
-        led_blue();
+        led_off();
+        LED_BLUE_ON();
         break;
     case STATE_YELLOW:
-        led_yellow();
+        led_off();
+        LED_YELLOW_ON();
         break;
     case STATE_WHITE:
-        led_white();
+        led_off();
+        LED_WHITE_ON();
         break;
     default:
         led_off();
