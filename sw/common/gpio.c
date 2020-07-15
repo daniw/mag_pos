@@ -27,7 +27,9 @@ void init_gpio(void)
         LED_WHITE_DIR   |= 1<<LED_WHITE_PIN;
     #endif /* PL_HAS_LED_WHITE */
 
-    P2SEL &= (1<<6) | (1<<7);                   // Disable crystal oscillator
+    #if PL_IS_DEMO
+    P2SEL &= ~((1<<6) | (1<<7));                   // Disable crystal oscillator
+    #endif /* PL_IS_DEMO */
 
     #if PL_HAS_UART
         P1SEL  |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD

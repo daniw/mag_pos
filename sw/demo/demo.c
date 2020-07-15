@@ -1,7 +1,5 @@
 #include <msp430.h>
 
-#define PL_IS_DEMO
-
 #include "platform.h"
 #include "clock.h"
 #include "gpio.h"
@@ -53,19 +51,19 @@ void led_ctrl(){
         led_off();
         break;
     case STATE_RED:
-        led_red();
+        LED_RED_ON();
         break;
     case STATE_GREEN:
-        led_green();
+        LED_GREEN_ON();
         break;
     case STATE_BLUE:
-        led_blue();
+        LED_BLUE_ON();
         break;
     case STATE_YELLOW:
-        led_yellow();
+        LED_YELLOW_ON();
         break;
     case STATE_WHITE:
-        led_white();
+        LED_WHITE_ON();
         break;
     default:
         led_off();
