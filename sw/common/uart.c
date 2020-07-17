@@ -11,13 +11,13 @@ const char string[] = { "Hello World\r\n" };
 unsigned int i; //Counter
 
 void init_uart(void){
-    UART_CTL1(UART_MODULE)  = UCSWRST; // Reset USCI module
-    UART_CTL1(UART_MODULE) |= UART_UCA_CTL1_INIT;
-    UART_BR0(UART_MODULE)   = UART_UCA_BR0_INIT;
-    UART_BR1(UART_MODULE)   = UART_UCA_BR1_INIT;
-    UART_MCTL(UART_MODULE)  = UART_UCA_MCTL_INIT;
-    UART_CTL1(UART_MODULE) &= ~UCSWRST; // **Initialize USCI state machine**
-    UART_IE(UART_MODULE)   |= UART_RXIE(UART_MODULE); // Enable UART RX interrupt
+    UART_CTL1  = UCSWRST; // Reset USCI module
+    UART_CTL1 |= UART_UCA_CTL1_INIT;
+    UART_BR0   = UART_UCA_BR0_INIT;
+    UART_BR1   = UART_UCA_BR1_INIT;
+    UART_MCTL  = UART_UCA_MCTL_INIT;
+    UART_CTL1 &= ~UCSWRST; // **Initialize USCI state machine**
+    UART_IE   |= UART_RXIE; // Enable UART RX interrupt
 }
 
 #pragma vector=USCIAB0RX_VECTOR
