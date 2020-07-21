@@ -9,6 +9,7 @@
 #define UART_H_
 
 #include <msp430.h>
+#include <stdint.h>
 #include "platform.h"
 #include "clock.h"
 #include "gpio.h"

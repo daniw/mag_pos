@@ -9,6 +9,7 @@
 #define MLX90393_H_
 
 #include <msp430.h>
+#include <stdint.h>
 #include "platform.h"
 
 /******************************************************************************
