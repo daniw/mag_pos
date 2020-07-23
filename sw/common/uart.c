@@ -8,7 +8,7 @@
 #include "uart.h"
 
 const char string[] = { "Hello World\r\n" };
-unsigned int i; //Counter
+uint8_t i; //Counter
 
 void init_uart(void){
     UART_CTL1  = UCSWRST; // Reset USCI module
