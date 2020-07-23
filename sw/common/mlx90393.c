@@ -27,7 +27,7 @@ void mlx90393_write(uint8_t *data) {
 
 /*! \fn mlx90393_read(uint8_t *data)
  */
-void spi_read(uint8_t *data) {
+void mlx90393_read(uint8_t *data) {
     #if PL_HAS_I2C
         // \todo Add I2C write function here!!
         *data = 0x00;
@@ -52,7 +52,7 @@ void mlx90393_init(void) {
     test_bitfield.bitfield.low = 0x01;  /* write testvalue to lower nibble */
     if (test_bitfield.byte != 0x01) {   /* test if lower nibble has been written */
         while (1) {
-            /* Hey Programmer
+            /* Hey Programmer, 
              * It seems that your compiler uses a 
              * different order for bitfields than mine. 
              * If you still want to use this library, 

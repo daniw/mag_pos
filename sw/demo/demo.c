@@ -4,6 +4,7 @@
 #include "clock.h"
 #include "gpio.h"
 #include "uart.h"
+#include "mlx90393.h"
 
 #define SLEEPCNT_SLOW 65535
 #define SLEEPCNT_FAST SLEEPCNT_SLOW/8
