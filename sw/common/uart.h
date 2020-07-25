@@ -227,7 +227,7 @@
  * Created as macro to eliminate function call in ISR
  */
 #if PL_IS_DEMO // UART ISR for for demo platform
-    #define UART_ISR_RX \
+    #define UART_RX_ISR \
        if (UCA0RXBUF == 'h') \
        { \
           i = 0; \
@@ -259,7 +259,7 @@
            led_off(); \
        }
 
-    #define UART_ISR_TX \
+    #define UART_TX_ISR \
        UCA0TXBUF = string[i++]; \
        if (i == sizeof string - 1) \
           UC0IE &= ~UCA0TXIE;

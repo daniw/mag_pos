@@ -14,7 +14,9 @@ uint8_t i; //Counter
 __interrupt void USCI0RX_ISR(void)
 {
     #if PL_HAS_UART
-        UART_ISR_RX
+        if (UART_IFG & UART_RXIFG) {
+            UART_RX_ISR
+        }
     #endif /* PL_HAS_UART */
 }
 
@@ -22,6 +24,8 @@ __interrupt void USCI0RX_ISR(void)
 __interrupt void USCI0TX_ISR(void)
 {
     #if PL_HAS_UART
-        UART_ISR_TX
+        if (UART_IFG & UART_TXIFG) {
+            UART_TX_ISR
+        }
     #endif /* PL_HAS_UART */
 }
