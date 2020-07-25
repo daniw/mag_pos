@@ -223,6 +223,48 @@
     #define UART_IRRCTL_INIT 0x00
 #endif /* UART_IRDA */
 
+/* ISR handler
+ * Created as macro to eliminate function call in ISR
+ */
+#if PL_IS_DEMO // UART ISR for for demo platform
+    #define UART_ISR_RX \
+       if (UCA0RXBUF == 'h') \
+       { \
+          i = 0; \
+          UC0IE |= UCA0TXIE; \
+          UCA0TXBUF = string[i++]; \
+       } \
+       else if (UCA0RXBUF == 'r') \
+       { \
+           LED_RED_TOGGLE(); \
+       } \
+       else if (UCA0RXBUF == 'g') \
+       { \
+           LED_GREEN_TOGGLE(); \
+       } \
+       else if (UCA0RXBUF == 'b') \
+       { \
+           LED_BLUE_TOGGLE(); \
+       } \
+       else if (UCA0RXBUF == 'y') \
+       { \
+           LED_YELLOW_TOGGLE(); \
+       } \
+       else if (UCA0RXBUF == 'w') \
+       { \
+           LED_WHITE_TOGGLE(); \
+       } \
+       else if (UCA0RXBUF == 'd') \
+       { \
+           led_off(); \
+       }
+
+    #define UART_ISR_TX \
+       UCA0TXBUF = string[i++]; \
+       if (i == sizeof string - 1) \
+          UC0IE &= ~UCA0TXIE;
+#endif /* PL_IS_DEMO */
+
 void init_uart(void);
 
 #endif /* UART_H_ */
