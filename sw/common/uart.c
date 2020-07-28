@@ -14,7 +14,7 @@ void init_uart(void){
         UART_CTL0 = UART_CTL0_INIT;
     #endif /* UART_CTL0 */
     #if UART_CTL1_INIT != 0
-        UART_CTL1 |= UART_CTL1_INIT; // |= to keep UCSWRST set and keep USCI module in reset
+        UART_CTL1 = UART_CTL1_INIT | UCSWRST; // keep UCSWRST set to keep USCI module in reset
     #endif /* UART_CTL1 */
     #if UART_BR0_INIT != 0
         UART_BR0 = UART_BR0_INIT;
