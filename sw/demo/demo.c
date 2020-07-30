@@ -1,9 +1,11 @@
 #include <msp430.h>
+#include <stdint.h>
 
 #include "platform.h"
 #include "clock.h"
 #include "gpio.h"
 #include "uart.h"
+#include "mlx90393.h"
 
 #define SLEEPCNT_SLOW 65535
 #define SLEEPCNT_FAST SLEEPCNT_SLOW/8
@@ -15,7 +17,7 @@
 #define STATE_YELLOW    4
 #define STATE_WHITE     5
 
-void sleep(unsigned int sleepcnt);
+void sleep(uint16_t sleepcnt);
 void led_ctrl();
 
 /**
@@ -43,7 +45,7 @@ void main(void)
 }
 
 void led_ctrl(){
-    static unsigned int state = 0;
+    static uint8_t state = 0;
     state++;
     switch (state)
     {
@@ -75,8 +77,8 @@ void led_ctrl(){
     }
 }
 
-void sleep(unsigned int sleepcnt){
-    volatile unsigned int i;        // volatile to prevent optimization
+void sleep(uint16_t sleepcnt){
+    volatile uint16_t i;        // volatile to prevent optimization
     for(i=sleepcnt; i>0; i--);      // delay
     return;
 }

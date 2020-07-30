@@ -9,6 +9,7 @@
 #define GPIO_H_
 
 #include <msp430.h>
+#include <stdint.h>
 #include "platform.h"
 
 #if PL_IS_DEMO

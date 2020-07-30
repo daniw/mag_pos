@@ -9,6 +9,7 @@
 #define CLOCK_H_
 
 #include <msp430.h>
+#include <stdint.h>
 
 /* Clock frequency selection */
 #ifndef DCO_FREQ
