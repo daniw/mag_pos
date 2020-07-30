@@ -76,25 +76,28 @@ void I2C_init()
     UCB0BR1 = 0;
     UCB0I2CSA = SLAVE_ADDR;                     // Slave Address
     UCB0CTL1 &= ~UCSWRST;                       // Clear SW reset, resume operation
+    IE2 |= UCB0TXIE;                               // Enable TX interrupt
+    IE2 |= UCB0RXIE;                               // Enable RX interrupt
 }
 
-void I2C_write(uint8_t data) {
-    IE2 &= ~UCB0RXIE;                              // Disable RX interrupt
+void I2C_write(uint8_t data, uint8_t BytesRx) {
+    //IE2 &= ~UCB0RXIE;                              // Disable RX interrupt
     while (UCB0CTL1 & UCTXSTP);                  // Ensure stop condition got sent
-    IE2 |= UCB0TXIE;                               // Enable TX interrupt
+    //IE2 |= UCB0TXIE;                               // Enable TX interrupt
     data_ = data;
     TxByteCtr = 1;
+    RxByteCtr = BytesRx;
     UCB0CTL1 |= UCTR + UCTXSTT;                    // I2C TX, start condition
     //__bis_SR_register(CPUOFF + GIE);               // Enter LPM0 w/ interrupts
-    while (UCB0CTL1 & UCTXSTP);
+    //while (UCB0CTL1 & UCTXSTT);
 }
 
 void I2C_read(uint8_t ByteCtr, volatile uint8_t *RxData) {
     //__disable_interrupt();
 
     //Interrupt management
-    IE2 &= ~UCB0TXIE;                              // Disable TX interrupt
-    IE2 |= UCB0RXIE;                               // Enable RX interrupt
+    //IE2 &= ~UCB0TXIE;                              // Disable TX interrupt
+    //IE2 |= UCB0RXIE;                               // Enable RX interrupt
 
     //Pointer to where data will be stored
     PRxData = (uint8_t *) RxData;                  // Start of RX buffer
@@ -143,13 +146,19 @@ __interrupt void USCI0RX_ISR(void)
     }
     else if (value == 's')
     {
-        I2C_write(0b00110010);
-        I2C_read(1, buffer);
+        I2C_write(0b00110001, 1);
+        //I2C_write(0b00000000);
+        //volatile unsigned int i;
+        //for (i = 0; i < 6500; i++);
+        //I2C_read(1, buffer);
     }
     else if (value == 'r')
     {
-        I2C_write(0b01000010);
-        I2C_read(3, buffer);
+        I2C_write(0b01000001, 3);
+        //I2C_write(0b01000010);
+        //volatile unsigned int i;
+        //        for (i = 0; i < 6500; i++);
+        //I2C_read(1, buffer);
     }
     RXLED_OUT &= ~RXLED_PIN;
 }
@@ -173,7 +182,7 @@ __interrupt void USCIAB0TX_ISR(void)
       if (RxByteCtr == 1)
       {
          //buffer[0] = UCB0RXBUF + 50;
-         *PRxData = UCB0RXBUF + 40;                           // Move final RX data to PRxData
+         *PRxData = UCB0RXBUF + 45;                           // Move final RX data to PRxData
 
          UC0IE |= UCA0TXIE;                             // Enable USCI_A0 TX interrupt
          j = 0;
@@ -183,7 +192,7 @@ __interrupt void USCIAB0TX_ISR(void)
       }
       else
       {
-          *PRxData++ = UCB0RXBUF + 40;                        // Move RX data to address PRxData
+          *PRxData++ = UCB0RXBUF + 45;                        // Move RX data to address PRxData
           if (RxByteCtr == 2)                            // Check whether byte is second to last to be read to send stop condition
               UCB0CTL1 |= UCTXSTP;
           //__no_operation();
@@ -202,9 +211,17 @@ __interrupt void USCIAB0TX_ISR(void)
       }
       else
       {
-        UCB0CTL1 |= UCTXSTP;                             // I2C stop condition
-        IFG2 &= ~UCB0TXIFG;                              // Clear USCI_B0 TX int flag
-        //__bic_SR_register_on_exit(CPUOFF);               // Exit LPM0
+          PRxData = buffer;                  // Start of RX buffer
+          UCB0CTL1 &= ~UCTR;
+          UCB0CTL1 |= UCTXSTT;                       // I2C repeated start condition
+          if(RxByteCtr == 1)
+          {
+              while (UCB0CTL1 & UCTXSTT);                // Start condition sent?
+              UCB0CTL1 |= UCTXSTP;                       // I2C stop condition
+          }
+          //UCB0CTL1 |= UCTXSTP;                             // I2C stop condition
+          IFG2 &= ~UCB0TXIFG;                              // Clear USCI_B0 TX int flag
+          //__bic_SR_register_on_exit(CPUOFF);               // Exit LPM0
       }
       //IFG2 &= ~UCB0TXIFG;
   }
