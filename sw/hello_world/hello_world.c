@@ -1,6 +1,7 @@
 #include <msp430.h>
 #include <stdint.h>
 
+#include "platform.h"
 #include "gpio.h"
 
 #define SLEEPCNT_SLOW 16384

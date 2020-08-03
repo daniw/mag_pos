@@ -5,7 +5,10 @@
  *      Author: daniw
  */
 
+
 #include "uart.h"
+
+#if PL_HAS_UART
 
 void init_uart(void){
     UART_CTL1  = UCSWRST; // Reset USCI module
@@ -41,3 +44,5 @@ void init_uart(void){
     UART_CTL1 &= ~UCSWRST; // **Initialize USCI state machine**
     UART_IE   |= UART_RXIE; // Enable UART RX interrupt
 }
+
+#endif /* PL_HAS_UART */
