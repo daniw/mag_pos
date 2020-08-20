@@ -20,6 +20,8 @@
     #define PL_HAS_SW           (1)
 
     #define PL_HAS_UART         (1)
+
+    #define PL_HAS_I2C          (1)
 #endif
 
 #endif /* PLATFORM_H_ */

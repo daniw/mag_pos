@@ -7,15 +7,16 @@
 
 #include "isr.h"
 
-const char string[] = { "Hello World\r\n" };
-uint8_t i; //Counter
+//const char string[] = { "Hello World\r\n" };
+//uint8_t i; //Counter
 
 #pragma vector=USCIAB0RX_VECTOR
 __interrupt void USCI0RX_ISR(void)
 {
     #if PL_HAS_UART
         if (UART_IFG & UART_RXIFG) {
-            UART_RX_ISR
+            uart_rx_isr();
+            //UART_RX_ISR
         }
     #endif /* PL_HAS_UART */
 }
@@ -25,7 +26,18 @@ __interrupt void USCI0TX_ISR(void)
 {
     #if PL_HAS_UART
         if (UART_IFG & UART_TXIFG) {
-            UART_TX_ISR
+            uart_tx_isr();
+            //UART_TX_ISR
         }
     #endif /* PL_HAS_UART */
+
+    #if PL_HAS_I2C
+        if (IFG2 & UCB0RXIFG) {
+            mlx90393_i2c_rx_interrupt();
+        }
+        if (IFG2 & UCB0TXIFG) {
+            mlx90393_i2c_tx_interrupt();
+        }
+    #endif /* PL_HAS_I2C */
+
 }

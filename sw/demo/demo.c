@@ -21,7 +21,7 @@ void sleep(uint16_t sleepcnt);
 void led_ctrl();
 
 /**
- * blink.c
+ * demo.c
  */
 void main(void)
 {
@@ -29,18 +29,20 @@ void main(void)
 
     init_clock();
     init_gpio();
+    led_off(); // TODO: Set all ports output registers 0 in init_gpio
     init_uart();
+    mlx90393_init();
 
     __bis_SR_register(GIE); // Enable global interrupts
 
      while(1)
     {
         //led_ctrl();
-        if (SW_READ) {
+        /*if (SW_READ) {
             sleep(SLEEPCNT_FAST);
         } else {
             sleep(SLEEPCNT_SLOW);
-        }
+        }*/
     }
 }
 

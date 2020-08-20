@@ -13,6 +13,7 @@
 #include "platform.h"
 #include "clock.h"
 #include "gpio.h"
+#include "mlx90393.h"
 
 /* USCI module selection */
 #if PL_IS_DEMO
@@ -266,5 +267,8 @@
 #endif /* PL_IS_DEMO */
 
 void init_uart(void);
+void uart_rx_isr(void);
+void uart_tx_isr(void);
+void uart_transmit(uint8_t *data, uint8_t count);
 
 #endif /* UART_H_ */

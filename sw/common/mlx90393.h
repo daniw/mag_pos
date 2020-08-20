@@ -12,6 +12,67 @@
 #include <stdint.h>
 #include "platform.h"
 
+// RX and TX buffers
+uint8_t mlx_rx_buffer_[9];
+uint8_t mlx_tx_buffer_[4];
+uint8_t *mlx90393_rx_buffer_pointer_;
+uint8_t *mlx90393_tx_buffer_pointer_;
+uint8_t mlx90393_rx_counter_;
+uint8_t mlx90393_tx_counter_;
+uint8_t mlx_rx_count_;
+uint8_t mlx_tx_count_;
+
+#define I2C_CS_PIN BIT4
+#define I2C_CS_OUT P1OUT
+#define I2C_CS_DIR P1DIR
+#define SLAVE_ADDR 0x0C
+#define I2C_SCL BIT6
+#define I2C_SDA BIT7
+
+#define I2C_MODULE B0
+
+// Baud generation
+#define I2C_BAUD 100000
+#define I2C_INPUT_FREQ SMCLK_FREQ
+#define I2C_BR0_INIT  ((I2C_INPUT_FREQ / I2C_BAUD) % 256)
+#define I2C_BR1_INIT  ((I2C_INPUT_FREQ / I2C_BAUD) / 256)
+
+// Register definitions
+/* BR0 */
+#define I2C_BR0_(module)     I2C_BR0__(module)
+#define I2C_BR0__(module)    UC##module##BR0
+#define I2C_BR0              I2C_BR0_(I2C_MODULE)
+
+/* BR1 */
+#define I2C_BR1_(module)     I2C_BR1__(module)
+#define I2C_BR1__(module)    UC##module##BR1
+#define I2C_BR1              I2C_BR1_(I2C_MODULE)
+
+/* CTL0 */
+#define I2C_CTL0_(module)    I2C_CTL0__(module)
+#define I2C_CTL0__(module)   UC##module##CTL0
+#define I2C_CTL0             I2C_CTL0_(I2C_MODULE)
+
+/* CTL1 */
+#define I2C_CTL1_(module)    I2C_CTL1__(module)
+#define I2C_CTL1__(module)   UC##module##CTL1
+#define I2C_CTL1             I2C_CTL1_(I2C_MODULE)
+
+/* I2CSA */
+#define I2C_I2CSA_(module)   I2C_I2CSA__(module)
+#define I2C_I2CSA__(module)  UC##module##I2CSA
+#define I2C_I2CSA            I2C_I2CSA_(I2C_MODULE)
+
+/* TXBUF */
+#define I2C_TXBUF_(module)   I2C_TXBUF__(module)
+#define I2C_TXBUF__(module)  UC##module##TXBUF
+#define I2C_TXBUF            I2C_TXBUF_(I2C_MODULE)
+
+/* RXBUF */
+#define I2C_RXBUF_(module)   I2C_RXBUF__(module)
+#define I2C_RXBUF__(module)  UC##module##RXBUF
+#define I2C_RXBUF            I2C_RXBUF_(I2C_MODULE)
+
 /******************************************************************************
  * Test compiler dependencies
  *****************************************************************************/
@@ -885,5 +946,8 @@ typedef union {
  *  \return void
  */
 void mlx90393_init(void);
+void mlx90393_communicate(uint8_t *txData, uint8_t txCount, uint8_t *rxData, uint8_t rxCount);
+void mlx90393_i2c_tx_interrupt();
+void mlx90393_i2c_rx_interrupt();
 
 #endif /* MLX90393_H_ */
