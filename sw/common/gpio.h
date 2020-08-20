@@ -12,7 +12,7 @@
 #include <stdint.h>
 #include "platform.h"
 
-#if PL_IS_DEMO
+#if PL_HW_G2_LAUNCHPAD
     #define LED_RED_PORT    P1OUT
     #define LED_RED_DIR     P1DIR
     #define LED_RED_PIN     0

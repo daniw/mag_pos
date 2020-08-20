@@ -5,6 +5,8 @@
  *      Author: daniw
  */
 
+#if PL_HAS_UART
+
 #include "uart.h"
 
 uint8_t *uart_tx_buffer_;
@@ -111,3 +113,4 @@ void uart_tx_isr()
     else
         UCA0TXBUF = uart_tx_buffer_[uart_tx_i++];
 }
+#endif /* PL_HAS_UART */

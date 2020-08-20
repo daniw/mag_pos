@@ -7,6 +7,7 @@ History
 Project Logs*
 Project Outputs*
 *.NET
+*.htm
 
 # FEMM output
 *.ans
