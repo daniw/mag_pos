@@ -5,9 +5,9 @@
  *      Author: daniw
  */
 
-#if PL_HAS_UART
-
 #include "uart.h"
+
+#if PL_HAS_UART
 
 uint8_t *uart_tx_buffer_;
 uint8_t uart_tx_count;
