@@ -16,12 +16,14 @@
     #define PL_HW_G2_LAUNCHPAD  (1)
 
     #define PL_HAS_UART         (1)
+    #define PL_HAS_I2C          (1)
 #endif /* PL_IS_DEMO */
 
 #if PL_IS_DEMO_FR
     #define PL_HW_FR2_LAUNCHPAD (1)
 
     #define PL_HAS_UART         (1)
+    #define PL_HAS_I2C          (1)
 #endif /* PL_IS_DEMO_FR */
 
 #if PL_HW_G2_LAUNCHPAD
