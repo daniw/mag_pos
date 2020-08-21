@@ -28,14 +28,43 @@
     #define LED_WHITE_PORT  P2OUT
     #define LED_WHITE_DIR   P2DIR
     #define LED_WHITE_PIN   5
-    #define SW_PORT         P1IN
-    #define SW_PU           P1REN
-    #define SW_DIR          P1DIR
-    #define SW_PIN          3
+    #define SW0_PORT        P1IN
+    #define SW0_PU          P1REN
+    #define SW0_DIR         P1DIR
+    #define SW0_PIN         3
     // Todo: Port and SEL for RXD and TXD missing
     #define RXD             1
     #define TXD             2
-#endif
+#endif /* PL_HW_G2_LAUNCHPAD */
+
+#if PL_HW_FR2_LAUNCHPAD
+    #define LED_RED_PORT    P3OUT
+    #define LED_RED_DIR     P3DIR
+    #define LED_RED_PIN     4
+    #define LED_GREEN_PORT  P1OUT
+    #define LED_GREEN_DIR   P1DIR
+    #define LED_GREEN_PIN   5
+    #define LED_BLUE_PORT   P2OUT
+    #define LED_BLUE_DIR    P2DIR
+    #define LED_BLUE_PIN    0
+    #define LED_YELLOW_PORT P2OUT
+    #define LED_YELLOW_DIR  P2DIR
+    #define LED_YELLOW_PIN  2
+    #define LED_WHITE_PORT  P4OUT
+    #define LED_WHITE_DIR   P4DIR
+    #define LED_WHITE_PIN   4
+    #define SW0_PORT        P4IN
+    #define SW0_PU          P4REN
+    #define SW0_DIR         P4DIR
+    #define SW0_PIN         1
+    #define SW1_PORT        P2IN
+    #define SW1_PU          P2REN
+    #define SW1_DIR         P2DIR
+    #define SW1_PIN         3
+    // Todo: Port and SEL for RXD and TXD missing
+    #define RXD             1
+    #define TXD             2
+#endif /* PL_HW_FR2_LAUNCHPAD */
 
 #if PL_HAS_LED_RED
     #define MASK_RED            (1<<LED_RED_PIN)
@@ -72,10 +101,15 @@
     #define LED_WHITE_TOGGLE()  LED_WHITE_PORT ^= MASK_WHITE
 #endif /* PL_HAS_LED_WHITE */
 
-#if PL_HAS_SW
-    #define MASK_SW             (1<<SW_PIN)
-    #define SW_READ	            ((SW_PORT&(MASK_SW)) == 0)
-#endif /* PL_HAS_SW */
+#if PL_HAS_SW0
+    #define MASK_SW0            (1<<SW0_PIN)
+    #define SW0_READ            ((SW0_PORT&(MASK_SW0)) == 0)
+#endif /* PL_HAS_SW0 */
+
+#if PL_HAS_SW1
+    #define MASK_SW1            (1<<SW1_PIN)
+    #define SW1_READ            ((SW1_PORT&(MASK_SW1)) == 0)
+#endif /* PL_HAS_SW1 */
 
 #if PL_HAS_UART
     #define MASK_RXD        (1<<RXD)

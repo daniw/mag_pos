@@ -36,9 +36,12 @@ void init_gpio(void)
         P1SEL2 |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
     #endif
 
-    #if PL_HAS_SW
-        SW_PU |= MASK_SW;               // Enable Pull up resistor for button
-    #endif /* PL_HAS_SW */
+    #if PL_HAS_SW0
+        SW0_PU |= MASK_SW0;               // Enable Pull up resistor for button
+    #endif /* PL_HAS_SW0 */
+    #if PL_HAS_SW1
+        SW1_PU |= MASK_SW1;               // Enable Pull up resistor for button
+    #endif /* PL_HAS_SW1 */
 }
 
 void led_off(void)

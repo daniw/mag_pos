@@ -29,7 +29,7 @@ void main(void)
 	while(1)
 	{
         led_ctrl();
-	    if (SW_READ) {
+	    if (SW0_READ) {
 	        sleep(SLEEPCNT_FAST);
 	    } else {
 	        sleep(SLEEPCNT_SLOW);
