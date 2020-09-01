@@ -12,6 +12,10 @@ Project Outputs*
 # FEMM output
 *.ans
 *_distance.txt
+sim/*/*.csv
+sim/*/*.pdf
+sim/*/*.png
+sim/*/*.txt
 
 # Code composer studio
 Debug
