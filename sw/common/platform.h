@@ -27,6 +27,7 @@
 #endif /* PL_IS_DEMO_FR */
 
 #if PL_HW_G2_LAUNCHPAD
+    #define PL_HAS_BASIC_CLOCK_MODULE_PLUS (1)
     #define PL_HAS_LED_RED      (1)
     #define PL_HAS_LED_GREEN    (1)
     #define PL_HAS_LED_BLUE     (1)
@@ -37,6 +38,7 @@
 #endif /* PL_HW_G2_LAUNCHPAD */
 
 #if PL_HW_FR2_LAUNCHPAD
+    #define PL_HAS_CLOCK_SYSTEM (1)
     #define PL_HAS_LED_RED      (1)
     #define PL_HAS_LED_GREEN    (1)
     #define PL_HAS_LED_BLUE     (1)

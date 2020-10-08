@@ -15,8 +15,8 @@ void init_clock(void){
         #if BCSCTL2_INIT != 0
             BCSCTL2 = BCSCTL2_INIT;
         #endif /* BCSCTL2_INIT */
-    #elif PL_HAS_BASIC_CLOCK_MODULE_PLUS
-        /* \todo Implement MSP430FR clock initialisation */
+    #elif PL_HAS_CLOCK_SYSTEM
+        /* Set up clock module and perform software trim for DCO range selection */
         __bis_SR_register(SCG0);        // Disable FLL
         CSCTL3 = CSCTL3_INIT;           // Set FLL reference source
         CSCTL1 = CSCTL1_INIT;           // Set DCO range and enable DCO frequency trim
@@ -46,6 +46,7 @@ void init_clock(void){
  */
 /*! \fn mlx90393_read(uint8_t *data)
  */
+#if PL_HAS_CLOCK_SYSTEM
 void clock_software_trim(void){
     uint16_t oldDcoTap = 0xffff;
     uint16_t newDcoTap = 0xffff;
@@ -71,12 +72,12 @@ void clock_software_trim(void){
         do {
             CSCTL7 &= ~DCOFFG;      // Clear DCO fault flag
         } while(CSCTL7 & DCOFFG);
-        __delay_cycles((24*FLLREFDIV_VALUE+((1<<DIVM_INIT)-1))/(DIVM_INIT)); // Wait for FLL lock status to be stable. Minimum recommended waiting time: 24 cycles of divided FLLREFDIV
+        __delay_cycles((24*FLLREFDIV_VALUE+((1<<DIVM_INIT)-1))/(1<<DIVM_INIT)); // Wait for FLL lock status to be stable. Minimum recommended waiting time: 24 cycles of divided FLLREFDIV
         while ((CSCTL7 & (FLLUNLOCK)) && ((CSCTL7 & DCOFFG) == 0)); // Wait for FLL to lock or for DCO fault
         csctl0Read = CSCTL0;
         csctl1Read = CSCTL1;
         oldDcoTap = newDcoTap;      // Store previous DCO tap
-        newDcoTap = csctl0Read & DCOTAP;    // Get DCO Tap value
+        newDcoTap = csctl0Read & DCO;    // Get DCO Tap value
         dcoFreqTrim = csctl1Read & DCOFTRIM;    // Get FTRIM value
         if (newDcoTap < DCO_INIT){  // DCO running fast
             newDcoDelta = DCO_INIT - newDcoTap;  // Calculate current DCO tap deviation from optimal value
@@ -85,7 +86,7 @@ void clock_software_trim(void){
             }
             else {
                 dcoFreqTrim -= DCOFTRIM0;
-                CSCTL = (csctl1Read & (~DCOFTRIM)) | dcoFreqTrim;
+                CSCTL1 = (csctl1Read & (~DCOFTRIM)) | dcoFreqTrim;
             }
         }
         else {                      // DCO running slow
@@ -95,7 +96,7 @@ void clock_software_trim(void){
             }
             else {
                 dcoFreqTrim += DCOFTRIM0;
-                CSCTL = (csctl1Read & (~DCOFTRIM)) | dcoFreqTrim;
+                CSCTL1 = (csctl1Read & (~DCOFTRIM)) | dcoFreqTrim;
             }
         }
         if (newDcoDelta < bestDcoDelta) {   // Check if DCO tap is better than previously best DCO top value
@@ -111,3 +112,4 @@ void clock_software_trim(void){
     CSCTL7 &= ~FLLUNLOCKHIS;        // Clear FLL unlock history
     return;
 }
+#endif /* Platform clock module */

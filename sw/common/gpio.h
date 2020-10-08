@@ -32,7 +32,9 @@
     #define SW0_PU          P1REN
     #define SW0_DIR         P1DIR
     #define SW0_PIN         3
-    // Todo: Port and SEL for RXD and TXD missing
+    #define RXD_PORT        P1OUT
+    #define RXD_SEL         P1SEL
+    #define RXD_SEL2        P1SEL2
     #define RXD             1
     #define TXD             2
 #endif /* PL_HW_G2_LAUNCHPAD */
@@ -62,43 +64,44 @@
     #define SW1_DIR         P2DIR
     #define SW1_PIN         3
     // Todo: Port and SEL for RXD and TXD missing
-    #define RXD             1
-    #define TXD             2
+    #define RXD_PORT        P4OUT
+    #define RXD             2
+    #define TXD             3
 #endif /* PL_HW_FR2_LAUNCHPAD */
 
 #if PL_HAS_LED_RED
-    #define MASK_RED            (1<<LED_RED_PIN)
-    #define LED_RED_ON()        LED_RED_PORT |= MASK_RED
-    #define LED_RED_OFF()       LED_RED_PORT &= ~MASK_RED
-    #define LED_RED_TOGGLE()    LED_RED_PORT ^= MASK_RED
+    #define MASK_LED_RED        (1<<LED_RED_PIN)
+    #define LED_RED_ON()        LED_RED_PORT |= MASK_LED_RED
+    #define LED_RED_OFF()       LED_RED_PORT &= ~MASK_LED_RED
+    #define LED_RED_TOGGLE()    LED_RED_PORT ^= MASK_LED_RED
 #endif /* PL_HAS_LED_RED */
 
 #if PL_HAS_LED_RED
-    #define MASK_GREEN          (1<<LED_GREEN_PIN)
-    #define LED_GREEN_ON()      LED_GREEN_PORT |= MASK_GREEN
-    #define LED_GREEN_OFF()     LED_GREEN_PORT &= ~MASK_GREEN
-    #define LED_GREEN_TOGGLE()  LED_GREEN_PORT ^= MASK_GREEN
+    #define MASK_LED_GREEN      (1<<LED_GREEN_PIN)
+    #define LED_GREEN_ON()      LED_GREEN_PORT |= MASK_LED_GREEN
+    #define LED_GREEN_OFF()     LED_GREEN_PORT &= ~MASK_LED_GREEN
+    #define LED_GREEN_TOGGLE()  LED_GREEN_PORT ^= MASK_LED_GREEN
 #endif /* PL_HAS_LED_GREEN */
 
 #if PL_HAS_LED_RED
-    #define MASK_BLUE           (1<<LED_BLUE_PIN)
-    #define LED_BLUE_ON()       LED_BLUE_PORT |= MASK_BLUE
-    #define LED_BLUE_OFF()      LED_BLUE_PORT &= ~MASK_BLUE
-    #define LED_BLUE_TOGGLE()   LED_BLUE_PORT ^= MASK_BLUE
+    #define MASK_LED_BLUE       (1<<LED_BLUE_PIN)
+    #define LED_BLUE_ON()       LED_BLUE_PORT |= MASK_LED_BLUE
+    #define LED_BLUE_OFF()      LED_BLUE_PORT &= ~MASK_LED_BLUE
+    #define LED_BLUE_TOGGLE()   LED_BLUE_PORT ^= MASK_LED_BLUE
 #endif /* PL_HAS_LED_BLUE */
 
 #if PL_HAS_LED_RED
-    #define MASK_YELLOW         (1<<LED_YELLOW_PIN)
-    #define LED_YELLOW_ON()     LED_YELLOW_PORT |= MASK_YELLOW
-    #define LED_YELLOW_OFF()    LED_YELLOW_PORT &= ~MASK_YELLOW
-    #define LED_YELLOW_TOGGLE() LED_YELLOW_PORT ^= MASK_YELLOW
+    #define MASK_LED_YELLOW     (1<<LED_YELLOW_PIN)
+    #define LED_YELLOW_ON()     LED_YELLOW_PORT |= MASK_LED_YELLOW
+    #define LED_YELLOW_OFF()    LED_YELLOW_PORT &= ~MASK_LED_YELLOW
+    #define LED_YELLOW_TOGGLE() LED_YELLOW_PORT ^= MASK_LED_YELLOW
 #endif /* PL_HAS_LED_YELLOW */
 
 #if PL_HAS_LED_RED
-    #define MASK_WHITE          (1<<LED_WHITE_PIN)
-    #define LED_WHITE_ON()      LED_WHITE_PORT |= MASK_WHITE
-    #define LED_WHITE_OFF()     LED_WHITE_PORT &= ~MASK_WHITE
-    #define LED_WHITE_TOGGLE()  LED_WHITE_PORT ^= MASK_WHITE
+    #define MASK_LED_WHITE      (1<<LED_WHITE_PIN)
+    #define LED_WHITE_ON()      LED_WHITE_PORT |= MASK_LED_WHITE
+    #define LED_WHITE_OFF()     LED_WHITE_PORT &= ~MASK_LED_WHITE
+    #define LED_WHITE_TOGGLE()  LED_WHITE_PORT ^= MASK_LED_WHITE
 #endif /* PL_HAS_LED_WHITE */
 
 #if PL_HAS_SW0

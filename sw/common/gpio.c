@@ -12,28 +12,32 @@ void init_gpio(void)
 {
     // Set LEDs as outputs
     #if PL_HAS_LED_RED
-        LED_RED_DIR     |= 1<<LED_RED_PIN;
+        LED_RED_DIR     |= MASK_LED_RED;
     #endif /* PL_HAS_LED_RED */
     #if PL_HAS_LED_GREEN
-        LED_GREEN_DIR   |= 1<<LED_GREEN_PIN;
+        LED_GREEN_DIR   |= MASK_LED_GREEN;
     #endif /* PL_HAS_LED_GREEN */
     #if PL_HAS_LED_BLUE
-        LED_BLUE_DIR    |= 1<<LED_BLUE_PIN;
+        LED_BLUE_DIR    |= MASK_LED_BLUE;
     #endif /* PL_HAS_LED_BLUE */
     #if PL_HAS_LED_YELLOW
-        LED_YELLOW_DIR  |= 1<<LED_YELLOW_PIN;
+        LED_YELLOW_DIR  |= MASK_LED_YELLOW;
     #endif /* PL_HAS_LED_YELLOW */
     #if PL_HAS_LED_WHITE
-        LED_WHITE_DIR   |= 1<<LED_WHITE_PIN;
+        LED_WHITE_DIR   |= MASK_LED_WHITE;
     #endif /* PL_HAS_LED_WHITE */
 
     #if PL_IS_DEMO
-    P2SEL &= ~((1<<6) | (1<<7));                   // Disable crystal oscillator
+        #if PL_HW_G2_LAUNCHPAD
+            P2SEL &= ~((1<<6) | (1<<7));           // Disable crystal oscillator
+        #endif /* PL_HW_G2_LAUNCHPAD */
     #endif /* PL_IS_DEMO */
 
     #if PL_HAS_UART
-        P1SEL  |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
-        P1SEL2 |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
+        #if PL_HW_G2_LAUNCHPAD
+            RXD_SEL  |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
+            RXD_SEL2 |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
+        #endif /* PL_HW_G2_LAUNCHPAD */
     #endif
 
     #if PL_HAS_SW0

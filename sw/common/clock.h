@@ -13,15 +13,30 @@
 #include "platform.h"
 
 /* Clock frequency selection */
-#ifndef DCO_FREQ
-    /* DCO clock frequency after FLLD divider */
-    #define DCO_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
-#endif
-#ifndef MCLK_FREQ
-    #define MCLK_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
-#endif
-#ifndef SMCLK_FREQ
-    #define SMCLK_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
+#if PL_HAS_BASIC_CLOCK_MODULE_PLUS
+    #ifndef DCO_FREQ
+        /* DCO clock frequency after FLLD divider */
+        #define DCO_FREQ 16000000
+    #endif
+    #ifndef MCLK_FREQ
+        #define MCLK_FREQ 16000000
+    #endif
+    #ifndef SMCLK_FREQ
+        #define SMCLK_FREQ 16000000
+    #endif
+#elif PL_HAS_CLOCK_SYSTEM
+    #ifndef DCO_FREQ
+        /* DCO clock frequency after FLLD divider */
+        #define DCO_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
+    #endif
+    #ifndef MCLK_FREQ
+        #define MCLK_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
+    #endif
+    #ifndef SMCLK_FREQ
+        #define SMCLK_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
+    #endif
+#else
+    #error "No clock module specified"
 #endif
 
 #if PL_HAS_BASIC_CLOCK_MODULE_PLUS
@@ -73,7 +88,7 @@
     #define BCSCTL2_INIT (SELM_INIT | DIVM_INIT | SELS_INIT | DIVS_INIT)
 #endif /* PL_HAS_BASIC_CLOCK_MODULE_PLUS */
 
-#if PL_HAS_CLOCK_CLOCK_SYSTEM
+#if PL_HAS_CLOCK_SYSTEM
     /* DCO Setup */
     #ifndef REFO_FREQ 
         #define REFO_FREQ 32768
@@ -87,7 +102,7 @@
     #if FLLSOURCE_XT1
         #define SELREF_INIT 0
         #define FLL_REF_FREQ XT1_FREQ
-    #elif
+    #else
         #define SELREF_INIT 1
         #define FLL_REF_FREQ REFO_FREQ
     #endif /* FLLSOURCE_XT1 */
@@ -237,13 +252,15 @@
     #define CSCTL1_INIT (DISMOD_INIT | DCORSEL_INIT | DCOFTRIM_INIT | DCOFTRIMEN_INIT)
     #define CSCTL2_INIT (FLLN_INIT | FLLD_INIT)
     #define CSCTL3_INIT (FLLREFDIV_INIT | SELREF_INIT | REFOLP_INIT)
-    #define CSCTL4_INIT (SELM_INIT | SELA_INIT)
+    #define CSCTL4_INIT (SELMS_INIT | SELA_INIT)
     #define CSCTL5_INIT (DIVM_INIT | DIVS_INIT | SMCLKOFF_INIT | VLOAUTOOFF_INIT)
     #define CSCTL6_INIT (XT1AUTOOFF_INIT | XT1AGCOFF_INIT | XT1HFFREQ_INIT | XT1BYPASS_INIT | XTS_INIT | XT1DRIVE_INIT | DIVA_INIT | XT1FAULTOFF_INIT)
-#endif /* PL_HAS_CLOCK_CLOCK_SYSTEM */
+#endif /* PL_HAS_CLOCK_SYSTEM */
 
 void init_clock(void);
 
-void clock_software_trim(void);
+#if PL_HAS_CLOCK_SYSTEM
+    void clock_software_trim(void);
+#endif /* PL_HAS_CLOCK_SYSTEM */
 
 #endif /* CLOCK_H_ */
