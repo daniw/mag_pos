@@ -18,3 +18,8 @@ wget -nc -O uC/msp-exp430fr2355_launchpad_slau680.pdf https://www.ti.com/lit/ug/
 ## Sensor
 mkdir -p sensor
 wget -nc -P sensor https://www.melexis.com/-/media/files/documents/datasheets/mlx90393-datasheet-melexis.pdf
+
+## Amplifiers
+mkdir -p amp
+wget -nc -P amp https://www.ti.com/lit/ds/symlink/lmv611.pdf
+wget -nc -P amp https://www.ti.com/lit/ds/symlink/tlv522.pdf
