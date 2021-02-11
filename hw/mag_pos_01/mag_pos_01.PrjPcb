@@ -103,7 +103,286 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=NVSAQSUX
+DocumentUniqueId=FFWIHENJ
+
+[Document5]
+DocumentPath=mag_pos_nutz.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=JUMPMUGR
+
+[Document6]
+DocumentPath=mag_pos.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document7]
+DocumentPath=mag_pos_breakout.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=HHUYRFRL
+
+[GeneratedDocument1]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded buck_automotive_5v.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument2]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded inv_analog_out_channel.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded inv_lv_input_protection.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_1.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_1_2.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_1_2_3.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_1_2_3_4.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_1_2_3_4_5.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_1_2_3_4_5_6.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_adapter.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_adapter_1.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_adapter_guide.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_adapter_guide_1.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1_2.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1_2_3.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1_2_3_4.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1_2_3_4_5.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1_2_3_4_5_6.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument22]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1_2_3_4_5_6_7.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument23]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1_2_3_4_5_6_7_8.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument24]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1_2_3_4_5_6_7_8_9.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument25]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_breakout_1_2_3_4_5_6_7_8_9_10.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument26]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_con_FX-30_SMT.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument27]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_con_FX-30_SMT_1.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_con_FX-30_THT.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_con_FX-30_THT_1.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_con_FX-30_THT_1_2.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument31]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_con_FX-30_THT_1_2_3.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument32]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_con_FX-30_THT_1_2_3_4.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument33]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_con_FX-30_THT_1_2_3_4_5.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument34]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_connect.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument35]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_connect_1.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument36]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_connect_1_2.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument37]
+DocumentPath=Project Outputs for mag_pos_01\Test Points\Assembly Testpoint Report for mag_pos_nutz - embedded mag_pos_connect_1_2_3.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument38]
+DocumentPath=Project Outputs for mag_pos_01\Design Rule Check - mag_pos.html
+DItemRevisionGUID=
+
+[GeneratedDocument39]
+DocumentPath=Project Outputs for mag_pos_01\ExportSTEP\mag_pos.step
+DItemRevisionGUID=
+
+[GeneratedDocument40]
+DocumentPath=Project Outputs for mag_pos_01\ExportSTEP\mag_pos.x_t
+DItemRevisionGUID=
+
+[GeneratedDocument41]
+DocumentPath=Project Outputs for mag_pos_01\NC Drill\mag_pos_nutz.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument42]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument43]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.G1
+DItemRevisionGUID=
+
+[GeneratedDocument44]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.G2
+DItemRevisionGUID=
+
+[GeneratedDocument45]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument46]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument47]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument48]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument49]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.GM16
+DItemRevisionGUID=
+
+[GeneratedDocument50]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument51]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument52]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument53]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument54]
+DocumentPath=Project Outputs for mag_pos_01\NC Drill\mag_pos_nutz.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument55]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.REP
+DItemRevisionGUID=
+
+[GeneratedDocument56]
+DocumentPath=Project Outputs for mag_pos_01\Gerber\mag_pos_nutz.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument57]
+DocumentPath=Project Outputs for mag_pos_01\NC Drill\mag_pos_nutz.TXT
+DItemRevisionGUID=
 
 [Configuration1]
 Name=Sources
@@ -114,6 +393,9 @@ Variant=[No Variations]
 OutputJobsCount=0
 ContentTypeGUID=CB6F2064-E317-11DF-B822-12313F0024A2
 ConfigurationType=Source
+
+[Generic_EDE]
+OutputDir=
 
 [OutputGroup1]
 Name=Netlist Outputs
@@ -224,7 +506,7 @@ OutputDefault20=0
 [OutputGroup2]
 Name=Simulator Outputs
 Description=
-TargetPrinter=OneNote for Windows 10
+TargetPrinter=HP Color LaserJet MFP M477fdw (C9C17D)
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 
 [OutputGroup3]
@@ -237,7 +519,29 @@ OutputName1=Composite Drawing
 OutputDocumentPath1=
 OutputVariantName1=
 OutputDefault1=0
-PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=0|PaperKind=A4|PaperIndex=9
+Configuration1_Name1=OutputConfigurationParameter1
+Configuration1_Item1=DesignatorDisplayMode=Physical|PrintArea=DesignExtent|PrintAreaLowerLeftCornerX=0|PrintAreaLowerLeftCornerY=0|PrintAreaUpperRightCornerX=0|PrintAreaUpperRightCornerY=0|Record=PcbPrintView
+Configuration1_Name2=OutputConfigurationParameter2
+Configuration1_Item2=IncludeBoardCutouts=False|IncludeBottomLayerComponents=True|IncludeMultiLayerComponents=True|IncludeTopLayerComponents=True|IncludeViewports=True|Index=0|Mirror=False|Name=Multilayer Composite Print|PadNumberFontSize=14|Record=PcbPrintOut|ShowHoles=False|ShowPadNets=False|ShowPadNumbers=False|SubstituteFonts=False
+Configuration1_Name3=OutputConfigurationParameter3
+Configuration1_Item3=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|DrillType=Regular|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=TopOverlay|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name4=OutputConfigurationParameter4
+Configuration1_Item4=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|DrillType=Regular|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=TopLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name5=OutputConfigurationParameter5
+Configuration1_Item5=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|DrillType=Regular|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MidLayer1|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name6=OutputConfigurationParameter6
+Configuration1_Item6=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|DrillType=Regular|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MidLayer2|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name7=OutputConfigurationParameter7
+Configuration1_Item7=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|DrillType=Regular|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=BottomLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name8=OutputConfigurationParameter8
+Configuration1_Item8=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|DrillType=Regular|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MultiLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name9=OutputConfigurationParameter9
+Configuration1_Item9=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|DrillType=Regular|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=BottomOverlay|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name10=OutputConfigurationParameter10
+Configuration1_Item10=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|DrillType=Regular|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical1|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name11=OutputConfigurationParameter11
+Configuration1_Item11=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|DrillType=Regular|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical16|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
 OutputType2=PCB 3D Print
 OutputName2=PCB 3D Print
 OutputDocumentPath2=
