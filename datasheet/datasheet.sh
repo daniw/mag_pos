@@ -41,9 +41,6 @@ wget -nc -P connector https://www.molex.com/pdm_docs/stp/53261-7004_stp.zip
 # Molex Picoblade THT
 wget -nc -P connector https://www.molex.com/pdm_docs/sd/530480450_sd.pdf
 wget -nc -P connector https://www.molex.com/pdm_docs/stp/53048-0450_stp.zip
-## spring contact
-mkdir -p test
-wget -nc -P test https://cdn.harwin.com/cads/s25-022.zip
 ## Potentiometer connection
 # red
 wget -nc -O connector/keystone-PN5270.STEP "https://www.keyelco.com/stepdown.cfm?p=14618&k=6F26580D-2F86-47BF-9BB6-E04535A5AD25"
@@ -75,6 +72,12 @@ wget -nc -O connector/keystone-PN5273.STEP "ihttps://www.keyelco.com/stepdown.cf
 # purple
 #wget -nc -O connector/keystone-PN5279.STEP ""
 #wget -nc -O connector/keystone-PN5124.STEP ""
+
+## spring contact
+mkdir -p test
+wget -nc -P test https://cdn.harwin.com/pdfs/S25-XX2.pdf
+wget -nc -P test https://cdn.harwin.com/pdfs/P25-XX23.pdf
+wget -nc -P test https://cdn.harwin.com/cads/s25-022.zip
 
 ## Cable
 mkdir -p cable
