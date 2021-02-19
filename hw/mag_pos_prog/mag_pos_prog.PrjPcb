@@ -28,7 +28,7 @@ DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
-OutputPath=
+OutputPath=Project Outputs for mag_pos_prog
 LogFolderPath=
 ManagedProjectGUID=
 IncludeDesignInRelease=0
@@ -106,11 +106,131 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for mag_pos_adapter\Design Rule Check - mag_pos_adapter.html
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for mag_pos_adapter\Design Rule Check - mag_pos_adapter_guide.html
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GM1
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.REP
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=Project Outputs for mag_pos_prog\ExportSTEP\mag_pos_prog.x_t
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog_guide.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument22]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument23]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GM1
+DItemRevisionGUID=
+
+[GeneratedDocument24]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument25]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument26]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument27]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog_guide.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.REP
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument31]
+DocumentPath=Project Outputs for mag_pos_prog\ExportSTEP\mag_pos_prog_guide.step
+DItemRevisionGUID=
+
+[GeneratedDocument32]
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog_guide.TXT
 DItemRevisionGUID=
 
 [Configuration1]
@@ -122,6 +242,9 @@ Variant=[No Variations]
 OutputJobsCount=0
 ContentTypeGUID=CB6F2064-E317-11DF-B822-12313F0024A2
 ConfigurationType=Source
+
+[Generic_EDE]
+OutputDir=Project Outputs for mag_pos_prog
 
 [OutputGroup1]
 Name=Netlist Outputs
@@ -722,6 +845,36 @@ OutputName11=Specctra Design PCB
 OutputDocumentPath11=
 OutputVariantName11=
 OutputDefault11=0
+OutputType12=Ansoft Neutral
+OutputName12=Ansoft Neutral (AutoPCB)
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
+OutputType13=HyperLynx
+OutputName13=HyperLynx (AutoPCB)
+OutputDocumentPath13=
+OutputVariantName13=
+OutputDefault13=0
+OutputType14=Orcad v7 Capture Design
+OutputName14=Orcad v7 Capture Design (AutoSCH)
+OutputDocumentPath14=
+OutputVariantName14=
+OutputDefault14=0
+OutputType15=P-CAD ASCII
+OutputName15=P-CAD ASCII (AutoPCB)
+OutputDocumentPath15=
+OutputVariantName15=
+OutputDefault15=0
+OutputType16=P-CAD V16 Schematic Design
+OutputName16=P-CAD V16 Schematic Design (AutoSCH)
+OutputDocumentPath16=
+OutputVariantName16=
+OutputDefault16=0
+OutputType17=SiSoft
+OutputName17=SiSoft (AutoPCB)
+OutputDocumentPath17=
+OutputVariantName17=
+OutputDefault17=0
 
 [OutputGroup10]
 Name=PostProcess Outputs
