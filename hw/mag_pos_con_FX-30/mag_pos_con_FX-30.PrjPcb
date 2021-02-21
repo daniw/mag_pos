@@ -28,7 +28,7 @@ DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
-OutputPath=
+OutputPath=Project Outputs for mag_pos_con_FX-30
 LogFolderPath=
 ManagedProjectGUID=
 IncludeDesignInRelease=0
@@ -55,7 +55,7 @@ GenerateClassCluster=0
 DocumentUniqueId=ZOBWOORQ
 
 [Document2]
-DocumentPath=mag_pos_con_FX-30_SMT.PcbDoc
+DocumentPath=mag_pos_con_FX-30.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -88,12 +88,131 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=FWVGSFFJ
 
+[Document4]
+DocumentPath=mag_pos_con_FX-30.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[ProjectVariant1]
+UniqueID=DEC7FE3B-24D4-419B-8D73-B9CED669ADC7
+Description=SMT
+AllowFabrication=0
+ParameterCount=0
+VariationCount=1
+Variation1=Designator=J2|UniqueId=\MJOSMYCW|Kind=1|AlternatePart= 
+ParamVariationCount=0
+
+[ProjectVariant2]
+UniqueID=1F486504-3620-453B-B71B-45FE53FDB5C2
+Description=THT
+AllowFabrication=0
+ParameterCount=0
+VariationCount=1
+Variation1=Designator=J1|UniqueId=\QMIFGUEG|Kind=1|AlternatePart= 
+ParamVariationCount=0
+
 [GeneratedDocument1]
-DocumentPath=Project Outputs for mag_pos_con_FX-30\Design Rule Check - mag_pos_con_FX-30_SMT.html
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Test Points\Assembly Testpoint Report for mag_pos_con_FX-30.ipc
 DItemRevisionGUID=
 
 [GeneratedDocument2]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Design Rule Check - mag_pos_con_FX-30.html
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Design Rule Check - mag_pos_con_FX-30_SMT.html
+DItemRevisionGUID=
+
+[GeneratedDocument4]
 DocumentPath=Project Outputs for mag_pos_con_FX-30\Design Rule Check - mag_pos_con_FX-30_THT.html
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\ExportSTEP\mag_pos_con_FX-30(SMT).step
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\ExportSTEP\mag_pos_con_FX-30(SMT).x_t
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\NC Drill\mag_pos_con_FX-30.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.G1
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.G2
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.GM1
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\NC Drill\mag_pos_con_FX-30.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.REP
+DItemRevisionGUID=
+
+[GeneratedDocument22]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\Gerber\mag_pos_con_FX-30.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument23]
+DocumentPath=Project Outputs for mag_pos_con_FX-30\NC Drill\mag_pos_con_FX-30.TXT
 DItemRevisionGUID=
 
 [Configuration1]
@@ -105,6 +224,9 @@ Variant=[No Variations]
 OutputJobsCount=0
 ContentTypeGUID=CB6F2064-E317-11DF-B822-12313F0024A2
 ConfigurationType=Source
+
+[Generic_EDE]
+OutputDir=Project Outputs for mag_pos_con_FX-30
 
 [OutputGroup1]
 Name=Netlist Outputs
@@ -650,91 +772,61 @@ Name=Export Outputs
 Description=
 TargetPrinter=HP Color LaserJet MFP M477fdw (C9C17D)
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
-OutputType1=Ansoft Neutral
-OutputName1=Ansoft Neutral (AutoPCB)
+OutputType1=AutoCAD dwg/dxf PCB
+OutputName1=AutoCAD dwg/dxf File PCB
 OutputDocumentPath1=
 OutputVariantName1=
 OutputDefault1=0
-OutputType2=AutoCAD dwg/dxf PCB
-OutputName2=AutoCAD dwg/dxf File PCB
+OutputType2=AutoCAD dwg/dxf Schematic
+OutputName2=AutoCAD dwg/dxf File Schematic
 OutputDocumentPath2=
 OutputVariantName2=
 OutputDefault2=0
-OutputType3=AutoCAD dwg/dxf Schematic
-OutputName3=AutoCAD dwg/dxf File Schematic
+OutputType3=ExportIDF
+OutputName3=Export IDF
 OutputDocumentPath3=
 OutputVariantName3=
 OutputDefault3=0
-OutputType4=ExportIDF
-OutputName4=Export IDF
+OutputType4=ExportPARASOLID
+OutputName4=Export PARASOLID
 OutputDocumentPath4=
-OutputVariantName4=
+OutputVariantName4=[No Variations]
 OutputDefault4=0
-OutputType5=ExportPARASOLID
-OutputName5=Export PARASOLID
+OutputType5=ExportSTEP
+OutputName5=Export STEP
 OutputDocumentPath5=
 OutputVariantName5=[No Variations]
 OutputDefault5=0
-OutputType6=ExportSTEP
-OutputName6=Export STEP
+OutputType6=ExportVRML
+OutputName6=Export VRML
 OutputDocumentPath6=
 OutputVariantName6=[No Variations]
 OutputDefault6=0
-OutputType7=ExportVRML
-OutputName7=Export VRML
+OutputType7=MBAExportPARASOLID
+OutputName7=Export PARASOLID
 OutputDocumentPath7=
-OutputVariantName7=[No Variations]
+OutputVariantName7=
 OutputDefault7=0
-OutputType8=HyperLynx
-OutputName8=HyperLynx (AutoPCB)
+OutputType8=MBAExportSTEP
+OutputName8=Export STEP
 OutputDocumentPath8=
 OutputVariantName8=
 OutputDefault8=0
-OutputType9=MBAExportPARASOLID
-OutputName9=Export PARASOLID
+OutputType9=Save As/Export PCB
+OutputName9=Save As/Export PCB
 OutputDocumentPath9=
 OutputVariantName9=
 OutputDefault9=0
-OutputType10=MBAExportSTEP
-OutputName10=Export STEP
+OutputType10=Save As/Export Schematic
+OutputName10=Save As/Export Schematic
 OutputDocumentPath10=
 OutputVariantName10=
 OutputDefault10=0
-OutputType11=Orcad v7 Capture Design
-OutputName11=Orcad v7 Capture Design (AutoSCH)
+OutputType11=Specctra Design PCB
+OutputName11=Specctra Design PCB
 OutputDocumentPath11=
 OutputVariantName11=
 OutputDefault11=0
-OutputType12=P-CAD ASCII
-OutputName12=P-CAD ASCII (AutoPCB)
-OutputDocumentPath12=
-OutputVariantName12=
-OutputDefault12=0
-OutputType13=P-CAD V16 Schematic Design
-OutputName13=P-CAD V16 Schematic Design (AutoSCH)
-OutputDocumentPath13=
-OutputVariantName13=
-OutputDefault13=0
-OutputType14=Save As/Export PCB
-OutputName14=Save As/Export PCB
-OutputDocumentPath14=
-OutputVariantName14=
-OutputDefault14=0
-OutputType15=Save As/Export Schematic
-OutputName15=Save As/Export Schematic
-OutputDocumentPath15=
-OutputVariantName15=
-OutputDefault15=0
-OutputType16=SiSoft
-OutputName16=SiSoft (AutoPCB)
-OutputDocumentPath16=
-OutputVariantName16=
-OutputDefault16=0
-OutputType17=Specctra Design PCB
-OutputName17=Specctra Design PCB
-OutputDocumentPath17=
-OutputVariantName17=
-OutputDefault17=0
 
 [OutputGroup10]
 Name=PostProcess Outputs
