@@ -106,130 +106,146 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog.DRR
+DocumentPath=Project Outputs for mag_pos_prog\Test Points\Assembly Testpoint Report for mag_pos_prog.ipc
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.EXTREP
+DocumentPath=Project Outputs for mag_pos_prog\Test Points\Assembly Testpoint Report for mag_pos_prog_guide.ipc
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBL
+DocumentPath=Project Outputs for mag_pos_prog\Design Rule Check - mag_pos_prog.html
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBO
+DocumentPath=Project Outputs for mag_pos_prog\Design Rule Check - mag_pos_prog_guide.html
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBP
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBS
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GM1
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTL
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTO
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTP
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTS
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GM1
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog.LDP
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.REP
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.RUL
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTP
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog.TXT
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=Project Outputs for mag_pos_prog\ExportSTEP\mag_pos_prog.x_t
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument17]
-DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog_guide.DRR
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.REP
 DItemRevisionGUID=
 
 [GeneratedDocument18]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.EXTREP
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog.RUL
 DItemRevisionGUID=
 
 [GeneratedDocument19]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBL
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument20]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBO
+DocumentPath=Project Outputs for mag_pos_prog\ExportSTEP\mag_pos_prog.x_t
 DItemRevisionGUID=
 
 [GeneratedDocument21]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBP
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog_guide.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument22]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBS
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument23]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GM1
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument24]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTL
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument25]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTO
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument26]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTP
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument27]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTS
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GM1
 DItemRevisionGUID=
 
 [GeneratedDocument28]
-DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog_guide.LDP
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument29]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.REP
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument30]
-DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.RUL
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTP
 DItemRevisionGUID=
 
 [GeneratedDocument31]
-DocumentPath=Project Outputs for mag_pos_prog\ExportSTEP\mag_pos_prog_guide.step
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument32]
+DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog_guide.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument33]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.REP
+DItemRevisionGUID=
+
+[GeneratedDocument34]
+DocumentPath=Project Outputs for mag_pos_prog\Gerber\mag_pos_prog_guide.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument35]
+DocumentPath=Project Outputs for mag_pos_prog\ExportSTEP\mag_pos_prog_guide.step
+DItemRevisionGUID=
+
+[GeneratedDocument36]
 DocumentPath=Project Outputs for mag_pos_prog\NC Drill\mag_pos_prog_guide.TXT
 DItemRevisionGUID=
 
