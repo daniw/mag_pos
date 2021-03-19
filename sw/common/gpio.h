@@ -12,6 +12,10 @@
 #include <stdint.h>
 #include "platform.h"
 
+/* 
+ * Hardware definitions
+ *
+ */
 #if PL_HW_G2_LAUNCHPAD
     #define LED_RED_PORT    P1OUT
     #define LED_RED_DIR     P1DIR
@@ -68,6 +72,36 @@
     #define RXD             2
     #define TXD             3
 #endif /* PL_HW_FR2_LAUNCHPAD */
+
+#if PL_HW_FR2_LAUNCHPAD
+    #define LED_RED_PORT    P1OUT
+    #define LED_RED_DIR     P1DIR
+    #define LED_RED_PIN     0
+    #define LED_GREEN_PORT  P6OUT
+    #define LED_GREEN_DIR   P6DIR
+    #define LED_GREEN_PIN   6
+    #define LED_BLUE_PORT   P2OUT
+    #define LED_BLUE_DIR    P2DIR
+    #define LED_BLUE_PIN    0
+    #define LED_YELLOW_PORT P2OUT
+    #define LED_YELLOW_DIR  P2DIR
+    #define LED_YELLOW_PIN  2
+    #define LED_WHITE_PORT  P4OUT
+    #define LED_WHITE_DIR   P4DIR
+    #define LED_WHITE_PIN   4
+#endif /* PL_HW_FR2_LAUNCHPAD */
+
+#if PL_HW_MAG_POS_V1
+    #define LED_RED_PORT    P2OUT
+    #define LED_RED_DIR     P2DIR
+    #define LED_RED_PIN     6
+    #define LED_GREEN_PORT  P2OUT
+    #define LED_GREEN_DIR   P2DIR
+    #define LED_GREEN_PIN   5
+    #define LED_BLUE_PORT   P2OUT
+    #define LED_BLUE_DIR    P2DIR
+    #define LED_BLUE_PIN    4
+#endif /* PL_HW_MAG_POS_V1 */
 
 #if PL_HAS_LED_RED
     #define MASK_LED_RED        (1<<LED_RED_PIN)
