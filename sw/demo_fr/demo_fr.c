@@ -29,9 +29,13 @@ void main(void)
 
     init_clock();
     init_gpio();
+    #if PL_HAS_UART
     init_uart();
+    #endif /* PL_HAS_UART */
 
     __bis_SR_register(GIE); // Enable global interrupts
+
+    LED_RED_ON();
 
      while(1)
     {
