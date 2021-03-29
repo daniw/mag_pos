@@ -26,17 +26,15 @@ void led_ctrl();
 void main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;		// stop watchdog timer
-    PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode
 
     init_clock();
     init_gpio();
+    PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode
     #if PL_HAS_UART
     init_uart();
     #endif /* PL_HAS_UART */
 
     //__bis_SR_register(GIE); // Enable global interrupts
-
-
 
      while(1)
     {

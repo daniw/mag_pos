@@ -24,7 +24,7 @@ void init_clock(void){
         CSCTL5 = CSCTL5_INIT;           // Set MCLK and SMCLK divider
         __delay_cycles(3);              // Wait three clock cycles to allow settings to be applied
         __bic_SR_register(SCG0);        // Enable FLL
-        //clock_software_trim();          // Run software trim routine
+        clock_software_trim();          // Run software trim routine
         CSCTL4 = CSCTL4_INIT;           // Select MCLK and SMCLK source
         CSCTL6 = CSCTL6_INIT;           // ACLK divider and XT1 setup
     #endif /* Platform clock module */
@@ -61,18 +61,13 @@ void clock_software_trim(void){
     uint8_t  endLoop = 0;
 
     csctl4Copy = CSCTL4;            // Store CSCTL4 value for later restoration
-    if (CSCTL3 & SELREF) {          // Set MCLK source to FLLREF to enable precise delay when waiting for FLL to lock
-        CSCTL4 = (CSCTL4 & (~SELMS)) | SELMS__REFOCLK;
-    }
-    else {
-        CSCTL4 = (CSCTL4 & (~SELMS)) | SELMS__XT1CLK;
-    };
+    CSCTL4 = (CSCTL4 & (~SELMS)) | SELMS__DCOCLKDIV;    // Set MCLK source to DCOCLKDIV to enable FLL operation
     do {
         CSCTL0 = CSCTL0_INIT;       // Set DCO Tap to 256
         do {
             CSCTL7 &= ~DCOFFG;      // Clear DCO fault flag
         } while(CSCTL7 & DCOFFG);
-        __delay_cycles((24*FLLREFDIV_VALUE+((1<<DIVM_INIT)-1))/(1<<DIVM_INIT)); // Wait for FLL lock status to be stable. Minimum recommended waiting time: 24 cycles of divided FLLREFDIV
+        __delay_cycles(24*FLLREFDIV_VALUE); // Wait for FLL lock status to be stable. Minimum recommended waiting time: 24 cycles of divided FLLREFDIV
         while ((CSCTL7 & (FLLUNLOCK)) && ((CSCTL7 & DCOFFG) == 0)); // Wait for FLL to lock or for DCO fault
         csctl0Read = CSCTL0;
         csctl1Read = CSCTL1;

@@ -235,7 +235,7 @@
     #endif /* SMCLK_FREQ */
     #define DCO_INIT 256 /* Set DCO tap to central value for software calibration */
     #define MOD_INIT 0 /* Set MOD to 0 for software calibration */
-    #define DISMOD_INIT DISMOD_1 /* DISMOD=1 -> Modulation disabled for FLL operation */
+    #define DISMOD_INIT DISMOD_0 /* DISMOD=0 -> Modulation enabled for FLL operation */
     #define DCOFTRIM_INIT (DCOFTRIM0 | DCOFTRIM1) /* Set DCO FTRIM to a central value for the start of the software calibration */
     #define DCOFTRIMEN_INIT DCOFTRIMEN_1 /* Enable FTRIM */
     #define REFOLP_INIT REFOLP_0 /* REFO Low power mode disabled (High Power mode) */
