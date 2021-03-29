@@ -28,12 +28,15 @@
     #ifndef DCO_FREQ
         /* DCO clock frequency after FLLD divider */
         #define DCO_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
+        //#define DCO_FREQ 1000000
     #endif
     #ifndef MCLK_FREQ
         #define MCLK_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
+        //#define MCLK_FREQ 1000000 /* Multiple by 2^n of baud rate (115200) */
     #endif
     #ifndef SMCLK_FREQ
         #define SMCLK_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
+        //#define SMCLK_FREQ 1000000 /* Multiple by 2^n of baud rate (115200) */
     #endif
 #else
     #error "No clock module specified"
@@ -100,10 +103,10 @@
         #define FLLSOURCE_XT1 0
     #endif /* FLLSOURCE_XT1 */
     #if FLLSOURCE_XT1
-        #define SELREF_INIT 0
+        #define SELREF_INIT SELREF__XT1CLK
         #define FLL_REF_FREQ XT1_FREQ
     #else
-        #define SELREF_INIT 1
+        #define SELREF_INIT SELREF__REFOCLK
         #define FLL_REF_FREQ REFO_FREQ
     #endif /* FLLSOURCE_XT1 */
     #ifndef FLLREFDIV_VALUE 

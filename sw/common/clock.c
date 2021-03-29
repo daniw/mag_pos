@@ -24,7 +24,7 @@ void init_clock(void){
         CSCTL5 = CSCTL5_INIT;           // Set MCLK and SMCLK divider
         __delay_cycles(3);              // Wait three clock cycles to allow settings to be applied
         __bic_SR_register(SCG0);        // Enable FLL
-        clock_software_trim();          // Run software trim routine
+        //clock_software_trim();          // Run software trim routine
         CSCTL4 = CSCTL4_INIT;           // Select MCLK and SMCLK source
         CSCTL6 = CSCTL6_INIT;           // ACLK divider and XT1 setup
     #endif /* Platform clock module */
@@ -44,7 +44,7 @@ void init_clock(void){
  *  value is used to calculate the delay, the MCLK divider should not be lower 
  *  than initially defined before running this routine. 
  */
-/*! \fn mlx90393_read(uint8_t *data)
+/*! \fn clock_software_trim(void)
  */
 #if PL_HAS_CLOCK_SYSTEM
 void clock_software_trim(void){
@@ -90,7 +90,7 @@ void clock_software_trim(void){
             }
         }
         else {                      // DCO running slow
-            newDcoDelta = newDcoTap - 256;  // Calculate current DCO tap deviation from optimum value
+             newDcoDelta = newDcoTap - DCO_INIT;  // Calculate current DCO tap deviation from optimum value
             if (oldDcoTap < DCO_INIT) {   // DCO tap crossed optimal value
                 endLoop = 1;                    // Stop FTRIM iteration
             }
