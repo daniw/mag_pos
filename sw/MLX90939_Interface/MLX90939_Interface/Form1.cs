@@ -18,6 +18,7 @@ namespace MLX90939_Interface
         int byteIndex = 0;
         byte[] bytes_buffer = new byte[256];
         bool initial_read_registers = true;
+        string measurements;
         enum Commands
         {
             EX,
@@ -195,9 +196,10 @@ namespace MLX90939_Interface
                 case Commands.RM:
                     LB_time.Text = DateTime.Now.ToString("HH:mm:ss");
                     int i = 1;
+                    double mag_x = 0.0, mag_y = 0.0, mag_z = 0.0, temperature = 0.0;
                     if (CB_T_selection.Checked)
                     {
-                        double temperature = BitConverter.ToUInt16(new byte[] { bytes_buffer[i + 1], bytes_buffer[i] }, 0);
+                        temperature = BitConverter.ToUInt16(new byte[] { bytes_buffer[i + 1], bytes_buffer[i] }, 0);
                         temperature -= 45121;
                         temperature /= 45.2;
                         LB_T.Text = string.Format("{0:N2}°C", temperature);
@@ -211,7 +213,6 @@ namespace MLX90939_Interface
                     }
                     if (CB_X_selection.Checked)
                     {
-                        double mag_x;
                         if (CB_Tcmp_En.Checked || NUD_Res_X.Value == 2)
                         {
                             mag_x = BitConverter.ToUInt16(new byte[] { bytes_buffer[i + 1], bytes_buffer[i] }, 0) - 32768;
@@ -237,7 +238,6 @@ namespace MLX90939_Interface
                     }
                     if (CB_Y_selection.Checked)
                     {
-                        double mag_y;
                         if (CB_Tcmp_En.Checked || NUD_Res_Y.Value == 2)
                         {
                             mag_y = BitConverter.ToUInt16(new byte[] { bytes_buffer[i + 1], bytes_buffer[i] }, 0) - 32768;
@@ -263,12 +263,11 @@ namespace MLX90939_Interface
                     }
                     if (CB_Z_selection.Checked)
                     {
-                        double mag_z;
                         if (CB_Tcmp_En.Checked || NUD_Res_Z.Value == 2)
                         {
                             mag_z = BitConverter.ToUInt16(new byte[] { bytes_buffer[i + 1], bytes_buffer[i] }, 0) - 32768;
                         }
-                        else if (NUD_Res_X.Value == 3)
+                        else if (NUD_Res_Z.Value == 3)
                         {
                             mag_z = BitConverter.ToUInt16(new byte[] { bytes_buffer[i + 1], bytes_buffer[i] }, 0) - 16384;
                         }
@@ -286,6 +285,9 @@ namespace MLX90939_Interface
                         LB_Z.Text = "";
                         LB_Z.BackColor = SystemColors.Control;
                     }
+                    string measurement = string.Format("{0:N5}", mag_x) + ", " + string.Format("{0:N5}", mag_y) + ", " + string.Format("{0:N5}", mag_z) + ", " + string.Format("{0:N5}", temperature);
+                    measurements += measurement + "\n";
+                    Clipboard.SetText(measurements);
                     break;
 
                 case Commands.RR:
@@ -547,6 +549,7 @@ namespace MLX90939_Interface
             TB_raw.Text += BitConverter.ToString(new byte[] { command }, 0, 1);
             TB_raw.SelectionStart = TB_raw.Text.Length;
             TB_raw.ScrollToCaret();
+            measurements = "";
         }
 
         private void BT_RT_Click(object sender, EventArgs e)
