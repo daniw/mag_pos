@@ -29,7 +29,7 @@
 #if PL_IS_MAG_POS_FR
     #define PL_HW_MAG_POS_V1    (1)
 
-    #define PL_HAS_UART         (0)
+    #define PL_HAS_UART         (1)
     #define PL_HAS_I2C          (0)
 #endif /* PL_IS_DEMO_FR */
 
@@ -66,7 +66,7 @@
 #ifdef __MSP430G2553__
     #define PL_HAS_BASIC_CLOCK_MODULE_PLUS 1
 #elif __MSP430FR2355__
-    #define PL_HAS_CLOCK_SYSTEM 1
+    //#define PL_HAS_CLOCK_SYSTEM 1
 #else
     #error "No microcontroller selected of selected microcontroller not implemented yet"
 #endif /* Microcontroller selection */

@@ -79,7 +79,7 @@ void mlx90393_i2c_tx_interrupt() {
 void mlx90393_i2c_rx_interrupt() {
     if (mlx90393_rx_counter_ == 1) {                    // Last byte to receive
         *mlx90393_rx_buffer_pointer_ = I2C_RXBUF;       // Move final byte into rx-buffer
-        uart_transmit(mlx_rx_buffer_, mlx_rx_count_);
+        //uart_transmit(mlx_rx_buffer_, mlx_rx_count_);                                             //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     } else {
         *mlx90393_rx_buffer_pointer_++ = I2C_RXBUF;     // Move byte into rx-buffer
         if (mlx90393_rx_counter_ == 2)                  // Check whether byte is second to last to be read to send stop condition

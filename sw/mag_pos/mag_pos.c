@@ -23,6 +23,9 @@ void led_ctrl();
 /**
  * mag_pos.c
  */
+
+char txt[] = { "testee" };
+
 void main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;		// stop watchdog timer
@@ -34,12 +37,17 @@ void main(void)
     init_uart();
     #endif /* PL_HAS_UART */
 
-    //__bis_SR_register(GIE); // Enable global interrupts
-
-     while(1)
+    __bis_SR_register(GIE); // Enable global interrupts
+    led_off();
+    while(1)
     {
-        led_ctrl();
-        sleep(SLEEPCNT_SLOW);
+        LED_GREEN_TOGGLE();
+        uart_transmit(txt, 1);
+        //led_ctrl();
+        uint8_t j;
+        for (j = 0; j < 10; j++) {
+            sleep(SLEEPCNT_SLOW);
+        }
     }
 }
 
