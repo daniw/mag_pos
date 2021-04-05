@@ -101,8 +101,8 @@
     #define LED_BLUE_PORT   P2OUT
     #define LED_BLUE_DIR    P2DIR
     #define LED_BLUE_PIN    4
-    #define PXD_SEL0        P4SEL0
-    #define PXD_SEL1        P4SEL1
+    #define P_TRXD_SEL0        P4SEL0
+    #define P_TRXD_SEL1        P4SEL1
     #define RXD             2
     #define TXD             3
 #endif /* PL_HW_MAG_POS_V1 */

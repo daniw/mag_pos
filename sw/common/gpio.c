@@ -38,10 +38,8 @@ void init_gpio(void)
             RXD_SEL  |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
             RXD_SEL2 |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
         #elif PL_HW_MAG_POS_V1
-            P4DIR = 0xFF;
-            P4OUT &= 0x00;
-            //PXD_SEL0 |= MASK_RXD + MASK_TXD; // P4.2 = RXD, P4.3=TXD
-            PXD_SEL1 |= MASK_RXD + MASK_TXD; // P4.2 = RXD, P4.3=TXD
+            P_TRXD_SEL1 &= ~(MASK_RXD | MASK_TXD);
+            P_TRXD_SEL0 |= MASK_RXD | MASK_TXD;
         #endif
     #endif
 
