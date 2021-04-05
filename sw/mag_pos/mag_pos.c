@@ -24,7 +24,7 @@ void led_ctrl();
  * mag_pos.c
  */
 
-char txt[] = { "Saali hoi! " };
+uint8_t* txt = (uint8_t *){ "Saali hoi! " };
 
 void main(void)
 {

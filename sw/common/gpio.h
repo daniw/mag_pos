@@ -101,8 +101,8 @@
     #define LED_BLUE_PORT   P2OUT
     #define LED_BLUE_DIR    P2DIR
     #define LED_BLUE_PIN    4
-    #define P_TRXD_SEL0        P4SEL0
-    #define P_TRXD_SEL1        P4SEL1
+    #define P_TRXD_SEL0     P4SEL0
+    #define P_TRXD_SEL1     P4SEL1
     #define RXD             2
     #define TXD             3
 #endif /* PL_HW_MAG_POS_V1 */
@@ -153,8 +153,8 @@
 #endif /* PL_HAS_SW1 */
 
 #if PL_HAS_UART
-    #define MASK_RXD        (1<<RXD)
-    #define MASK_TXD        (1<<TXD)
+    #define MASK_RXD            (1<<RXD)
+    #define MASK_TXD            (1<<TXD)
 #endif /* PL_HAS_UART */
 
 void init_gpio(void);

@@ -9,7 +9,7 @@
 
 #if PL_HAS_UART
 
-char *uart_tx_buffer_;
+uint8_t *uart_tx_buffer_;
 uint8_t uart_tx_count;
 uint8_t uart_tx_i;
 
@@ -63,7 +63,7 @@ void init_uart(void){
 #endif /* Microcontroller */
 }
 
-void uart_transmit(char *data, uint8_t count)
+void uart_transmit(uint8_t *data, uint8_t count)
 {
     uart_tx_i = 0;
     uart_tx_buffer_ = data;
@@ -75,7 +75,7 @@ void uart_transmit(char *data, uint8_t count)
 
 void uart_rx_isr()
 {
-    char data = UART_RXBUF;
+    uint8_t data = UART_RXBUF;
     uart_transmit(&data, 1);
     /*
     if (uart_rx_expected <= 1)

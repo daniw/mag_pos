@@ -116,14 +116,14 @@
 #define UART_IV               UART_IV_(UART_MODULE)
 
 /* CTL0 -> Basic UART setup */
-#define UART_CTLW0_INIT ((UART_PARITY?UCPEN:0x00) | \
-                         (UART_PARITY_EVEN?UCPAR:0x00) | \
-                         (UART_MSB_FIRST?UCMSB:0x00) | \
-                         (UART_CHAR_LEN==7?UC7BIT:0x00) | \
-                         (UART_STOP_LEN==2?UCSPB:0x00) | \
-                         (UCSSEL__SMCLK)) /* Use SMCLK */
+#define UART_CTLW0_INIT     ((UART_PARITY?UCPEN:0x00) | \
+                             (UART_PARITY_EVEN?UCPAR:0x00) | \
+                             (UART_MSB_FIRST?UCMSB:0x00) | \
+                             (UART_CHAR_LEN==7?UC7BIT:0x00) | \
+                             (UART_STOP_LEN==2?UCSPB:0x00) | \
+                             (UCSSEL__SMCLK)) /* Use SMCLK */
 
-#define UART_CTLW1_INIT (0x00)
+#define UART_CTLW1_INIT     (0x00)
 
 /* baud rate clock generation */
 #define UART_INPUT_FREQ SMCLK_FREQ
@@ -135,8 +135,8 @@
     #define UCOS16_VALUE    (0x00)
     #define UART_BRW_INIT   (DIVISION_FACTOR)
 #endif
-#define UART_UCBRS_INIT      (0x00) // 0x00 thanks to: UART_INPUT_FREQ must be multiple of 2^n of UART_BAUD
-#define UART_UCBRF_INIT      (0x00) // 0x00 thanks to: UART_INPUT_FREQ must be multiple of 2^n of UART_BAUD
+#define UART_UCBRS_INIT     (0x00) // 0x00 thanks to: UART_INPUT_FREQ must be multiple of 2^n of UART_BAUD
+#define UART_UCBRF_INIT     (0x00) // 0x00 thanks to: UART_INPUT_FREQ must be multiple of 2^n of UART_BAUD
 
 #if UART_BRW_INIT > 0xffff
     #error "Baud rate not achievable with input clock"
@@ -147,8 +147,8 @@
                              (UCOS16_VALUE))
 #define UART_STATW_INIT     (UART_LOOPBACK?UCLISTEN:0x00)
 #define UART_ABCTL_INIT     0x00
-#define UART_IRTCTL_INIT 0x00
-#define UART_IRRCTL_INIT 0x00
+#define UART_IRTCTL_INIT    0x00
+#define UART_IRRCTL_INIT    0x00
 
 
 // ###### __MSP430G2553__ ######
@@ -388,6 +388,6 @@
 void init_uart(void);
 void uart_rx_isr(void);
 void uart_tx_isr(void);
-void uart_transmit(char *data, uint8_t count);
+void uart_transmit(uint8_t *data, uint8_t count);
 
 #endif /* UART_H_ */
