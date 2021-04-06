@@ -23,23 +23,34 @@ void led_ctrl();
 /**
  * mag_pos.c
  */
+
+uint8_t* txt = (uint8_t *){ "Saali hoi! " };
+
 void main(void)
 {
-    WDTCTL = WDTPW | WDTHOLD;		// stop watchdog timer
+    WDTCTL = WDTPW | WDTHOLD;       // stop watchdog timer
 
     init_clock();
     init_gpio();
-    PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode
+    PM5CTL0 &= ~LOCKLPM5;           // Disable the GPIO power-on default high-impedance mode
     #if PL_HAS_UART
     init_uart();
     #endif /* PL_HAS_UART */
 
-    //__bis_SR_register(GIE); // Enable global interrupts
-
-     while(1)
+    __bis_SR_register(GIE);         // Enable global interrupts
+    led_off();
+    while(1)
     {
+        #if PL_HAS_UART
+        uart_transmit(txt, 11);
+        #endif /* PL_HAS_UART */
         led_ctrl();
-        sleep(SLEEPCNT_SLOW);
+
+        // Sleep even longer...
+        uint8_t j;
+        for (j = 50; j > 0; j--) {
+            sleep(SLEEPCNT_SLOW);
+        }
     }
 }
 
@@ -83,16 +94,12 @@ void led_ctrl(){
     #endif /* PL_HAS_LED_WHITE */
     default:
         led_off();
-        state = 0;
-    }
-    if (state > 5)
-    {
         state = STATE_OFF;
     }
 }
 
 void sleep(uint16_t sleepcnt){
-    volatile uint16_t i;        // volatile to prevent optimization
+    volatile uint16_t i;            // volatile to prevent optimization
     for(i=sleepcnt; i>0; i--);      // delay
     return;
 }
