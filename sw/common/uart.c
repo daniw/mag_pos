@@ -12,12 +12,24 @@
 uint8_t *uart_tx_buffer_;
 uint8_t uart_tx_count;
 uint8_t uart_tx_i;
-uint8_t uart_rx_expected = 1;
-uint8_t uart_rx_i = 0;
 
 void init_uart(void){
-    UART_CTL1  = UCSWRST; // Reset USCI module
+#ifdef __MSP430FR2355__
+    UART_CTLW0 |= UCSWRST; // Reset USCI module
 
+    UART_CTLW0 = UART_CTLW0_INIT | UCSWRST; // keep UCSWRST set to keep USCI module in reset;
+    UART_CTLW1 = UART_CTLW1_INIT;
+    UART_BRW = UART_BRW_INIT;
+    UART_MCTLW = UART_MCTLW_INIT;
+    UART_STATW = UART_STATW_INIT;
+    UART_ABCTL = UART_ABCTL_INIT;
+    UART_IRTCTL = UART_IRTCTL_INIT;
+    UART_IRRCTL = UART_IRRCTL_INIT;
+
+    UART_CTLW0 &= ~UCSWRST; // **Initialize USCI state machine**
+    UART_IE |= UART_RXIE; // Enable UART RX interrupt
+#elif __MSP430G2553__
+    UART_CTL1  = UCSWRST; // Reset USCI module
     #if CTL0_INIT != 0
         UART_CTL0 = UART_CTL0_INIT;
     #endif /* UART_CTL0 */
@@ -48,6 +60,7 @@ void init_uart(void){
 
     UART_CTL1 &= ~UCSWRST; // **Initialize USCI state machine**
     UART_IE   |= UART_RXIE; // Enable UART RX interrupt
+#endif /* Microcontroller */
 }
 
 void uart_transmit(uint8_t *data, uint8_t count)
@@ -55,13 +68,16 @@ void uart_transmit(uint8_t *data, uint8_t count)
     uart_tx_i = 0;
     uart_tx_buffer_ = data;
     uart_tx_count = count;
-    UC0IE |= UCA0TXIE;
-    UCA0TXBUF = uart_tx_buffer_[uart_tx_i++];
+
+    UART_IE |= UART_TXIE;
+    UART_TXBUF = uart_tx_buffer_[uart_tx_i++];
 }
 
 void uart_rx_isr()
 {
-    uint8_t data = UCA0RXBUF;
+    uint8_t data = UART_RXBUF;
+    uart_transmit(&data, 1);
+    /*
     if (uart_rx_expected <= 1)
     {
         mlx_tx_buffer_[0] = data;
@@ -103,14 +119,14 @@ void uart_rx_isr()
             uart_rx_i = 0;
             uart_rx_expected = 1;
         }
-    }
+    }*/
 }
 
 void uart_tx_isr()
 {
     if (uart_tx_i >= uart_tx_count)
-        UC0IE &= ~UCA0TXIE;
+        UART_IE &= ~UART_TXIE;
     else
-        UCA0TXBUF = uart_tx_buffer_[uart_tx_i++];
+        UART_TXBUF = uart_tx_buffer_[uart_tx_i++];
 }
 #endif /* PL_HAS_UART */

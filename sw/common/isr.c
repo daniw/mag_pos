@@ -7,29 +7,41 @@
 
 #include "isr.h"
 
-//const char string[] = { "Hello World\r\n" };
-//uint8_t i; //Counter
-
-#pragma vector=USCIAB0RX_VECTOR
-__interrupt void USCI0RX_ISR(void)
+#ifdef __MSP430FR2355__
+#pragma vector=USCI_A1_VECTOR
+__interrupt void USCI_A1_ISR(void)
 {
-    #if PL_HAS_UART
-        if (UART_IFG & UART_RXIFG) {
-            uart_rx_isr();
-            //UART_RX_ISR
-        }
-    #endif /* PL_HAS_UART */
+    switch(__even_in_range(UART_IV, USCI_UART_UCTXCPTIFG)) {
+        case USCI_NONE: // No interrupts
+        break;
+        case USCI_UART_UCRXIFG:
+            #if PL_HAS_UART
+                uart_rx_isr();
+            #endif /* PL_HAS_UART */
+        break;
+        case USCI_UART_UCTXIFG:
+            #if PL_HAS_UART
+                LED_RED_TOGGLE();
+                uart_tx_isr();
+            #endif /* PL_HAS_UART */
+        break;
+        case USCI_UART_UCSTTIFG:
+        break;
+        case USCI_UART_UCTXCPTIFG:
+        break;
+        default: break;
+    }
 }
 
+#elif __MSP430G2553__
 #pragma vector=USCIAB0TX_VECTOR
 __interrupt void USCI0TX_ISR(void)
 {
     #if PL_HAS_UART
         if (UART_IFG & UART_TXIFG) {
             uart_tx_isr();
-            //UART_TX_ISR
         }
-    #endif /* PL_HAS_UART */
+    #endif
 
     #if PL_HAS_I2C
         if (IFG2 & UCB0RXIFG) {
@@ -38,6 +50,6 @@ __interrupt void USCI0TX_ISR(void)
         if (IFG2 & UCB0TXIFG) {
             mlx90393_i2c_tx_interrupt();
         }
-    #endif /* PL_HAS_I2C */
-
+    #endif
 }
+#endif /* Microcontroller */
