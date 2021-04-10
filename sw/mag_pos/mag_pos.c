@@ -6,6 +6,7 @@
 #include "gpio.h"
 #include "uart.h"
 #include "mlx90393.h"
+#include "conversions.h"
 
 #define SLEEPCNT_SLOW 65535
 #define SLEEPCNT_FAST SLEEPCNT_SLOW/8
@@ -26,6 +27,9 @@ void led_ctrl();
 
 uint8_t* txt = (uint8_t *){ "Saali hoi! " };
 
+#pragma PERSISTENT(c)
+uint8_t c[1] = {97};
+
 void main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;       // stop watchdog timer
@@ -33,16 +37,17 @@ void main(void)
     init_clock();
     init_gpio();
     PM5CTL0 &= ~LOCKLPM5;           // Disable the GPIO power-on default high-impedance mode
+
     #if PL_HAS_UART
     init_uart();
     #endif /* PL_HAS_UART */
-
+    *c += 1;
     __bis_SR_register(GIE);         // Enable global interrupts
     led_off();
     while(1)
     {
         #if PL_HAS_UART
-        uart_transmit(txt, 11);
+        uart_transmit(c, 1);
         #endif /* PL_HAS_UART */
         led_ctrl();
 
