@@ -1,5 +1,5 @@
 /*
- * conversions.h
+ * conversions.c
  *
  *  Created on: 10.04.2021
  *      Author: alexh
@@ -31,7 +31,7 @@ uint16_t arctan_0_to_1_as_0_to_1024(uint16_t d) {
 }
 
 uint16_t arctan2(int16_t x, int16_t y) {
-    // Returns: Degrees * 100
+    // Returns: Degrees * 100 from 0 to 36000
     uint32_t abs_x = abs(x);
     uint32_t abs_y = abs(y);
 
