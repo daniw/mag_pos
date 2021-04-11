@@ -27,6 +27,7 @@ void led_ctrl();
 
 uint8_t* txt = (uint8_t *){ "Saali hoi! " };
 
+
 #pragma PERSISTENT(c)
 uint8_t c[1] = {97};
 

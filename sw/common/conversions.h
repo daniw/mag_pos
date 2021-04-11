@@ -15,4 +15,6 @@
 uint16_t arctan_0_to_1_as_0_to_1024(uint16_t d);
 uint16_t arctan2(int16_t x, int16_t y);
 
+uint16_t flux_squared_to_distance(uint32_t flux_squared);
+
 #endif /* CONVERSIONS_H_ */
