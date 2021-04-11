@@ -139,3 +139,20 @@ uint16_t flux_squared_to_distance(uint32_t flux_squared) {
     uint16_t res = dist_low + ((uint32_t)(flux_high - flux_adjusted) * (dist_high - dist_low)) / (flux_high - flux_low);
     return res;
 }
+
+uint16_t get_lin_output(uint16_t distance) {
+    uint32_t dist_to_lower_input_times_width_output = (distance - input_lin_lower) * (output_lin_upper - output_lin_lower);
+    return output_lin_lower + (dist_to_lower_input_times_width_output / (input_lin_upper - input_lin_lower));
+}
+
+uint16_t get_rot_output(uint32_t angle) {
+    if (angle < input_rot_lower && angle + 36000 < input_rot_upper)
+        angle += 36000;
+    if (angle < input_rot_middle) {
+        uint32_t rot_to_lower_input_times_lower_to_middle = (angle - input_rot_lower) * (output_rot_middle - output_rot_lower);
+        return output_rot_lower + (rot_to_lower_input_times_lower_to_middle / (input_rot_middle - input_rot_lower));
+    } else {
+        uint32_t rot_to_middle_input_times_middle_to_upper = (angle - input_rot_middle) * (output_rot_upper - output_rot_middle);
+        return output_rot_middle + (rot_to_middle_input_times_middle_to_upper / (input_rot_upper - input_rot_middle));
+    }
+}
