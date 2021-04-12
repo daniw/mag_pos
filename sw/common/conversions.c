@@ -7,6 +7,30 @@
 
 #include "conversions.h"
 
+// Calibration values linear axis
+#pragma PERSISTENT(output_lin_lower)
+uint16_t output_lin_lower = 200;
+#pragma PERSISTENT(output_lin_upper)
+uint16_t output_lin_upper = 3500;
+#pragma PERSISTENT(input_lin_lower)
+uint16_t input_lin_lower = 500;
+#pragma PERSISTENT(input_lin_upper)
+uint16_t input_lin_upper = 2500;
+
+// Calibration values angular axis
+#pragma PERSISTENT(output_rot_lower)
+uint32_t output_rot_lower = 400;
+#pragma PERSISTENT(output_rot_upper)
+uint32_t output_rot_upper = 3000;
+#pragma PERSISTENT(output_rot_middle)
+uint32_t output_rot_middle = 1600;
+#pragma PERSISTENT(input_rot_lower)
+uint32_t input_rot_lower = 700;
+#pragma PERSISTENT(input_rot_upper)
+uint32_t input_rot_upper = 2700;
+#pragma PERSISTENT(input_rot_middle)
+uint32_t input_rot_middle = 1750;
+
 uint16_t arctan_0_to_1_as_0_to_1024(uint16_t d) {
     // Returns: Degrees * 100
     static const uint16_t arctan_lookup[65] = { 0x0000U, 0x005AU, 0x00B3U, 0x010CU, 0x0166U,

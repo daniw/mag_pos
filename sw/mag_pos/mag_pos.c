@@ -7,6 +7,7 @@
 #include "uart.h"
 #include "mlx90393.h"
 #include "conversions.h"
+#include "dac.h"
 
 #define SLEEPCNT_SLOW 65535
 #define SLEEPCNT_FAST SLEEPCNT_SLOW/8
@@ -42,6 +43,9 @@ void main(void)
     #if PL_HAS_UART
     init_uart();
     #endif /* PL_HAS_UART */
+
+    init_dac();
+
     *c += 1;
     __bis_SR_register(GIE);         // Enable global interrupts
     led_off();
@@ -67,23 +71,27 @@ void led_ctrl(){
     {
     case STATE_OFF:
         led_off();
+        dac_set_value(0);
         break;
     #if PL_HAS_LED_RED
     case STATE_RED:
         led_off();
         LED_RED_ON();
+        dac_set_value(500);
         break;
     #endif /* PL_HAS_LED_RED */
     #if PL_HAS_LED_GREEN
     case STATE_GREEN:
         led_off();
         LED_GREEN_ON();
+        dac_set_value(4095);
         break;
     #endif /* PL_HAS_LED_GREEN */
     #if PL_HAS_LED_BLUE
     case STATE_BLUE:
         led_off();
         LED_BLUE_ON();
+        dac_set_value(2500);
         break;
     #endif /* PL_HAS_LED_BLUE */
     #if PL_HAS_LED_YELLOW
