@@ -22,13 +22,13 @@ void init_spi(void){
     /* Reset SPI module */
     SPI_CTLW0 |= UCSWRST;
     /* Initialize registers */
-    #if SPI_CTLW0_INIT ~= 0
+    #if SPI_CTLW0_INIT != 0
         SPI_CTLW0 = SPI_CTLW0_INIT;
     #endif
-    #if SPI_BRW_INIT ~= 0
+    #if SPI_BRW_INIT != 0
         SPI_BRW = SPI_BRW_INIT;
     #endif
-    #if SPI_STATW_INIT ~= 0
+    #if SPI_STATW_INIT != 0
         SPI_STATW = SPI_STATW_INIT
     #endif
     /* Configure ports */
