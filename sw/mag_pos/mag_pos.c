@@ -66,44 +66,53 @@ void main(void)
 
 void led_ctrl(){
     static uint8_t state = 0;
-    state++;
     switch (state)
     {
     case STATE_OFF:
         led_off();
-        dac_set_value(0);
+        dac_set_value(SAC_MODULE_A, 4095);
+        dac_set_value(SAC_MODULE_B, 0);
+        state++;
         break;
     #if PL_HAS_LED_RED
     case STATE_RED:
         led_off();
         LED_RED_ON();
-        dac_set_value(500);
+        dac_set_value(SAC_MODULE_A, 2777);
+        dac_set_value(SAC_MODULE_B, 1250);
+        state++;
         break;
     #endif /* PL_HAS_LED_RED */
     #if PL_HAS_LED_GREEN
     case STATE_GREEN:
         led_off();
         LED_GREEN_ON();
-        dac_set_value(4095);
+        dac_set_value(SAC_MODULE_A, 1444);
+        dac_set_value(SAC_MODULE_B, 2500);
+        state++;
         break;
     #endif /* PL_HAS_LED_GREEN */
     #if PL_HAS_LED_BLUE
     case STATE_BLUE:
         led_off();
         LED_BLUE_ON();
-        dac_set_value(2500);
+        dac_set_value(SAC_MODULE_A, 111);
+        dac_set_value(SAC_MODULE_B, 4095);
+        state++;
         break;
     #endif /* PL_HAS_LED_BLUE */
     #if PL_HAS_LED_YELLOW
     case STATE_YELLOW:
         led_off();
         LED_YELLOW_ON();
+        state++;
         break;
     #endif /* PL_HAS_LED_YELLOW */
     #if PL_HAS_LED_WHITE
     case STATE_WHITE:
         led_off();
         LED_WHITE_ON();
+        state++;
         break;
     #endif /* PL_HAS_LED_WHITE */
     default:

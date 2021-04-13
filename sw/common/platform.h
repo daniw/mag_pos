@@ -31,6 +31,7 @@
 
     #define PL_HAS_UART         (1)
     #define PL_HAS_I2C          (0)
+    #define PL_HAS_SAC          (1)
 #endif /* PL_IS_DEMO_FR */
 
 #if PL_HW_G2_LAUNCHPAD
