@@ -8,44 +8,44 @@
 #include "conversions.h"
 
 // Calibration values linear axis
-#pragma PERSISTENT(output_lin_lower)
-uint16_t output_lin_lower = 200;
-#pragma PERSISTENT(output_lin_upper)
-uint16_t output_lin_upper = 3500;
 #pragma PERSISTENT(input_lin_lower)
 uint16_t input_lin_lower = 500;
 #pragma PERSISTENT(input_lin_upper)
 uint16_t input_lin_upper = 2500;
+#pragma PERSISTENT(output_lin_lower)
+uint16_t output_lin_lower = 866;
+#pragma PERSISTENT(output_lin_upper)
+uint16_t output_lin_upper = 3305;
 
 // Calibration values angular axis
-#pragma PERSISTENT(output_rot_lower)
-uint32_t output_rot_lower = 400;
-#pragma PERSISTENT(output_rot_upper)
-uint32_t output_rot_upper = 3000;
-#pragma PERSISTENT(output_rot_middle)
-uint32_t output_rot_middle = 1600;
 #pragma PERSISTENT(input_rot_lower)
 uint32_t input_rot_lower = 700;
 #pragma PERSISTENT(input_rot_upper)
 uint32_t input_rot_upper = 2700;
 #pragma PERSISTENT(input_rot_middle)
 uint32_t input_rot_middle = 1750;
+#pragma PERSISTENT(output_rot_lower)
+uint32_t output_rot_lower = 659;
+#pragma PERSISTENT(output_rot_upper)
+uint32_t output_rot_upper = 3471;
+#pragma PERSISTENT(output_rot_middle)
+uint32_t output_rot_middle = 2065;
 
 uint16_t arctan_0_to_1_as_0_to_1024(uint16_t d) {
-    // Returns: Degrees * 100
-    static const uint16_t arctan_lookup[65] = { 0x0000U, 0x005AU, 0x00B3U, 0x010CU, 0x0166U,
-                                                0x01BFU, 0x0218U, 0x0270U, 0x02C9U, 0x0320U,
-                                                0x0378U, 0x03CFU, 0x0426U, 0x047CU, 0x04D2U,
-                                                0x0527U, 0x057CU, 0x05D0U, 0x0623U, 0x0675U,
-                                                0x06C7U, 0x0719U, 0x0769U, 0x07B9U, 0x0808U,
-                                                0x0856U, 0x08A3U, 0x08EFU, 0x093BU, 0x0986U,
-                                                0x09CFU, 0x0A18U, 0x0A61U, 0x0AA8U, 0x0AEEU,
-                                                0x0B33U, 0x0B78U, 0x0BBBU, 0x0BFEU, 0x0C40U,
-                                                0x0C81U, 0x0CC0U, 0x0CFFU, 0x0D3EU, 0x0D7BU,
-                                                0x0DB7U, 0x0DF3U, 0x0E2DU, 0x0E67U, 0x0EA0U,
-                                                0x0ED8U, 0x0F0FU, 0x0F45U, 0x0F7BU, 0x0FB0U,
-                                                0x0FE3U, 0x1017U, 0x1049U, 0x107AU, 0x10ABU,
-                                                0x10DBU, 0x110BU, 0x1139U, 0x1167U, 0x1194U };
+    // Returns: 0x2000 = 2^13 = 45°
+    static const uint16_t arctan_lookup[65] = { 0x0000U, 0x00A3U, 0x0146U, 0x01E9U, 0x028BU,
+                                                0x032DU, 0x03CFU, 0x0470U, 0x0511U, 0x05B1U,
+                                                0x0651U, 0x06EFU, 0x078DU, 0x082AU, 0x08C6U,
+                                                0x0961U, 0x09FBU, 0x0A94U, 0x0B2CU, 0x0BC2U,
+                                                0x0C57U, 0x0CEBU, 0x0D7DU, 0x0E0FU, 0x0E9EU,
+                                                0x0F2CU, 0x0FB9U, 0x1044U, 0x10CEU, 0x1156U,
+                                                0x11DCU, 0x1261U, 0x12E4U, 0x1366U, 0x13E6U,
+                                                0x1464U, 0x14E0U, 0x155BU, 0x15D5U, 0x164CU,
+                                                0x16C2U, 0x1737U, 0x17AAU, 0x181BU, 0x188AU,
+                                                0x18F8U, 0x1964U, 0x19CFU, 0x1A38U, 0x1A9FU,
+                                                0x1B05U, 0x1B6AU, 0x1BCDU, 0x1C2EU, 0x1C8EU,
+                                                0x1CEDU, 0x1D4AU, 0x1DA5U, 0x1DFFU, 0x1E58U,
+                                                0x1EB0U, 0x1F06U, 0x1F5AU, 0x1FAEU, 0x2000U };
     uint8_t index = d >> 4;
     uint16_t lookup_value = arctan_lookup[index];
     if (index == 64)
@@ -55,7 +55,7 @@ uint16_t arctan_0_to_1_as_0_to_1024(uint16_t d) {
 }
 
 uint16_t arctan2(int16_t x, int16_t y) {
-    // Returns: Degrees * 100 from 0 to 36000
+    // Returns: 0xFFFF = 2^16 = 360° --> 0x0000 - 0xFFFF
     uint32_t abs_x = abs(x);
     uint32_t abs_y = abs(y);
 
@@ -64,27 +64,27 @@ uint16_t arctan2(int16_t x, int16_t y) {
             if (x >= y) {
                 return arctan_0_to_1_as_0_to_1024((abs_y << 10) / abs_x);
             } else {
-                return 9000 - arctan_0_to_1_as_0_to_1024((abs_x << 10) / abs_y);
+                return 16384 - arctan_0_to_1_as_0_to_1024((abs_x << 10) / abs_y);
             }
         } else {
             if (x >= -y) {
-                return 36000 - arctan_0_to_1_as_0_to_1024((abs_y << 10) / abs_x);
+                return 0 - arctan_0_to_1_as_0_to_1024((abs_y << 10) / abs_x);
             } else {
-                return 27000 + arctan_0_to_1_as_0_to_1024((abs_x << 10) / abs_y);
+                return 49152 + arctan_0_to_1_as_0_to_1024((abs_x << 10) / abs_y);
             }
         }
     } else {
         if (y >= 0) {
             if (-x >= y) {
-                return 18000 - arctan_0_to_1_as_0_to_1024((abs_y << 10) / abs_x);
+                return 32768 - arctan_0_to_1_as_0_to_1024((abs_y << 10) / abs_x);
             } else {
-                return 9000 + arctan_0_to_1_as_0_to_1024((abs_x << 10) / abs_y);
+                return 16384 + arctan_0_to_1_as_0_to_1024((abs_x << 10) / abs_y);
             }
         } else {
             if (x <= y) {
-                return 18000 + arctan_0_to_1_as_0_to_1024((abs_y << 10) / abs_x);
+                return 32768 + arctan_0_to_1_as_0_to_1024((abs_y << 10) / abs_x);
             } else {
-                return 27000 - arctan_0_to_1_as_0_to_1024((abs_x << 10) / abs_y);
+                return 49152 - arctan_0_to_1_as_0_to_1024((abs_x << 10) / abs_y);
             }
         }
     }
@@ -169,10 +169,9 @@ uint16_t get_lin_output(uint16_t distance) {
     return output_lin_lower + (dist_to_lower_input_times_width_output / (input_lin_upper - input_lin_lower));
 }
 
-uint16_t get_rot_output(uint32_t angle) {
-    if (angle < input_rot_lower && angle + 36000 < input_rot_upper)
-        angle += 36000;
-    if (angle < input_rot_middle) {
+uint16_t get_rot_output(uint16_t angle) {
+    if ((input_rot_middle >= 0x7FFF && angle < input_rot_middle && angle > input_rot_middle - 0x7FFF) ||
+            input_rot_middle < 0x7FFF && (angle < input_rot_middle || angle > input_rot_middle + 0x7FFF)) {
         uint32_t rot_to_lower_input_times_lower_to_middle = (angle - input_rot_lower) * (output_rot_middle - output_rot_lower);
         return output_rot_lower + (rot_to_lower_input_times_lower_to_middle / (input_rot_middle - input_rot_lower));
     } else {

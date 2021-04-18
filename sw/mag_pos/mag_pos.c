@@ -70,16 +70,16 @@ void led_ctrl(){
     {
     case STATE_OFF:
         led_off();
-        dac_set_value(SAC_MODULE_A, 4095);
-        dac_set_value(SAC_MODULE_B, 0);
+        dac_set_value(SAC_MODULE_A, 3460);
+        dac_set_value(SAC_MODULE_B, 870);
         state++;
         break;
     #if PL_HAS_LED_RED
     case STATE_RED:
         led_off();
         LED_RED_ON();
-        dac_set_value(SAC_MODULE_A, 2777);
-        dac_set_value(SAC_MODULE_B, 1250);
+        dac_set_value(SAC_MODULE_A, 3000);
+        dac_set_value(SAC_MODULE_B, 1444);
         state++;
         break;
     #endif /* PL_HAS_LED_RED */
@@ -87,7 +87,7 @@ void led_ctrl(){
     case STATE_GREEN:
         led_off();
         LED_GREEN_ON();
-        dac_set_value(SAC_MODULE_A, 1444);
+        dac_set_value(SAC_MODULE_A, 2065);
         dac_set_value(SAC_MODULE_B, 2500);
         state++;
         break;
@@ -96,8 +96,8 @@ void led_ctrl(){
     case STATE_BLUE:
         led_off();
         LED_BLUE_ON();
-        dac_set_value(SAC_MODULE_A, 111);
-        dac_set_value(SAC_MODULE_B, 4095);
+        dac_set_value(SAC_MODULE_A, 700);
+        dac_set_value(SAC_MODULE_B, 3300);
         state++;
         break;
     #endif /* PL_HAS_LED_BLUE */
