@@ -44,12 +44,12 @@
 #endif /* PL_HW_G2_LAUNCHPAD */
 
 #if PL_HW_FR2_LAUNCHPAD
-    #define LED_RED_PORT    P3OUT
-    #define LED_RED_DIR     P3DIR
-    #define LED_RED_PIN     4
-    #define LED_GREEN_PORT  P1OUT
-    #define LED_GREEN_DIR   P1DIR
-    #define LED_GREEN_PIN   5
+    #define LED_RED_PORT    P1OUT
+    #define LED_RED_DIR     P1DIR
+    #define LED_RED_PIN     0
+    #define LED_GREEN_PORT  P6OUT
+    #define LED_GREEN_DIR   P6DIR
+    #define LED_GREEN_PIN   6
     #define LED_BLUE_PORT   P2OUT
     #define LED_BLUE_DIR    P2DIR
     #define LED_BLUE_PIN    0
@@ -71,40 +71,82 @@
     #define RXD_PORT        P4OUT
     #define RXD             2
     #define TXD             3
+    /* SPI */
+    #define SPI_PORT            P4OUT
+    #define SPI_DIR             P4DIR
+    #define SPI_SEL0            P4SEL0
+    #define SPI_SEL1            P4SEL1
+    #define SPI_CS_PORT         P5OUT
+    #define SPI_CS_DIR          P5DIR
+    #define SPI_CS_SEL0         P5SEL0
+    #define SPI_CS_SEL1         P5SEL1
+    #define SPI_CS_PIN          2
+    #define SPI_SCLK_PORT       SPI_PORT
+    #define SPI_SCLK_DIR        SPI_DIR
+    #define SPI_SCLK_SEL0       SPI_SEL0
+    #define SPI_SCLK_SEL1       SPI_SEL1
+    #define SPI_SCLK_PIN        5
+    #define SPI_MOSI_PORT       SPI_PORT
+    #define SPI_MOSI_DIR        SPI_DIR
+    #define SPI_MOSI_SEL0       SPI_SEL0
+    #define SPI_MOSI_SEL1       SPI_SEL1
+    #define SPI_MOSI_PIN        6
+    #define SPI_MISO_PORT       SPI_PORT
+    #define SPI_MISO_DIR        SPI_DIR
+    #define SPI_MISO_SEL0       SPI_SEL0
+    #define SPI_MISO_SEL1       SPI_SEL1
+    #define SPI_MISO_PIN        7
 #endif /* PL_HW_FR2_LAUNCHPAD */
 
-#if PL_HW_FR2_LAUNCHPAD
-    #define LED_RED_PORT    P1OUT
-    #define LED_RED_DIR     P1DIR
-    #define LED_RED_PIN     0
-    #define LED_GREEN_PORT  P6OUT
-    #define LED_GREEN_DIR   P6DIR
-    #define LED_GREEN_PIN   6
-    #define LED_BLUE_PORT   P2OUT
-    #define LED_BLUE_DIR    P2DIR
-    #define LED_BLUE_PIN    0
-    #define LED_YELLOW_PORT P2OUT
-    #define LED_YELLOW_DIR  P2DIR
-    #define LED_YELLOW_PIN  2
-    #define LED_WHITE_PORT  P4OUT
-    #define LED_WHITE_DIR   P4DIR
-    #define LED_WHITE_PIN   4
-#endif /* PL_HW_FR2_LAUNCHPAD */
 
 #if PL_HW_MAG_POS_V1
-    #define LED_RED_PORT    P2OUT
-    #define LED_RED_DIR     P2DIR
-    #define LED_RED_PIN     6
-    #define LED_GREEN_PORT  P2OUT
-    #define LED_GREEN_DIR   P2DIR
-    #define LED_GREEN_PIN   5
-    #define LED_BLUE_PORT   P2OUT
-    #define LED_BLUE_DIR    P2DIR
-    #define LED_BLUE_PIN    4
-    #define P_TRXD_SEL0     P4SEL0
-    #define P_TRXD_SEL1     P4SEL1
-    #define RXD             2
-    #define TXD             3
+    /* GPIO LED */
+    #define LED_RED_PORT        P2OUT
+    #define LED_RED_DIR         P2DIR
+    #define LED_RED_PIN         6
+    #define LED_GREEN_PORT      P2OUT
+    #define LED_GREEN_DIR       P2DIR
+    #define LED_GREEN_PIN       5
+    #define LED_BLUE_PORT       P2OUT
+    #define LED_BLUE_DIR        P2DIR
+    #define LED_BLUE_PIN        4
+    /* GPIO MLX90393 */
+    #define MLX_INT_PORT        P2OUT
+    #define MLX_INT_DIR         P2DIR
+    #define MLX_INT_PIN         7
+    #define MLX_INT_TRIG_PORT   P3OUT
+    #define MLX_INT_TRIG_DIR    P3DIR
+    #define MLX_INT_TRIG_PIN    0
+    /* UART */
+    #define P_TRXD_SEL0         P4SEL0
+    #define P_TRXD_SEL1         P4SEL1
+    #define RXD                 2
+    #define TXD                 3
+    /* SPI */
+    #define SPI_PORT            P1OUT
+    #define SPI_DIR             P1DIR
+    #define SPI_SEL0            P1SEL0
+    #define SPI_SEL1            P1SEL1
+    #define SPI_CS_PORT         SPI_OUT
+    #define SPI_CS_DIR          SPI_DIR
+    #define SPI_CS_SEL0         SPI_SEL0
+    #define SPI_CS_SEL1         SPI_SEL1
+    #define SPI_CS_PIN          0
+    #define SPI_SCLK_PORT       SPI_OUT
+    #define SPI_SCLK_DIR        SPI_DIR
+    #define SPI_SCLK_SEL0       SPI_SEL0
+    #define SPI_SCLK_SEL1       SPI_SEL1
+    #define SPI_SCLK_PIN        1
+    #define SPI_MOSI_PORT       SPI_OUT
+    #define SPI_MOSI_DIR        SPI_DIR
+    #define SPI_MOSI_SEL0       SPI_SEL0
+    #define SPI_MOSI_SEL1       SPI_SEL1
+    #define SPI_MOSI_PIN        2
+    #define SPI_MISO_PORT       SPI_OUT
+    #define SPI_MISO_DIR        SPI_DIR
+    #define SPI_MISO_SEL0       SPI_SEL0
+    #define SPI_MISO_SEL1       SPI_SEL1
+    #define SPI_MISO_PIN        3
 #endif /* PL_HW_MAG_POS_V1 */
 
 #if PL_HAS_LED_RED
@@ -156,6 +198,13 @@
     #define MASK_RXD            (1<<RXD)
     #define MASK_TXD            (1<<TXD)
 #endif /* PL_HAS_UART */
+
+#if PL_HAS_SPI
+    #define MASK_SPI_CS         (1<<SPI_CS_PIN)
+    #define MASK_SPI_SCLK       (1<<SPI_SCLK_PIN)
+    #define MASK_SPI_MOSI       (1<<SPI_MOSI_PIN)
+    #define MASK_SPI_MISO       (1<<SPI_MISO_PIN)
+#endif /* PL_HAS_SPI */
 
 void init_gpio(void);
 void led_off(void);

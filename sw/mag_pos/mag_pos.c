@@ -5,6 +5,7 @@
 #include "clock.h"
 #include "gpio.h"
 #include "uart.h"
+#include "spi.h"
 #include "mlx90393.h"
 
 #define SLEEPCNT_SLOW 65535
@@ -36,11 +37,42 @@ void main(void)
     #if PL_HAS_UART
     init_uart();
     #endif /* PL_HAS_UART */
+    #if PL_HAS_SPI
+    init_spi();
+    #endif /* PL_HAS_SPI */
 
     __bis_SR_register(GIE);         // Enable global interrupts
     led_off();
+    uint8_t cmd[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t data[sizeof(cmd)];
+    uint8_t spi_retval;
+    /* EX */
+    cmd[0] = 0x80; //EX
+    spi_write(cmd, 2);
+    do {
+        spi_retval = spi_read(data, 2);
+    } while (spi_retval);
+    /* RT */
+    cmd[0] = 0xf0; //EX
+    spi_write(cmd, 1);
+    do {
+        spi_retval = spi_read(data, 1);
+    } while (spi_retval);
+    /* SB */
+    cmd[0] = 0x1f;
+    spi_write(cmd, 1);
+    do {
+        spi_retval = spi_read(data, 1);
+    } while (spi_retval);
+
     while(1)
     {
+        #if PL_HAS_SPI
+        spi_write(cmd, 10);
+        do {
+            spi_retval = spi_read(data, 10);
+        } while (spi_retval);
+        #endif /* PL_HAS_SPI */
         #if PL_HAS_UART
         uart_transmit(txt, 11);
         #endif /* PL_HAS_UART */

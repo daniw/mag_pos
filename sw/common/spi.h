@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include "platform.h"
 #include "gpio.h"
+#include "clock.h"
 
 /* USCI module selection */
 #if PL_HW_MAG_POS_V1
@@ -47,7 +48,7 @@
     #define SPI_MASTER          1
 #endif /* SPI_MASTER */
 #ifndef SPI_CHIP_SELECT
-    #define SPI_CHIP_SELECT     1
+    #define SPI_CHIP_SELECT     0
 #endif /* SPI_CHIP_SELECT */
 #ifndef SPI_CS_LOW_ACTIVE
     #define SPI_CS_LOW_ACTIVE   1
@@ -55,6 +56,17 @@
 #ifndef SPI_MULTIMASTER
     #define SPI_MULTIMASTER     0
 #endif /* SPI_MULTIMASTER */
+#ifndef SPI_RX_INTERRUPT
+    #define SPI_RX_INTERRUPT    1
+#endif /* SPI_RX_INTERRUPT */
+#ifndef SPI_TX_INTERRUPT
+    #define SPI_TX_INTERRUPT    0
+#endif /* SPI_TX_INTERRUPT */
+
+/* SPI buffer */
+#ifndef SPI_BUFFER_LEN
+    #define SPI_BUFFER_LEN      16
+#endif /* SPI_BUFFER_LEN */
 
 /* Configuration validity check */
 #if ((SPI_CLK_SRC_SMCLK + SPI_CLK_SRC_ACLK) > 1)
@@ -116,6 +128,10 @@
 #define SPI_IV_(module)         SPI_IV__(module)
 #define SPI_IV__(module)        UC##module##IV
 #define SPI_IV                  SPI_IV_(SPI_MODULE)
+/* SPI_VECTOR */
+#define SPI_VECTOR_(module)     SPI_VECTOR__(module)
+#define SPI_VECTOR__(module)    USCI_##module##_VECTOR
+#define SPI_VECTOR              SPI_VECTOR_(SPI_MODULE)
 
 /* CTLW0 */
 #if SPI_CLK_SRC_SMCLK
@@ -160,7 +176,7 @@
     #define SPI_INPUT_FREQ      ACLK_FREQ
 #endif
 #define SPI_BRW_INIT           (SPI_INPUT_FREQ / SPI_BAUD)
-#if ((SPI_BAUD * SPI_BRW_INIT) ~= SPI_INPUT_FREQ)
+#if ((SPI_BAUD * SPI_BRW_INIT) != SPI_INPUT_FREQ)
     #error "SPI baud rate not achievable"
 #endif
 
@@ -169,6 +185,14 @@
                          (UCFE_0) | \
                          (UCOE_0))
 
+/* IE */
+#define SPI_IE_INIT     ((SPI_RX_INTERRUPT?UCRXIE:0) | \
+                         (SPI_TX_INTERRUPT?UCTXIE:0))
+
 void init_spi(void);
+uint8_t spi_write(uint8_t *data, uint8_t len);
+uint8_t spi_read(uint8_t *data, uint8_t len);
+void spi_tx_isr(void);
+void spi_rx_isr(void);
 
 #endif /* COMMON_SPI_H_ */
