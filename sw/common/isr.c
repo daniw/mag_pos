@@ -33,6 +33,24 @@ __interrupt void USCI_A1_ISR(void)
     }
 }
 
+#if PL_HAS_SPI
+#pragma vector=SPI_VECTOR
+__interrupt void SPI_ISR(void)
+{
+    switch(__even_in_range(SPI_IV, USCI_SPI_UCTXIFG)) {
+        case USCI_NONE:
+            break;
+        case USCI_SPI_UCRXIFG:
+            spi_rx_isr();
+            break;
+        case USCI_SPI_UCTXIFG:
+            spi_tx_isr();
+            break;
+        default: break;
+    }
+}
+#endif /* PL_HAS_UART */
+
 #elif __MSP430G2553__
 #pragma vector=USCIAB0TX_VECTOR
 __interrupt void USCI0TX_ISR(void)

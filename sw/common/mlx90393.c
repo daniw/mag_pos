@@ -59,7 +59,7 @@ void mlx90393_communicate(uint8_t *txData, uint8_t txCount, uint8_t *rxData, uin
     #endif /* PL_HAS_I2C */
     #if PL_HAS_SPI
         // \todo Add SPI write function here!!
-        *data = 0x00;
+        *rxData = 0x00;
     #endif /* PL_HAS_SPI */
 }
 

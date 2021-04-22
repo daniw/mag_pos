@@ -11,5 +11,6 @@
 #include <msp430.h>
 #include <stdint.h>
 #include "uart.h"
+#include "spi.h"
 
 #endif /* ISR_H_ */
