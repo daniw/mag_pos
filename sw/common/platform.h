@@ -34,6 +34,7 @@
 
 #if PL_IS_MAG_POS_FR
     #define PL_HW_MAG_POS_V1    (1)
+    //#define PL_HW_FR2_LAUNCHPAD (1)
 
     #define PL_HAS_UART         (1)
     #define PL_HAS_I2C          (0)
@@ -60,6 +61,7 @@
 
     #define PL_HAS_SW0          (1)
     #define PL_HAS_SW1          (1)
+    #define SPI_MODULE          B1
 #endif /* PL_HW_FR2_LAUNCHPAD */
 
 #if PL_HW_MAG_POS_V1

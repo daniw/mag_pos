@@ -67,10 +67,11 @@
     #define SW1_PU          P2REN
     #define SW1_DIR         P2DIR
     #define SW1_PIN         3
-    // Todo: Port and SEL for RXD and TXD missing
-    #define RXD_PORT        P4OUT
-    #define RXD             2
-    #define TXD             3
+    /* UART */
+    #define P_TRXD_SEL0         P4SEL0
+    #define P_TRXD_SEL1         P4SEL1
+    #define RXD                 2
+    #define TXD                 3
     /* SPI */
     #define SPI_PORT            P4OUT
     #define SPI_DIR             P4DIR

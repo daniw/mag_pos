@@ -21,7 +21,6 @@ __interrupt void USCI_A1_ISR(void)
         break;
         case USCI_UART_UCTXIFG:
             #if PL_HAS_UART
-                LED_RED_TOGGLE();
                 uart_tx_isr();
             #endif /* PL_HAS_UART */
         break;

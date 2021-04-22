@@ -48,7 +48,7 @@ void main(void)
     __bis_SR_register(GIE);         // Enable global interrupts
     led_off();
     uint16_t counter = 0;
-    
+    /*
     uint8_t cmd[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     uint8_t data[sizeof(cmd)];
     uint8_t spi_retval;
@@ -70,9 +70,9 @@ void main(void)
     do {
         spi_retval = spi_read(data, 1);
     } while (spi_retval);
-
+*/
     while(1)
-    {
+    {/*
         #if PL_HAS_SPI
         cmd[0] = 0x4F;
         spi_write(cmd, 10);
@@ -80,12 +80,7 @@ void main(void)
             spi_retval = spi_read(data, 10);
         } while (spi_retval);
         #endif // PL_HAS_SPI
-      
-        if (counter == 1000 || counter == 32000 || counter == 60000) {
-            LED_BLUE_TOGGLE();
-            counter = counter + 1;
-        }
-
+      */
         int16_t flux_x = -32500+counter; //TODO
         int16_t flux_y = counter; //TODO
         int16_t flux_z = 0; //TODO
@@ -102,7 +97,7 @@ void main(void)
         counter++;
         if (counter > 65000)
             counter = 0;
-            LED_GREEN_TOGGLE();
+            //LED_GREEN_TOGGLE();
     }
 }
 

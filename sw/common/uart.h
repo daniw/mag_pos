@@ -13,6 +13,7 @@
 #include "platform.h"
 #include "clock.h"
 #include "gpio.h"
+#include "spi.h"
 #include "mlx90393.h"
 
 /* Baud rate selection */
