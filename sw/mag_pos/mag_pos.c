@@ -52,29 +52,58 @@ void main(void)
     uint8_t cmd[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     uint8_t data[sizeof(cmd)];
     uint8_t spi_retval;
+    // RT
+    cmd[0] = MLX90393_CMD_RT;
+    spi_write(cmd, 1);
+    do {
+        spi_retval = spi_read(data, 1);
+    } while (spi_retval);
+    // HR
+    cmd[0] = MLX90393_CMD_HR;
+    spi_write(cmd, 2);
+    do {
+        spi_retval = spi_read(data, 2);
+    } while (spi_retval);
+    // Read memory
+    uint8_t addr = 0;
+    for (addr = 0; addr < 0x0A; addr++) {
+        cmd[0] = MLX90393_CMD_RR(0);
+        cmd[1] = addr << 2;
+        spi_write(cmd, 5);
+        do {
+            spi_retval = spi_read(data, 5);
+        } while (spi_retval);
+    }
+    cmd[1] = 0x00;
     // EX
-    cmd[0] = 0x80; //EX
+    cmd[0] = MLX90393_CMD_EX;
     spi_write(cmd, 2);
     do {
         spi_retval = spi_read(data, 2);
     } while (spi_retval);
     // RT
-    cmd[0] = 0xf0; //EX
+    cmd[0] = MLX90393_CMD_RT;
     spi_write(cmd, 1);
     do {
         spi_retval = spi_read(data, 1);
     } while (spi_retval);
-    // SB
-    cmd[0] = 0x1f;
-    spi_write(cmd, 1);
-    do {
-        spi_retval = spi_read(data, 1);
-    } while (spi_retval);
+    //// SB
+    //cmd[0] = MLX90393_CMD_BURST(1, 1, 1, 1);
+    //spi_write(cmd, 2);
+    //do {
+    //    spi_retval = spi_read(data, 2);
+    //} while (spi_retval);
 
     while(1)
     {
         #if PL_HAS_SPI
-        cmd[0] = 0x4F;
+        cmd[0] = MLX90393_CMD_SINGLE(1, 1, 1, 1);
+        spi_write(cmd, 2);
+        do {
+            spi_retval = spi_read(data, 2);
+        } while (spi_retval);
+        sleep(SLEEPCNT_FAST);
+        cmd[0] = MLX90393_CMD_READ_MEAS(1, 1, 1, 1);
         spi_write(cmd, 10);
         do {
             spi_retval = spi_read(data, 10);
@@ -231,10 +260,10 @@ void led_ctrl(){
         led_off();
         state = STATE_OFF;
     }
-}
+}*/
 
 void sleep(uint16_t sleepcnt){
     volatile uint16_t i;            // volatile to prevent optimization
     for(i=sleepcnt; i>0; i--);      // delay
     return;
-}*/
+}

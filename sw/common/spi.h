@@ -39,7 +39,7 @@
     #define SPI_CLK_POLARITY    1
 #endif /* SPI_CLK_POLARITY */
 #ifndef SPI_CLK_PHASE
-    #define SPI_CLK_PHASE       1
+    #define SPI_CLK_PHASE       0
 #endif /* SPI_CLK_PHASE */
 #ifndef SPI_MSB_FIRST
     #define SPI_MSB_FIRST       1
