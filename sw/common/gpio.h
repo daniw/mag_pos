@@ -127,17 +127,17 @@
     #define SPI_DIR             P1DIR
     #define SPI_SEL0            P1SEL0
     #define SPI_SEL1            P1SEL1
-    #define SPI_CS_PORT         SPI_OUT
+    #define SPI_CS_PORT         SPI_PORT
     #define SPI_CS_DIR          SPI_DIR
     #define SPI_CS_SEL0         SPI_SEL0
     #define SPI_CS_SEL1         SPI_SEL1
     #define SPI_CS_PIN          0
-    #define SPI_SCLK_PORT       SPI_OUT
+    #define SPI_SCLK_PORT       SPI_PORT
     #define SPI_SCLK_DIR        SPI_DIR
     #define SPI_SCLK_SEL0       SPI_SEL0
     #define SPI_SCLK_SEL1       SPI_SEL1
     #define SPI_SCLK_PIN        1
-    #define SPI_MOSI_PORT       SPI_OUT
+    #define SPI_MOSI_PORT       SPI_PORT
     #define SPI_MOSI_DIR        SPI_DIR
     #define SPI_MOSI_SEL0       SPI_SEL0
     #define SPI_MOSI_SEL1       SPI_SEL1
