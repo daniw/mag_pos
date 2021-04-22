@@ -60,6 +60,8 @@
 
     #define PL_HAS_SW0          (1)
     #define PL_HAS_SW1          (1)
+
+    #define SPI_MODULE          B1
 #endif /* PL_HW_FR2_LAUNCHPAD */
 
 #if PL_HW_MAG_POS_V1
