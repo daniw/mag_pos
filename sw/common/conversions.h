@@ -18,6 +18,6 @@ uint16_t arctan2(int16_t x, int16_t y);
 uint16_t flux_squared_to_distance(uint32_t flux_squared);
 
 uint16_t get_lin_output(uint16_t distance);
-uint16_t get_rot_output(uint32_t angle);
+uint16_t get_rot_output(uint16_t angle);
 
 #endif /* CONVERSIONS_H_ */

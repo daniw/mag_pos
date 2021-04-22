@@ -9,9 +9,9 @@
 
 // Calibration values linear axis
 #pragma PERSISTENT(input_lin_lower)
-uint16_t input_lin_lower = 500;
+uint16_t input_lin_lower = 200;
 #pragma PERSISTENT(input_lin_upper)
-uint16_t input_lin_upper = 2500;
+uint16_t input_lin_upper = 300;
 #pragma PERSISTENT(output_lin_lower)
 uint16_t output_lin_lower = 866;
 #pragma PERSISTENT(output_lin_upper)
@@ -19,11 +19,11 @@ uint16_t output_lin_upper = 3305;
 
 // Calibration values angular axis
 #pragma PERSISTENT(input_rot_lower)
-uint32_t input_rot_lower = 700;
+uint32_t input_rot_lower = 0;
 #pragma PERSISTENT(input_rot_upper)
-uint32_t input_rot_upper = 2700;
+uint32_t input_rot_upper = 65000;
 #pragma PERSISTENT(input_rot_middle)
-uint32_t input_rot_middle = 1750;
+uint32_t input_rot_middle = 32000;
 #pragma PERSISTENT(output_rot_lower)
 uint32_t output_rot_lower = 659;
 #pragma PERSISTENT(output_rot_upper)
@@ -58,6 +58,10 @@ uint16_t arctan2(int16_t x, int16_t y) {
     // Returns: 0xFFFF = 2^16 = 360° --> 0x0000 - 0xFFFF
     uint32_t abs_x = abs(x);
     uint32_t abs_y = abs(y);
+    if (abs_x == 0)
+        abs_x = 1;
+    if (abs_y == 0)
+        abs_y = 1;
 
     if (x >= 0) {
         if (y >= 0) {

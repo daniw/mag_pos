@@ -25,7 +25,55 @@ void led_ctrl();
 /**
  * mag_pos.c
  */
+uint16_t lin_output = 0;
+uint16_t ang_output = 0;
 
+void main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;       // stop watchdog timer
+
+    init_clock();
+    init_gpio();
+    PM5CTL0 &= ~LOCKLPM5;           // Disable the GPIO power-on default high-impedance mode
+    #if PL_HAS_UART
+    init_uart();
+    #endif // PL_HAS_UART
+    #if PL_HAS_SAC
+    init_dac();
+    #endif // PL_HAS_SAC
+    __bis_SR_register(GIE);         // Enable global interrupts
+    led_off();
+    uint16_t counter = 0;
+
+    while(1)
+    {
+        if (counter == 1000 || counter == 32000 || counter == 60000) {
+            LED_BLUE_TOGGLE();
+            counter = counter + 1;
+        }
+
+        int16_t flux_x = -32500+counter; //TODO
+        int16_t flux_y = counter; //TODO
+        int16_t flux_z = 0; //TODO
+
+        uint16_t angular_input = arctan2(flux_x, flux_y);
+        uint32_t flux_squared = (uint32_t)abs(flux_x) * (uint32_t)abs(flux_x) + (uint32_t)abs(flux_y) * (uint32_t)abs(flux_y);
+        uint16_t linear_input = flux_squared_to_distance(flux_squared);
+
+        ang_output = get_rot_output(angular_input);
+        lin_output = get_lin_output(linear_input);
+        dac_set_value(SAC_MODULE_A, ang_output);
+        dac_set_value(SAC_MODULE_B, lin_output);
+
+        counter++;
+        if (counter > 65000)
+            counter = 0;
+            LED_GREEN_TOGGLE();
+    }
+}
+
+
+/*
 uint8_t* txt = (uint8_t *){ "Saali hoi! " };
 
 
@@ -42,7 +90,7 @@ void main(void)
 
     #if PL_HAS_UART
     init_uart();
-    #endif /* PL_HAS_UART */
+    #endif // PL_HAS_UART
 
     init_dac();
 
@@ -53,7 +101,7 @@ void main(void)
     {
         #if PL_HAS_UART
         uart_transmit(c, 1);
-        #endif /* PL_HAS_UART */
+        #endif // PL_HAS_UART
         led_ctrl();
 
         // Sleep even longer...
@@ -74,7 +122,7 @@ void led_ctrl(){
         dac_set_value(SAC_MODULE_B, 870);
         state++;
         break;
-    #if PL_HAS_LED_RED
+    #if // PL_HAS_LED_RED
     case STATE_RED:
         led_off();
         LED_RED_ON();
@@ -82,7 +130,7 @@ void led_ctrl(){
         dac_set_value(SAC_MODULE_B, 1444);
         state++;
         break;
-    #endif /* PL_HAS_LED_RED */
+    #endif // PL_HAS_LED_RED
     #if PL_HAS_LED_GREEN
     case STATE_GREEN:
         led_off();
@@ -91,7 +139,7 @@ void led_ctrl(){
         dac_set_value(SAC_MODULE_B, 2500);
         state++;
         break;
-    #endif /* PL_HAS_LED_GREEN */
+    #endif // PL_HAS_LED_GREEN
     #if PL_HAS_LED_BLUE
     case STATE_BLUE:
         led_off();
@@ -100,21 +148,21 @@ void led_ctrl(){
         dac_set_value(SAC_MODULE_B, 3300);
         state++;
         break;
-    #endif /* PL_HAS_LED_BLUE */
+    #endif // PL_HAS_LED_BLUE
     #if PL_HAS_LED_YELLOW
     case STATE_YELLOW:
         led_off();
         LED_YELLOW_ON();
         state++;
         break;
-    #endif /* PL_HAS_LED_YELLOW */
+    #endif // PL_HAS_LED_YELLOW
     #if PL_HAS_LED_WHITE
     case STATE_WHITE:
         led_off();
         LED_WHITE_ON();
         state++;
         break;
-    #endif /* PL_HAS_LED_WHITE */
+    #endif // PL_HAS_LED_WHITE
     default:
         led_off();
         state = STATE_OFF;
@@ -125,4 +173,4 @@ void sleep(uint16_t sleepcnt){
     volatile uint16_t i;            // volatile to prevent optimization
     for(i=sleepcnt; i>0; i--);      // delay
     return;
-}
+}*/
