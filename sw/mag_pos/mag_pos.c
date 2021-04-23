@@ -108,7 +108,7 @@ void main(void)
         cmd[0] = MLX90393_CMD_READ_MEAS(1, 1, 1, 1);
         LED_GREEN_TOGGLE();
         LED_RED_TOGGLE();
-        sleep(SLEEPCNT_FAST*8);
+        sleep(SLEEPCNT_FAST*2);
         spi_write(cmd, 10);
         do {
             spi_retval = spi_read(data, 10);
@@ -152,15 +152,15 @@ void main(void)
                         if (parse_digit <= 0) {
                             if (var_parse < 0) {
                                 parse_digit = -1;
-                            } else if (var_parse > 9999) {
+                            } else if (var_parse >= 10000) {
                                 parse_digit = 5;
-                            } else if (var_parse > 999) {
+                            } else if (var_parse >= 1000) {
                                 parse_digit = 4;
-                            } else if (var_parse > 99) {
+                            } else if (var_parse >= 100) {
                                 parse_digit = 3;
-                            } else if (var_parse > 9) {
+                            } else if (var_parse >= 10) {
                                 parse_digit = 2;
-                            } else if (var_parse > 0) {
+                            } else if (var_parse >= 0) {
                                 parse_digit = 1;
                             } else {
                             }
