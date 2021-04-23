@@ -28,6 +28,7 @@ void led_ctrl();
  */
 uint16_t lin_output = 0;
 uint16_t ang_output = 0;
+uint8_t c[1] = {0};
 
 void main(void)
 {
@@ -111,6 +112,12 @@ void main(void)
         } while (spi_retval);
         #endif // PL_HAS_SPI
       */
+
+        #if PL_HAS_UART
+            //uart_transmit(c, 1);
+            c[0] += 1;
+        #endif // PL_HAS_UART
+
         int16_t flux_x = -32500+counter; //TODO
         int16_t flux_y = counter; //TODO
         int16_t flux_z = 0; //TODO

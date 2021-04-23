@@ -37,6 +37,9 @@ void init_gpio(void)
         #if PL_HW_G2_LAUNCHPAD
             RXD_SEL  |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
             RXD_SEL2 |= MASK_RXD + MASK_TXD; // P1.1 = RXD, P1.2=TXD
+        #elif PL_HW_FR2_LAUNCHPAD
+            P_TRXD_SEL1 &= ~(MASK_RXD | MASK_TXD);
+            P_TRXD_SEL0 |= MASK_RXD | MASK_TXD;
         #elif PL_HW_MAG_POS_V1
             P_TRXD_SEL1 &= ~(MASK_RXD | MASK_TXD);
             P_TRXD_SEL0 |= MASK_RXD | MASK_TXD;

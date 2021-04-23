@@ -43,9 +43,11 @@ void init_spi(void){
     #endif
     /* Configure ports */
     #if SPI_CHIP_SELECT
-        SPI_SEL0 = (MASK_SPI_CS | MASK_SPI_SCLK | MASK_SPI_MOSI | MASK_SPI_MISO);
+        SPI_SEL0 |= (MASK_SPI_CS | MASK_SPI_SCLK | MASK_SPI_MOSI | MASK_SPI_MISO);
+        SPI_SEL1 &= ~(MASK_SPI_CS | MASK_SPI_SCLK | MASK_SPI_MOSI | MASK_SPI_MISO);
     #else
-        SPI_SEL0 = (MASK_SPI_SCLK | MASK_SPI_MOSI | MASK_SPI_MISO);
+        SPI_SEL0 |= (MASK_SPI_SCLK | MASK_SPI_MOSI | MASK_SPI_MISO);
+        SPI_SEL1 &= ~(MASK_SPI_SCLK | MASK_SPI_MOSI | MASK_SPI_MISO);
         SPI_CS_PORT |= MASK_SPI_CS;
         SPI_CS_DIR  |= MASK_SPI_CS;
     #endif /* SPI_CHIP_SELECT */
