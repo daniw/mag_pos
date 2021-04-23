@@ -10,8 +10,10 @@
 #include "conversions.h"
 #include "dac.h"
 
+#define PARSER          0
+
 #define SLEEPCNT_SLOW 65535
-#define SLEEPCNT_FAST SLEEPCNT_SLOW/8
+#define SLEEPCNT_FAST (SLEEPCNT_SLOW/8)
 
 #define STATE_OFF       0
 #define STATE_RED       1
@@ -127,6 +129,7 @@ void main(void)
         int16_t flux_z = (data[8] << 8) + data[9];
 
         #if PL_HAS_UART
+        #if PARSER
             uint8_t parsing = 1;
             uint8_t parse_state = 0;
             uint8_t parse_cnt = 0;
@@ -223,6 +226,7 @@ void main(void)
                 str[parse_cnt++] = parse_chr;
             }
             uart_transmit(str, parse_cnt);
+        #endif // PARSER
         #endif // PL_HAS_UART
         // checksum to keep flux_z and temp from removed during optimization
         checksum = temp + flux_x + flux_y + flux_z;
