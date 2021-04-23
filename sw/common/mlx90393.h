@@ -11,6 +11,12 @@
 #include <msp430.h>
 #include <stdint.h>
 #include "platform.h"
+//#if PL_HAS_I2C
+//#include "i2c.h"
+//#endif // PL_HAS_I2C
+#if PL_HAS_SPI
+#include "spi.h"
+#endif // PL_HAS_SPI
 
 // RX and TX buffers
 uint8_t mlx_rx_buffer_[9];
@@ -22,6 +28,7 @@ uint8_t mlx90393_tx_counter_;
 uint8_t mlx_rx_count_;
 uint8_t mlx_tx_count_;
 
+#if PL_HAS_I2C
 #define I2C_CS_PIN BIT4
 #define I2C_CS_OUT P1OUT
 #define I2C_CS_DIR P1DIR
@@ -81,6 +88,8 @@ uint8_t mlx_tx_count_;
         #define MLX90393_I2C_ADDR 0x0C
     #endif /* MLX90393_I2C_ADDR */
 #endif /* MLX90393_I2C_ADDR */
+
+#endif // PL_HAS_I2C
 
 /******************************************************************************
  * Test compiler dependencies
@@ -949,14 +958,16 @@ typedef union {
 /******************************************************************************
  * Functions
  *****************************************************************************/
-/*! \fn void mlx90393_init(void)
+/*! \fn void init_mlx90393(void)
  *  \brief Initialisation function for MLX90393
  *
  *  \return void
  */
-void mlx90393_init(void);
+void init_mlx90393(void);
 void mlx90393_communicate(uint8_t *txData, uint8_t txCount, uint8_t *rxData, uint8_t rxCount);
+#if PL_HAS_I2C
 void mlx90393_i2c_tx_interrupt();
 void mlx90393_i2c_rx_interrupt();
+#endif // PL_HAS_I2C
 
-#endif /* MLX90393_H_ */
+#endif // MLX90393_H_

@@ -106,11 +106,11 @@ void uart_rx_isr()
             break;
         case 0b0100:
             rx_bytes = 1 + ((((data>>0) & 0x01) + ((data>>1) & 0x01) + ((data>>2) & 0x01) + ((data>>3) & 0x01))<<1);
-            spi_write(mlx_cmd, rx_bytes);
+            spi_write(mlx_cmd, rx_bytes+1);
             do {
-                mlx_spi_retval = spi_read(mlx_data, rx_bytes);
+                mlx_spi_retval = spi_read(mlx_data, rx_bytes+1);
             } while (mlx_spi_retval);
-            uart_transmit(mlx_data, rx_bytes);
+            uart_transmit(mlx_data+1, rx_bytes);
             break;
         case 0b0101:
             uart_rx_expected = 2;

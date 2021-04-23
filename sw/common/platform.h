@@ -59,6 +59,8 @@
     #define PL_HAS_LED_YELLOW   (1)
     #define PL_HAS_LED_WHITE    (1)
 
+    #define PL_HAS_MLX90393     (1)
+
     #define PL_HAS_SW0          (1)
     #define PL_HAS_SW1          (1)
     #define SPI_MODULE          B1
@@ -68,6 +70,8 @@
     #define PL_HAS_LED_RED      (1)
     #define PL_HAS_LED_GREEN    (1)
     #define PL_HAS_LED_BLUE     (1)
+
+    #define PL_HAS_MLX90393     (1)
 #endif /* PL_HW_MAG_POS_V1 */
 
 #ifdef __MSP430G2553__

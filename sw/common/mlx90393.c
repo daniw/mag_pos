@@ -63,6 +63,7 @@ void mlx90393_communicate(uint8_t *txData, uint8_t txCount, uint8_t *rxData, uin
     #endif /* PL_HAS_SPI */
 }
 
+#if PL_HAS_I2C
 void mlx90393_i2c_tx_interrupt() {
     if (mlx90393_tx_counter_--) {                       // Check TX byte counter and decrease after
         I2C_TXBUF = *mlx90393_tx_buffer_pointer_++;     // Write next Byte into TX-buffer
@@ -87,8 +88,9 @@ void mlx90393_i2c_rx_interrupt() {
     }
     mlx90393_rx_counter_--;                             // Decrement RX byte counter
 }
+#endif // PL_HAS_I2C
 
-void mlx90393_init(void) {
+void init_mlx90393(void) {
     #if PL_HAS_I2C
         I2C_CS_DIR |= I2C_CS_PIN;                   // Define CS-pin as output
         I2C_CS_OUT |= I2C_CS_PIN;                   // Set CS high to activate I2C mode on MLX90393
@@ -103,7 +105,7 @@ void mlx90393_init(void) {
         IE2 |= UCB0TXIE  + UCB0RXIE;                // Enable TX + RX interrupts
     #endif /* PL_HAS_I2C */
     #if PL_HAS_SPI
-        // \todo Add SPI init function here!!
+        init_spi();
     #endif /* PL_HAS_SPI */
     #if PL_PC
         /* test orientation of bitfields */
@@ -123,4 +125,8 @@ void mlx90393_init(void) {
         }
         return;
     #endif /* PL_PC */
+    #if PL_HAS_MLX90393
+    MLX_INT_PORT &= ~MASK_MLX_INT;
+    MLX_INT_TRIG_DIR |= MASK_MLX_INT_TRIG;
+    #endif // PL_HAS_MLX90393
 }
