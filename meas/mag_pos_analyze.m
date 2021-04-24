@@ -4,11 +4,12 @@ clear;
 %close all;
 
 % Parameters
-WRAP_THRESHOLD = 2^15;    % Threshold for wraparound correction
-WRAP_INTMAX    = 2^16;
+WRAP_THRESHOLD  = 2^15;    % Threshold for wraparound correction
+WRAP_INTMAX     = 2^16;
+RAW_PLOT        = 0;
 
 % Read data
-file = 'test_001';
+file = 'test_009';
 data = dlmread([file '.csv'], ',', [1, 0, inf, 5]);
 % Wraparound correction
 data(data>WRAP_THRESHOLD) = data(data>WRAP_THRESHOLD)-WRAP_INTMAX;
@@ -16,11 +17,13 @@ data(data>WRAP_THRESHOLD) = data(data>WRAP_THRESHOLD)-WRAP_INTMAX;
 titles = {'Temperature', 'Flux X', 'Flux Y', 'Flux Z', 'Linear', 'Angular'};
 
 % Raw plot
-for i=1:6
-    figure(i);
-    plot(data(:,i), 'LineWidth', 2);
-    grid on; grid minor;
-    title(['Raw plot ' cell2mat(titles(i))]);
+if RAW_PLOT
+    for i=1:6
+        figure(i);
+        plot(data(:,i), 'LineWidth', 2);
+        grid on; grid minor;
+        title(['Raw plot ' cell2mat(titles(i))]);
+    end;
 end;
 
 

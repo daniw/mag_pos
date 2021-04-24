@@ -66,6 +66,17 @@ uint16_t angular_input;
 uint16_t linear_input;
 uint16_t dummy = 0;
 
+#define FILTER      1
+#define FILT_SIZE   32
+#if FILTER
+    int16_t angular_fir_arr[FILT_SIZE];
+    int32_t angular_fir_sum = 0;
+    uint8_t angular_fir_idx = 0;
+    int16_t linear_fir_arr[FILT_SIZE];
+    int32_t linear_fir_sum = 0;
+    uint8_t linear_fir_idx = 0;
+#endif // FILTER
+
 void main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;       // stop watchdog timer
@@ -168,6 +179,20 @@ void main(void)
         spi_retval = spi_read(data, 10);
     } while (spi_retval);
 
+    // Prepare filter
+    #if FILTER
+        for (angular_fir_idx = 0; angular_fir_idx < FILT_SIZE; angular_fir_idx++) {
+            angular_fir_arr[angular_fir_idx] = 0;
+        }
+        angular_fir_idx = 0;
+        angular_fir_sum = 0;
+        for (linear_fir_idx = 0; linear_fir_idx < FILT_SIZE; linear_fir_idx++) {
+            linear_fir_arr[linear_fir_idx] = 0;
+        }
+        linear_fir_idx = 0;
+        linear_fir_sum = 0;
+    #endif // FILTER
+
     #if PARSER
         uint8_t header[] = "T,X,Y,Z,Lin,Ang\n";
         uart_transmit(header, sizeof(header)-1);
@@ -256,6 +281,25 @@ void main(void)
             uint32_t flux_squared = (uint32_t)abs(flux_x) * (uint32_t)abs(flux_x) + (uint32_t)abs(flux_y) * (uint32_t)abs(flux_y);
             linear_input = flux_squared_to_distance(flux_squared);
 
+            #if FILTER
+                // angular
+                angular_fir_sum = angular_fir_sum + (int16_t)angular_input - angular_fir_arr[angular_fir_idx];
+                angular_fir_arr[angular_fir_idx] = angular_input;
+                angular_fir_idx++;
+                if (angular_fir_idx >= FILT_SIZE) {
+                    angular_fir_idx = 0;
+                }
+                angular_input = (uint16_t)(angular_fir_sum / FILT_SIZE);
+                // linear
+                linear_fir_sum = linear_fir_sum + (int16_t)linear_input - linear_fir_arr[linear_fir_idx];
+                linear_fir_arr[linear_fir_idx] = linear_input;
+                linear_fir_idx++;
+                if (linear_fir_idx >= FILT_SIZE) {
+                    linear_fir_idx = 0;
+                }
+                linear_input = (uint16_t)(linear_fir_sum / FILT_SIZE);
+            #endif // FILTER
+
             ang_output = get_rot_output(angular_input);
             lin_output = get_lin_output(linear_input);
             dac_set_value(SAC_MODULE_A, ang_output);
@@ -269,7 +313,9 @@ void main(void)
                 uint16_t inp_lin_lower = get_lower_lin();
                 lowerlim[0] = inp_lin_lower >> 8;
                 lowerlim[1] = inp_lin_lower & 0xFF;
-                uart_transmit(lowerlim, 2);
+                #if !PARSER
+                    uart_transmit(lowerlim, 2);
+                #endif // !PARSER
                 counter = 0;
             }
 
