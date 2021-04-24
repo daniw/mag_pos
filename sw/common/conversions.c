@@ -11,7 +11,7 @@
 #pragma PERSISTENT(input_lin_lower)
 uint16_t input_lin_lower = 650;
 #pragma PERSISTENT(input_lin_upper)
-uint16_t input_lin_upper = 1060;
+uint16_t input_lin_upper = 1500;
 #pragma PERSISTENT(output_lin_lower)
 uint16_t output_lin_lower = 866;
 #pragma PERSISTENT(output_lin_upper)
@@ -173,6 +173,10 @@ uint16_t flux_squared_to_distance(uint32_t flux_squared) {
 }
 
 uint16_t get_lin_output(uint16_t distance) {
+    if (distance < input_lin_lower)
+        distance = input_lin_lower;
+    else if (distance > input_lin_upper)
+        distance = input_lin_upper;
     uint32_t dist_to_lower_input_times_width_output = (uint32_t)(distance - input_lin_lower) * (output_lin_upper - output_lin_lower);
     return output_lin_lower + (dist_to_lower_input_times_width_output / (input_lin_upper - input_lin_lower));
 }

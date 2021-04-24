@@ -349,7 +349,7 @@ void main(void)
                 uint16_t inp_lin_lower = get_lower_lin();
                 lowerlim[0] = inp_lin_lower >> 8;
                 lowerlim[1] = inp_lin_lower & 0xFF;
-                uart_transmit(lowerlim, 2);
+                //uart_transmit(lowerlim, 2);
                 counter = 0;
             }
         #endif // MLX_Interface
