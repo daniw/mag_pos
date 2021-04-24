@@ -31,3 +31,9 @@ sw/RemoteSystemsTempFiles
 
 # Datasheets
 datasheet/*/
+
+# Measurement data
+meas/*.csv
+meas/*.log
+meas/*.mat
+meas/*.png
