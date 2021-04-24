@@ -10,7 +10,7 @@
 #include "conversions.h"
 #include "dac.h"
 
-#define PARSER          0
+#define PARSER          1
 #define MLX_INTERFACE   0
 
 #define SLEEPCNT_SLOW 65535
@@ -24,9 +24,26 @@
 #define STATE_WHITE     5
 
 #define TEMP_OFFSET     0
-#define FLUX_X_OFFSET   1260
-#define FLUX_Y_OFFSET   64830
-#define FLUX_Z_OFFSET   65605
+// Calibration data
+#ifndef CAL_ALEX
+    #define CAL_ALEX    0
+#endif // CAL_ALEX
+#ifndef CAL_DANIEL
+    #define CAL_DANIEL  1
+#endif // CAL_DANIEL
+#if CAL_ALEX
+    #define FLUX_X_OFFSET   1260
+    #define FLUX_Y_OFFSET   64830
+    #define FLUX_Z_OFFSET   65605
+#elif CAL_DANIEL
+    #define FLUX_X_OFFSET   2850
+    #define FLUX_Y_OFFSET   3022
+    #define FLUX_Z_OFFSET   1907
+#else
+    #define FLUX_X_OFFSET   0
+    #define FLUX_Y_OFFSET   0
+    #define FLUX_Z_OFFSET   0
+#endif // Calibration data
 
 void sleep(uint16_t sleepcnt);
 void led_ctrl();
@@ -150,6 +167,11 @@ void main(void)
         spi_retval = spi_read(data, 10);
     } while (spi_retval);
 
+    #if PARSER
+        uint8_t header[] = "T,X,Y,Z,Lin,Ang\n";
+        uart_transmit(header, sizeof(header)-1);
+    #endif // PARSER
+
     while(1)
     {
         #if MLX_INTERFACE
@@ -256,7 +278,7 @@ void main(void)
 
                 #if PARSER
                     uint8_t parsing = 1;
-                    uint8_t parse_state = 0;
+                    uint8_t parse_state = 1;
                     uint8_t parse_cnt = 0;
                     uint8_t parse_chr = 0;
                     int8_t parse_digit = 0;
@@ -325,36 +347,45 @@ void main(void)
                                 parse_digit--;
                                 break;
                             case 2: // X
-                                parse_chr = 'X';
+                                //parse_chr = 'X';
+                                parse_chr = ',';
                                 var_parse = flux_x;
                                 parse_digit = 0;
                                 parse_state++;
                                 break;
                             case 4: // Y
-                                parse_chr = 'Y';
+                                //parse_chr = 'Y';
+                                parse_chr = ',';
                                 var_parse = flux_y;
                                 parse_digit = 0;
                                 parse_state++;
                                 break;
                             case 6: // Z
-                                parse_chr = 'Z';
+                                //parse_chr = 'Z';
+                                parse_chr = ',';
                                 var_parse = flux_z;
                                 parse_digit = 0;
                                 parse_state++;
                                 break;
                             case 8: // L
-                                parse_chr = 'L';
+                                //parse_chr = 'L';
+                                parse_chr = ',';
                                 var_parse = linear_input;
                                 parse_digit = 0;
                                 parse_state++;
                                 break;
                             case 10: // A
-                                parse_chr = 'A';
+                                //parse_chr = 'A';
+                                parse_chr = ',';
                                 var_parse = angular_input;
                                 parse_digit = 0;
                                 parse_state++;
                                 break;
                             case 12: // EOL
+                                parse_chr = '\r';
+                                parse_state++;
+                                break;
+                            case 13: // EOL
                                 parse_chr = '\n';
                                 parsing = 0;
                                 break;
