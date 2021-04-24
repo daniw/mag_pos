@@ -10,7 +10,7 @@
 #include "conversions.h"
 #include "dac.h"
 
-#define PARSER          0
+#define PARSER          1
 #define MLX_INTERFACE   0
 
 #define SLEEPCNT_SLOW 65535
@@ -226,6 +226,30 @@ void main(void)
             //int16_t flux_z = 0; //TODO
             int16_t flux_z = (data[8] << 8) + data[9] - FLUX_Z_OFFSET;
 
+            // checksum to keep flux_z and temp from removed during optimization
+            checksum = temp + flux_x + flux_y + flux_z;
+
+            angular_input = arctan2(flux_x, flux_y);
+            uint32_t flux_squared = (uint32_t)abs(flux_x) * (uint32_t)abs(flux_x) + (uint32_t)abs(flux_y) * (uint32_t)abs(flux_y);
+            linear_input = flux_squared_to_distance(flux_squared);
+
+            ang_output = get_rot_output(angular_input);
+            lin_output = get_lin_output(linear_input);
+            dac_set_value(SAC_MODULE_A, ang_output);
+            dac_set_value(SAC_MODULE_B, lin_output);
+            dummy = flux_x + flux_y;
+
+            counter++;
+            if (counter > 1000)
+            {
+                LED_GREEN_TOGGLE();
+                uint16_t inp_lin_lower = get_lower_lin();
+                lowerlim[0] = inp_lin_lower >> 8;
+                lowerlim[1] = inp_lin_lower & 0xFF;
+                uart_transmit(lowerlim, 2);
+                counter = 0;
+            }
+
             #if PL_HAS_UART
                 //uart_transmit(c, 1);
                 c[0] += 1;
@@ -250,6 +274,8 @@ void main(void)
                             case 3: // X parse
                             case 5: // Y parse
                             case 7: // Z parse
+                            case 9: // L parse
+                            case 11: // A parse
                                 if (parse_digit <= 0) {
                                     if (var_parse < 0) {
                                         parse_digit = -1;
@@ -316,7 +342,19 @@ void main(void)
                                 parse_digit = 0;
                                 parse_state++;
                                 break;
-                            case 8: // EOL
+                            case 8: // L
+                                parse_chr = 'L';
+                                var_parse = linear_input;
+                                parse_digit = 0;
+                                parse_state++;
+                                break;
+                            case 10: // A
+                                parse_chr = 'A';
+                                var_parse = angular_input;
+                                parse_digit = 0;
+                                parse_state++;
+                                break;
+                            case 12: // EOL
                                 parse_chr = '\n';
                                 parsing = 0;
                                 break;
@@ -329,29 +367,6 @@ void main(void)
                     uart_transmit(str, parse_cnt);
                 #endif // PARSER
             #endif // PL_HAS_UART
-            // checksum to keep flux_z and temp from removed during optimization
-            checksum = temp + flux_x + flux_y + flux_z;
-
-            angular_input = arctan2(flux_x, flux_y);
-            uint32_t flux_squared = (uint32_t)abs(flux_x) * (uint32_t)abs(flux_x) + (uint32_t)abs(flux_y) * (uint32_t)abs(flux_y);
-            linear_input = flux_squared_to_distance(flux_squared);
-
-            ang_output = get_rot_output(angular_input);
-            lin_output = get_lin_output(linear_input);
-            dac_set_value(SAC_MODULE_A, ang_output);
-            dac_set_value(SAC_MODULE_B, lin_output);
-            dummy = flux_x + flux_y;
-
-            counter++;
-            if (counter > 1000)
-            {
-                LED_GREEN_TOGGLE();
-                uint16_t inp_lin_lower = get_lower_lin();
-                lowerlim[0] = inp_lin_lower >> 8;
-                lowerlim[1] = inp_lin_lower & 0xFF;
-                uart_transmit(lowerlim, 2);
-                counter = 0;
-            }
         #endif // MLX_Interface
     }
 }
