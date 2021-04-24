@@ -9,9 +9,9 @@
 
 // Calibration values linear axis
 #pragma PERSISTENT(input_lin_lower)
-uint16_t input_lin_lower = 650;
+uint16_t input_lin_lower = 500;
 #pragma PERSISTENT(input_lin_upper)
-uint16_t input_lin_upper = 1500;
+uint16_t input_lin_upper = 2000;
 #pragma PERSISTENT(output_lin_lower)
 uint16_t output_lin_lower = 866;
 #pragma PERSISTENT(output_lin_upper)
@@ -21,7 +21,7 @@ uint16_t output_lin_upper = 3305;
 #pragma PERSISTENT(input_rot_lower)
 uint32_t input_rot_lower = 0;
 #pragma PERSISTENT(input_rot_upper)
-uint32_t input_rot_upper = 65000;
+uint32_t input_rot_upper = 65500;
 #pragma PERSISTENT(input_rot_middle)
 uint32_t input_rot_middle = 32000;
 #pragma PERSISTENT(output_rot_lower)

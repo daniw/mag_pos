@@ -10,7 +10,7 @@
 #include "conversions.h"
 #include "dac.h"
 
-#define PARSER          1
+#define PARSER          0
 #define MLX_INTERFACE   0
 
 #define SLEEPCNT_SLOW 65535
