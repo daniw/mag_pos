@@ -9,9 +9,9 @@
 
 // Calibration values linear axis
 #pragma PERSISTENT(input_lin_lower)
-uint16_t input_lin_lower = 200;
+uint16_t input_lin_lower = 400;
 #pragma PERSISTENT(input_lin_upper)
-uint16_t input_lin_upper = 300;
+uint16_t input_lin_upper = 3000;
 #pragma PERSISTENT(output_lin_lower)
 uint16_t output_lin_lower = 866;
 #pragma PERSISTENT(output_lin_upper)
@@ -30,6 +30,10 @@ uint32_t output_rot_lower = 659;
 uint32_t output_rot_upper = 3471;
 #pragma PERSISTENT(output_rot_middle)
 uint32_t output_rot_middle = 2065;
+
+uint16_t get_lower_lin(){
+    return input_lin_lower;
+}
 
 uint16_t arctan_0_to_1_as_0_to_1024(uint16_t d) {
     // Returns: 0x2000 = 2^13 = 45°
@@ -174,6 +178,7 @@ uint16_t get_lin_output(uint16_t distance) {
 }
 
 uint16_t get_rot_output(uint16_t angle) {
+    return 3400;
     if ((input_rot_middle >= 0x7FFF && angle < input_rot_middle && angle > input_rot_middle - 0x7FFF) ||
             input_rot_middle < 0x7FFF && (angle < input_rot_middle || angle > input_rot_middle + 0x7FFF)) {
         uint32_t rot_to_lower_input_times_lower_to_middle = (angle - input_rot_lower) * (output_rot_middle - output_rot_lower);

@@ -556,7 +556,7 @@ namespace MLX90939_Interface
         {
             byte command = Convert.ToByte(0b11110000);
             serialPort1.Write(new byte[] { command }, 0, 1);
-            bytesExpected = 1;
+            bytesExpected = 0;
             byteIndex = 0;
             current_command = Commands.RT;
             if (TB_raw.Text != "")

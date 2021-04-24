@@ -11,6 +11,7 @@
 #include "dac.h"
 
 #define PARSER          0
+#define MLX_INTERFACE   0
 
 #define SLEEPCNT_SLOW 65535
 #define SLEEPCNT_FAST (SLEEPCNT_SLOW/8)
@@ -33,6 +34,10 @@ uint16_t ang_output = 0;
 uint8_t c[1] = {0};
 uint16_t checksum = 0;
 uint8_t str[128];
+
+uint8_t mlx_interface_spi_rx_buffer[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+uint8_t lowerlim[2] = {0, 0};
 
 void main(void)
 {
@@ -126,7 +131,9 @@ void main(void)
     do {
         spi_retval = spi_read(data, 2);
     } while (spi_retval);
-    sleep(SLEEPCNT_FAST/4);
+    // Wait for measurement to complete
+    while (!MLX_INT_READ) {
+    }
     // Read measurement data
     cmd[0] = MLX90393_CMD_READ_MEAS(1, 1, 1, 1);
     spi_write(cmd, 10);
@@ -134,161 +141,208 @@ void main(void)
         spi_retval = spi_read(data, 10);
     } while (spi_retval);
 
-    LED_GREEN_ON();
     while(1)
     {
-        #if PL_HAS_SPI
-        
-        // Single mode
-        cmd[0] = MLX90393_CMD_SINGLE(1, 1, 1, 1);
-        spi_write(cmd, 2);
-        do {
-            spi_retval = spi_read(data, 2);
-        } while (spi_retval);
-        
-        //MLX_INT_TRIG_ON();
-        //sleep(1);
-        //MLX_INT_TRIG_OFF();
-
-        while (!MLX_INT_READ) {
-        }
-
-        cmd[0] = MLX90393_CMD_READ_MEAS(1, 1, 1, 1);
-        LED_GREEN_TOGGLE();
-        LED_RED_TOGGLE();
-        spi_write(cmd, 10);
-        do {
-            spi_retval = spi_read(data, 10);
-        } while (spi_retval);
-        #endif // PL_HAS_SPI
-
-        uint16_t temp = (data[2] << 8) + data[3];
-        //int16_t flux_x = -32500+counter; //TODO
-        int16_t flux_x = (data[4] << 8) + data[5];
-        //int16_t flux_y = counter; //TODO
-        int16_t flux_y = (data[6] << 8) + data[7];
-        //int16_t flux_z = 0; //TODO
-        int16_t flux_z = (data[8] << 8) + data[9];
-
-        #if PL_HAS_UART
-            //uart_transmit(c, 1);
-            c[0] += 1;
-
-            #if PARSER
-                uint8_t parsing = 1;
-                uint8_t parse_state = 0;
-                uint8_t parse_cnt = 0;
-                uint8_t parse_chr = 0;
-                int8_t parse_digit = 0;
-                // Parse copy of variables
-                uint16_t var_parse   = temp;
-                while (parsing) {
-                    switch (parse_state) {
-                        case 0: // T
-                            parse_chr = 'T';
-                            var_parse = temp;
-                            parse_digit = 0;
-                            parse_state++;
-                            break;
-                        case 1: // T parse
-                        case 3: // X parse
-                        case 5: // Y parse
-                        case 7: // Z parse
-                            if (parse_digit <= 0) {
-                                if (var_parse < 0) {
-                                    parse_digit = -1;
-                                } else if (var_parse >= 10000) {
-                                    parse_digit = 5;
-                                } else if (var_parse >= 1000) {
-                                    parse_digit = 4;
-                                } else if (var_parse >= 100) {
-                                    parse_digit = 3;
-                                } else if (var_parse >= 10) {
-                                    parse_digit = 2;
-                                } else if (var_parse >= 0) {
-                                    parse_digit = 1;
-                                } else {
-                                }
-                            }
-                            switch (parse_digit) {
-                                case -1:
-                                    parse_chr = '-';
-                                    var_parse = -var_parse;
-                                    break;
-                                case 5:
-                                    parse_chr = '0' + ((var_parse / 10000) % 100000);
-                                    var_parse = var_parse % 10000;
-                                    break;
-                                case 4:
-                                    parse_chr = '0' + ((var_parse / 1000) % 10000);
-                                    var_parse = var_parse % 1000;
-                                    break;
-                                case 3:
-                                    parse_chr = '0' + ((var_parse / 100) % 1000);
-                                    var_parse = var_parse % 100;
-                                    break;
-                                case 2:
-                                    parse_chr = '0' + ((var_parse / 10) % 100);
-                                    var_parse = var_parse % 10;
-                                    break;
-                                case 1:
-                                    parse_chr = '0' + ((var_parse / 1) % 10);
-                                    var_parse = 0;
-                                    parse_state++;
-                                    break;
-                                default:
-                                    parse_chr = 'E';
-                                    parse_state++;
-                            }
-                            parse_digit--;
-                            break;
-                        case 2: // X
-                            parse_chr = 'X';
-                            var_parse = flux_x;
-                            parse_digit = 0;
-                            parse_state++;
-                            break;
-                        case 4: // Y
-                            parse_chr = 'Y';
-                            var_parse = flux_y;
-                            parse_digit = 0;
-                            parse_state++;
-                            break;
-                        case 6: // Z
-                            parse_chr = 'Z';
-                            var_parse = flux_z;
-                            parse_digit = 0;
-                            parse_state++;
-                            break;
-                        case 8: // EOL
-                            parse_chr = '\n';
-                            parsing = 0;
-                            break;
-                        default: //
-                            parsing = 0;
-                            break;
-                    }
-                    str[parse_cnt++] = parse_chr;
+        #if MLX_INTERFACE
+            if (uart_interface_data_ready())
+            {
+                uint8_t* uart_interface_data = get_uart_interface_buffer();
+                uint8_t mlx_spi_retval = 0;
+                uint8_t rx_bytes = 1;
+                uint8_t cmd = uart_interface_data[0];
+                switch (cmd >> 4)
+                {
+                    case 0b1111:
+                        rx_bytes = 0;
+                        break;
+                    case 0b0100:
+                        rx_bytes = 1 + ((((cmd>>0) & 0x01) + ((cmd>>1) & 0x01) + ((cmd>>2) & 0x01) + ((cmd>>3) & 0x01))<<1);
+                        break;
+                    case 0b0101:
+                        rx_bytes = 4;
+                        break;
+                    case 0b0110:
+                        rx_bytes = 4;
+                        break;
+                    default:
+                        break;
                 }
-                uart_transmit(str, parse_cnt);
-            #endif // PARSER
-        #endif // PL_HAS_UART
-        // checksum to keep flux_z and temp from removed during optimization
-        checksum = temp + flux_x + flux_y + flux_z;
+                spi_write(uart_interface_data, rx_bytes+1);
+                do {
+                    mlx_spi_retval = spi_read(mlx_interface_spi_rx_buffer, rx_bytes+1);
+                } while (mlx_spi_retval);
+                switch (cmd >> 4)
+                {
+                    case 0b1111:
+                        break;
+                    case 0b0101:
+                        uart_transmit(mlx_interface_spi_rx_buffer+2, 3);
+                        break;
+                    case 0b0110:
+                        uart_transmit(mlx_interface_spi_rx_buffer+4, 1);
+                        break;
+                    default:
+                        uart_transmit(mlx_interface_spi_rx_buffer+1, rx_bytes);
+                        break;
+                }
+            }
+        #else
+            #if PL_HAS_SPI
+                // Single mode
+                cmd[0] = MLX90393_CMD_SINGLE(1, 1, 1, 1);
+                spi_write(cmd, 2);
+                do {
+                    spi_retval = spi_read(data, 2);
+                } while (spi_retval);
 
-        uint16_t angular_input = arctan2(flux_x, flux_y);
-        uint32_t flux_squared = (uint32_t)abs(flux_x) * (uint32_t)abs(flux_x) + (uint32_t)abs(flux_y) * (uint32_t)abs(flux_y);
-        uint16_t linear_input = flux_squared_to_distance(flux_squared);
+                //MLX_INT_TRIG_ON();
+                //sleep(1);
+                //MLX_INT_TRIG_OFF();
 
-        ang_output = get_rot_output(angular_input);
-        lin_output = get_lin_output(linear_input);
-        dac_set_value(SAC_MODULE_A, ang_output);
-        dac_set_value(SAC_MODULE_B, lin_output);
+                while (!MLX_INT_READ) {
+                }
 
-        counter++;
-        if (counter > 65000)
-            counter = 0;
-            //LED_GREEN_TOGGLE();
+                cmd[0] = MLX90393_CMD_READ_MEAS(1, 1, 1, 1);
+                spi_write(cmd, 10);
+                do {
+                    spi_retval = spi_read(data, 10);
+                } while (spi_retval);
+            #endif // PL_HAS_SPI
+
+            uint16_t temp = (data[2] << 8) + data[3];
+            //int16_t flux_x = -32500+counter; //TODO
+            int16_t flux_x = (data[4] << 8) + data[5];
+            //int16_t flux_y = counter; //TODO
+            int16_t flux_y = (data[6] << 8) + data[7];
+            //int16_t flux_z = 0; //TODO
+            int16_t flux_z = (data[8] << 8) + data[9];
+
+            #if PL_HAS_UART
+                //uart_transmit(c, 1);
+                c[0] += 1;
+
+                #if PARSER
+                    uint8_t parsing = 1;
+                    uint8_t parse_state = 0;
+                    uint8_t parse_cnt = 0;
+                    uint8_t parse_chr = 0;
+                    int8_t parse_digit = 0;
+                    // Parse copy of variables
+                    uint16_t var_parse = temp;
+                    while (parsing) {
+                        switch (parse_state) {
+                            case 0: // T
+                                parse_chr = 'T';
+                                var_parse = temp;
+                                parse_digit = 0;
+                                parse_state++;
+                                break;
+                            case 1: // T parse
+                            case 3: // X parse
+                            case 5: // Y parse
+                            case 7: // Z parse
+                                if (parse_digit <= 0) {
+                                    if (var_parse < 0) {
+                                        parse_digit = -1;
+                                    } else if (var_parse >= 10000) {
+                                        parse_digit = 5;
+                                    } else if (var_parse >= 1000) {
+                                        parse_digit = 4;
+                                    } else if (var_parse >= 100) {
+                                        parse_digit = 3;
+                                    } else if (var_parse >= 10) {
+                                        parse_digit = 2;
+                                    } else if (var_parse >= 0) {
+                                        parse_digit = 1;
+                                    } else {
+                                    }
+                                }
+                                switch (parse_digit) {
+                                    case -1:
+                                        parse_chr = '-';
+                                        var_parse = -var_parse;
+                                        break;
+                                    case 5:
+                                        parse_chr = '0' + ((var_parse / 10000) % 100000);
+                                        var_parse = var_parse % 10000;
+                                        break;
+                                    case 4:
+                                        parse_chr = '0' + ((var_parse / 1000) % 10000);
+                                        var_parse = var_parse % 1000;
+                                        break;
+                                    case 3:
+                                        parse_chr = '0' + ((var_parse / 100) % 1000);
+                                        var_parse = var_parse % 100;
+                                        break;
+                                    case 2:
+                                        parse_chr = '0' + ((var_parse / 10) % 100);
+                                        var_parse = var_parse % 10;
+                                        break;
+                                    case 1:
+                                        parse_chr = '0' + ((var_parse / 1) % 10);
+                                        var_parse = 0;
+                                        parse_state++;
+                                        break;
+                                    default:
+                                        parse_chr = 'E';
+                                        parse_state++;
+                                }
+                                parse_digit--;
+                                break;
+                            case 2: // X
+                                parse_chr = 'X';
+                                var_parse = flux_x;
+                                parse_digit = 0;
+                                parse_state++;
+                                break;
+                            case 4: // Y
+                                parse_chr = 'Y';
+                                var_parse = flux_y;
+                                parse_digit = 0;
+                                parse_state++;
+                                break;
+                            case 6: // Z
+                                parse_chr = 'Z';
+                                var_parse = flux_z;
+                                parse_digit = 0;
+                                parse_state++;
+                                break;
+                            case 8: // EOL
+                                parse_chr = '\n';
+                                parsing = 0;
+                                break;
+                            default: //
+                                parsing = 0;
+                                break;
+                        }
+                        str[parse_cnt++] = parse_chr;
+                    }
+                    uart_transmit(str, parse_cnt);
+                #endif // PARSER
+            #endif // PL_HAS_UART
+            // checksum to keep flux_z and temp from removed during optimization
+            checksum = temp + flux_x + flux_y + flux_z;
+
+            uint16_t angular_input = arctan2(flux_x, flux_y);
+            uint32_t flux_squared = (uint32_t)abs(flux_x) * (uint32_t)abs(flux_x) + (uint32_t)abs(flux_y) * (uint32_t)abs(flux_y);
+            uint16_t linear_input = flux_squared_to_distance(flux_squared);
+
+            ang_output = get_rot_output(angular_input);
+            lin_output = get_lin_output(linear_input);
+            dac_set_value(SAC_MODULE_A, ang_output);
+            dac_set_value(SAC_MODULE_B, lin_output);
+
+            counter++;
+            if (counter > 1000)
+            {
+                LED_GREEN_TOGGLE();
+                uint16_t inp_lin_lower = get_lower_lin();
+                lowerlim[0] = inp_lin_lower >> 8;
+                lowerlim[1] = inp_lin_lower & 0xFF;
+                uart_transmit(lowerlim, 2);
+                counter = 0;
+            }
+        #endif // MLX_Interface
     }
 }
 

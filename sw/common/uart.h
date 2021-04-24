@@ -390,5 +390,7 @@ void init_uart(void);
 void uart_rx_isr(void);
 void uart_tx_isr(void);
 void uart_transmit(uint8_t *data, uint8_t count);
+uint8_t uart_interface_data_ready();
+uint8_t* get_uart_interface_buffer();
 
 #endif /* UART_H_ */
