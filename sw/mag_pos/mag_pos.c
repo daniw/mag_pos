@@ -39,6 +39,10 @@ uint8_t mlx_interface_spi_rx_buffer[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0
 
 uint8_t lowerlim[2] = {0, 0};
 
+uint16_t angular_input;
+uint16_t linear_input;
+uint16_t dummy = 0;
+
 void main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;       // stop watchdog timer
@@ -279,14 +283,15 @@ void main(void)
             // checksum to keep flux_z and temp from removed during optimization
             checksum = temp + flux_x + flux_y + flux_z;
 
-            uint16_t angular_input = arctan2(flux_x, flux_y);
+            angular_input = arctan2(flux_x, flux_y);
             uint32_t flux_squared = (uint32_t)abs(flux_x) * (uint32_t)abs(flux_x) + (uint32_t)abs(flux_y) * (uint32_t)abs(flux_y);
-            uint16_t linear_input = flux_squared_to_distance(flux_squared);
+            linear_input = flux_squared_to_distance(flux_squared);
 
             ang_output = get_rot_output(angular_input);
             lin_output = get_lin_output(linear_input);
             dac_set_value(SAC_MODULE_A, ang_output);
             dac_set_value(SAC_MODULE_B, lin_output);
+            dummy = flux_x + flux_y;
 
             counter++;
             if (counter > 1000)

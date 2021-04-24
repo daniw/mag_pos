@@ -9,9 +9,9 @@
 
 // Calibration values linear axis
 #pragma PERSISTENT(input_lin_lower)
-uint16_t input_lin_lower = 400;
+uint16_t input_lin_lower = 650;
 #pragma PERSISTENT(input_lin_upper)
-uint16_t input_lin_upper = 3000;
+uint16_t input_lin_upper = 1060;
 #pragma PERSISTENT(output_lin_lower)
 uint16_t output_lin_lower = 866;
 #pragma PERSISTENT(output_lin_upper)
@@ -173,18 +173,17 @@ uint16_t flux_squared_to_distance(uint32_t flux_squared) {
 }
 
 uint16_t get_lin_output(uint16_t distance) {
-    uint32_t dist_to_lower_input_times_width_output = (distance - input_lin_lower) * (output_lin_upper - output_lin_lower);
+    uint32_t dist_to_lower_input_times_width_output = (uint32_t)(distance - input_lin_lower) * (output_lin_upper - output_lin_lower);
     return output_lin_lower + (dist_to_lower_input_times_width_output / (input_lin_upper - input_lin_lower));
 }
 
 uint16_t get_rot_output(uint16_t angle) {
-    return 3400;
     if ((input_rot_middle >= 0x7FFF && angle < input_rot_middle && angle > input_rot_middle - 0x7FFF) ||
             input_rot_middle < 0x7FFF && (angle < input_rot_middle || angle > input_rot_middle + 0x7FFF)) {
-        uint32_t rot_to_lower_input_times_lower_to_middle = (angle - input_rot_lower) * (output_rot_middle - output_rot_lower);
+        uint32_t rot_to_lower_input_times_lower_to_middle = (uint32_t)(angle - input_rot_lower) * (output_rot_middle - output_rot_lower);
         return output_rot_lower + (rot_to_lower_input_times_lower_to_middle / (input_rot_middle - input_rot_lower));
     } else {
-        uint32_t rot_to_middle_input_times_middle_to_upper = (angle - input_rot_middle) * (output_rot_upper - output_rot_middle);
+        uint32_t rot_to_middle_input_times_middle_to_upper = (uint32_t)(angle - input_rot_middle) * (output_rot_upper - output_rot_middle);
         return output_rot_middle + (rot_to_middle_input_times_middle_to_upper / (input_rot_upper - input_rot_middle));
     }
 }
