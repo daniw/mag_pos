@@ -24,9 +24,9 @@
 #define STATE_WHITE     5
 
 #define TEMP_OFFSET     0
-#define FLUX_X_OFFSET   1200
-#define FLUX_Y_OFFSET   64900
-#define FLUX_Z_OFFSET   65509
+#define FLUX_X_OFFSET   1260
+#define FLUX_Y_OFFSET   64830
+#define FLUX_Z_OFFSET   65605
 
 void sleep(uint16_t sleepcnt);
 void led_ctrl();
