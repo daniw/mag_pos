@@ -14,10 +14,8 @@ uint8_t uart_tx_count;
 uint8_t uart_tx_i;
 uint8_t uart_rx_expected = 1;
 uint8_t uart_rx_i = 0;
-
-uint8_t mlx_cmd[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-uint8_t mlx_data[sizeof(mlx_cmd)];
-uint8_t mlx_spi_retval;
+uint8_t uart_data_ready = 0;
+uint8_t uart_interface_buffer[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 void init_uart(void){
 #ifdef __MSP430FR2355__
@@ -79,14 +77,28 @@ void uart_transmit(uint8_t *data, uint8_t count)
     UART_TXBUF = uart_tx_buffer_[uart_tx_i++];
 }
 
+uint8_t uart_interface_data_ready()
+{
+    return uart_data_ready;
+}
+
+uint8_t* get_uart_interface_buffer()
+{
+    uart_rx_expected = 1;
+    uart_rx_i = 0;
+    uart_data_ready = 0;
+    return uart_interface_buffer;
+}
+
 void uart_rx_isr()
 {
     uint8_t data = UART_RXBUF;
-    LED_GREEN_TOGGLE();
-    uint8_t rx_bytes;
     if (uart_rx_expected <= 1)
     {
-        mlx_cmd[0] = data;
+        uart_interface_buffer[0] = data;
+        uint8_t i;
+        for (i = 1; i < 10; i++)
+            uart_interface_buffer[i] = 0x00;
 
         switch (data >> 4) {
         case 0b0000:
@@ -97,20 +109,8 @@ void uart_rx_isr()
         case 0b1111:
         case 0b1101:
         case 0b1110:
-            spi_write(mlx_cmd, 1);
-            LED_BLUE_TOGGLE();
-            do {
-                mlx_spi_retval = spi_read(mlx_data, 1);
-            } while (mlx_spi_retval);
-            uart_transmit(mlx_data, 1);
-            break;
         case 0b0100:
-            rx_bytes = 1 + ((((data>>0) & 0x01) + ((data>>1) & 0x01) + ((data>>2) & 0x01) + ((data>>3) & 0x01))<<1);
-            spi_write(mlx_cmd, rx_bytes+1);
-            do {
-                mlx_spi_retval = spi_read(mlx_data, rx_bytes+1);
-            } while (mlx_spi_retval);
-            uart_transmit(mlx_data+1, rx_bytes);
+            uart_data_ready = 1;
             break;
         case 0b0101:
             uart_rx_expected = 2;
@@ -121,23 +121,17 @@ void uart_rx_isr()
             uart_rx_i = 1;
             break;
         default:
+            uart_rx_expected = 1;
+            uart_rx_i = 0;
             break;
         }
     }
     else
     {
-        mlx_cmd[uart_rx_i++] = data;
+        uart_interface_buffer[uart_rx_i++] = data;
         if (uart_rx_i >= uart_rx_expected)
         {
-            rx_bytes = (uart_rx_expected == 2) ? 3 : 1;
-            spi_write(mlx_cmd, rx_bytes);
-            do {
-                mlx_spi_retval = spi_read(mlx_data, rx_bytes);
-            } while (mlx_spi_retval);
-            uart_transmit(mlx_data, rx_bytes);
-            uart_rx_i = 0;
-            uart_rx_expected = 1;
-            mlx_cmd[1] = 0x00; mlx_cmd[2] = 0x00; mlx_cmd[3] = 0x00; mlx_cmd[4] = 0x00;
+            uart_data_ready = 1;
         }
     }
 }
