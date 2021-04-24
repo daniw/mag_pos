@@ -8,22 +8,22 @@
 #include "conversions.h"
 
 // Calibration values linear axis
-#pragma PERSISTENT(input_lin_lower)
-uint16_t input_lin_lower = 500;
-#pragma PERSISTENT(input_lin_upper)
-uint16_t input_lin_upper = 2000;
+//#pragma PERSISTENT(input_lin_lower)
+uint16_t input_lin_lower = 0;
+//#pragma PERSISTENT(input_lin_upper)
+uint16_t input_lin_upper = 0;
 #pragma PERSISTENT(output_lin_lower)
 uint16_t output_lin_lower = 866;
 #pragma PERSISTENT(output_lin_upper)
 uint16_t output_lin_upper = 3305;
 
 // Calibration values angular axis
-#pragma PERSISTENT(input_rot_lower)
+//#pragma PERSISTENT(input_rot_lower)
 uint32_t input_rot_lower = 0;
-#pragma PERSISTENT(input_rot_upper)
-uint32_t input_rot_upper = 65500;
-#pragma PERSISTENT(input_rot_middle)
-uint32_t input_rot_middle = 32000;
+//#pragma PERSISTENT(input_rot_upper)
+uint32_t input_rot_upper = 0;
+//#pragma PERSISTENT(input_rot_middle)
+uint32_t input_rot_middle = 0;
 #pragma PERSISTENT(output_rot_lower)
 uint32_t output_rot_lower = 659;
 #pragma PERSISTENT(output_rot_upper)
@@ -173,15 +173,28 @@ uint16_t flux_squared_to_distance(uint32_t flux_squared) {
 }
 
 uint16_t get_lin_output(uint16_t distance) {
+    if (input_lin_lower == 0) {
+        input_lin_lower = distance;
+        input_lin_upper = distance + 1;
+    }
     if (distance < input_lin_lower)
-        distance = input_lin_lower;
+        input_lin_lower = distance;
     else if (distance > input_lin_upper)
-        distance = input_lin_upper;
+        input_lin_upper = distance;
     uint32_t dist_to_lower_input_times_width_output = (uint32_t)(distance - input_lin_lower) * (output_lin_upper - output_lin_lower);
     return output_lin_lower + (dist_to_lower_input_times_width_output / (input_lin_upper - input_lin_lower));
 }
 
 uint16_t get_rot_output(uint16_t angle) {
+    if (input_rot_middle == 0) {
+        input_rot_middle = angle;
+        input_rot_lower = angle - 1;
+        input_rot_upper = angle + 1;
+    }
+    if (angle < input_rot_lower)
+        input_rot_lower = angle;
+    else if (angle > input_rot_upper)
+        input_rot_upper = angle;
     if ((input_rot_middle >= 0x7FFF && angle < input_rot_middle && angle > input_rot_middle - 0x7FFF) ||
             input_rot_middle < 0x7FFF && (angle < input_rot_middle || angle > input_rot_middle + 0x7FFF)) {
         uint32_t rot_to_lower_input_times_lower_to_middle = (uint32_t)(angle - input_rot_lower) * (output_rot_middle - output_rot_lower);

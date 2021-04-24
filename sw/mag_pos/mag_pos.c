@@ -24,6 +24,7 @@
 #define STATE_WHITE     5
 
 #define TEMP_OFFSET     0
+
 // Calibration data
 #ifndef CAL_ALEX
     #define CAL_ALEX    0
