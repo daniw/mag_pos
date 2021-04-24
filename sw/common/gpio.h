@@ -208,7 +208,7 @@
 #if PL_HAS_MLX90393
     // MLX_INT
     #define MASK_MLX_INT            (1<<MLX_INT_PIN)
-    #define MLX_INT_READ            ((MLX_INT_PORT&(MASK_MLX_INT)) 
+    #define MLX_INT_READ            (MLX_INT_PORT&(MASK_MLX_INT)) 
     // MLX_INT_TRIG
     #define MASK_MLX_INT_TRIG       (1<<MLX_INT_TRIG_PIN)
     #define MLX_INT_TRIG_ON()       MLX_INT_TRIG_PORT |= MASK_MLX_INT_TRIG

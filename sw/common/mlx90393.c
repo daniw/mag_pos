@@ -125,8 +125,6 @@ void init_mlx90393(void) {
         }
         return;
     #endif /* PL_PC */
-    #if PL_HAS_MLX90393
-    MLX_INT_PORT &= ~MASK_MLX_INT;
-    MLX_INT_TRIG_DIR |= MASK_MLX_INT_TRIG;
-    #endif // PL_HAS_MLX90393
+    //MLX_INT_PORT &= ~MASK_MLX_INT;
+    //MLX_INT_TRIG_DIR |= MASK_MLX_INT_TRIG;
 }
