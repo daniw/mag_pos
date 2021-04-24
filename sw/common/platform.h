@@ -82,4 +82,8 @@
     #error "No microcontroller selected of selected microcontroller not implemented yet"
 #endif /* Microcontroller selection */
 
+// Calibration selection
+#define CAL_ALEX    1
+#define CAL_DANIEL  0
+
 #endif /* PLATFORM_H_ */
