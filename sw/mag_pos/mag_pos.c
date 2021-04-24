@@ -367,29 +367,6 @@ void main(void)
                     uart_transmit(str, parse_cnt);
                 #endif // PARSER
             #endif // PL_HAS_UART
-            // checksum to keep flux_z and temp from removed during optimization
-            checksum = temp + flux_x + flux_y + flux_z;
-
-            angular_input = arctan2(flux_x, flux_y);
-            uint32_t flux_squared = (uint32_t)abs(flux_x) * (uint32_t)abs(flux_x) + (uint32_t)abs(flux_y) * (uint32_t)abs(flux_y);
-            linear_input = flux_squared_to_distance(flux_squared);
-
-            ang_output = get_rot_output(angular_input);
-            lin_output = get_lin_output(linear_input);
-            dac_set_value(SAC_MODULE_A, ang_output);
-            dac_set_value(SAC_MODULE_B, lin_output);
-            dummy = flux_x + flux_y;
-
-            counter++;
-            if (counter > 1000)
-            {
-                LED_GREEN_TOGGLE();
-                uint16_t inp_lin_lower = get_lower_lin();
-                lowerlim[0] = inp_lin_lower >> 8;
-                lowerlim[1] = inp_lin_lower & 0xFF;
-                //uart_transmit(lowerlim, 2);
-                counter = 0;
-            }
         #endif // MLX_Interface
     }
 }
