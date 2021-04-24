@@ -23,6 +23,11 @@
 #define STATE_YELLOW    4
 #define STATE_WHITE     5
 
+#define TEMP_OFFSET     0
+#define FLUX_X_OFFSET   1200
+#define FLUX_Y_OFFSET   64900
+#define FLUX_Z_OFFSET   65509
+
 void sleep(uint16_t sleepcnt);
 void led_ctrl();
 
@@ -213,13 +218,13 @@ void main(void)
                 } while (spi_retval);
             #endif // PL_HAS_SPI
 
-            uint16_t temp = (data[2] << 8) + data[3];
+            uint16_t temp = (data[2] << 8) + data[3] - TEMP_OFFSET;
             //int16_t flux_x = -32500+counter; //TODO
-            int16_t flux_x = (data[4] << 8) + data[5];
+            int16_t flux_x = (data[4] << 8) + data[5] - FLUX_X_OFFSET;
             //int16_t flux_y = counter; //TODO
-            int16_t flux_y = (data[6] << 8) + data[7];
+            int16_t flux_y = (data[6] << 8) + data[7] - FLUX_Y_OFFSET;
             //int16_t flux_z = 0; //TODO
-            int16_t flux_z = (data[8] << 8) + data[9];
+            int16_t flux_z = (data[8] << 8) + data[9] - FLUX_Z_OFFSET;
 
             #if PL_HAS_UART
                 //uart_transmit(c, 1);
