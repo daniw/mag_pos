@@ -194,7 +194,7 @@ void main(void)
     #endif // FILTER
 
     #if PARSER
-        uint8_t header[] = "T,X,Y,Z,Lin,Ang\n";
+        uint8_t header[] = "T,X,Y,Z,Lin,Ang\r\n";
         uart_transmit(header, sizeof(header)-1);
     #endif // PARSER
 
@@ -307,7 +307,7 @@ void main(void)
             dummy = flux_x + flux_y;
 
             counter++;
-            if (counter > 1000)
+            if (counter > 250)
             {
                 LED_GREEN_TOGGLE();
                 uint16_t inp_lin_lower = get_lower_lin();
@@ -441,6 +441,10 @@ void main(void)
                                 break;
                         }
                         str[parse_cnt++] = parse_chr;
+                    }
+                    while(uart_get_tx_busy())
+                    {
+                        sleep(1);
                     }
                     uart_transmit(str, parse_cnt);
                 #endif // PARSER

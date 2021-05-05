@@ -12,6 +12,7 @@
 uint8_t *uart_tx_buffer_;
 uint8_t uart_tx_count;
 uint8_t uart_tx_i;
+uint8_t uart_tx_busy = 0;
 uint8_t uart_rx_expected = 1;
 uint8_t uart_rx_i = 0;
 uint8_t uart_data_ready = 0;
@@ -69,6 +70,7 @@ void init_uart(void){
 
 void uart_transmit(uint8_t *data, uint8_t count)
 {
+    uart_tx_busy = 1;
     uart_tx_i = 0;
     uart_tx_buffer_ = data;
     uart_tx_count = count;
@@ -139,8 +141,18 @@ void uart_rx_isr()
 void uart_tx_isr()
 {
     if (uart_tx_i >= uart_tx_count)
+    {
         UART_IE &= ~UART_TXIE;
+        uart_tx_busy = 0;
+    }
     else
+    {
         UART_TXBUF = uart_tx_buffer_[uart_tx_i++];
+    }
+}
+
+uint8_t uart_get_tx_busy(void)
+{
+    return uart_tx_busy;
 }
 #endif /* PL_HAS_UART */
