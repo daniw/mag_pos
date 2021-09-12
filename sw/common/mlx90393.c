@@ -6,7 +6,16 @@
  */
 
 #include "mlx90393.h"
-#include "uart.h"
+
+// RX and TX buffers
+uint8_t mlx_rx_buffer_[9];
+uint8_t mlx_tx_buffer_[4];
+uint8_t *mlx90393_rx_buffer_pointer_;
+uint8_t *mlx90393_tx_buffer_pointer_;
+uint8_t mlx90393_rx_counter_;
+uint8_t mlx90393_tx_counter_;
+uint8_t mlx_rx_count_;
+uint8_t mlx_tx_count_;
 
 /*
  * Definition of I/O functions

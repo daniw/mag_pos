@@ -11,22 +11,13 @@
 #include <msp430.h>
 #include <stdint.h>
 #include "platform.h"
-//#if PL_HAS_I2C
-//#include "i2c.h"
-//#endif // PL_HAS_I2C
+#include "uart.h"
+#if PL_HAS_I2C
+#include "i2c.h"
+#endif // PL_HAS_I2C
 #if PL_HAS_SPI
 #include "spi.h"
 #endif // PL_HAS_SPI
-
-// RX and TX buffers
-uint8_t mlx_rx_buffer_[9];
-uint8_t mlx_tx_buffer_[4];
-uint8_t *mlx90393_rx_buffer_pointer_;
-uint8_t *mlx90393_tx_buffer_pointer_;
-uint8_t mlx90393_rx_counter_;
-uint8_t mlx90393_tx_counter_;
-uint8_t mlx_rx_count_;
-uint8_t mlx_tx_count_;
 
 #if PL_HAS_I2C
 #define I2C_CS_PIN BIT4
@@ -83,10 +74,8 @@ uint8_t mlx_tx_count_;
 /******************************************************************************
  * I2C address
  *****************************************************************************/
-#if PL_HAS_I2C
-    #ifndef MLX90393_I2C_ADDR
-        #define MLX90393_I2C_ADDR 0x0C
-    #endif /* MLX90393_I2C_ADDR */
+#ifndef MLX90393_I2C_ADDR
+    #define MLX90393_I2C_ADDR 0x0C
 #endif /* MLX90393_I2C_ADDR */
 
 #endif // PL_HAS_I2C
