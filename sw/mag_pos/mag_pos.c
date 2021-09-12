@@ -9,6 +9,7 @@
 #include "mlx90393.h"
 #include "conversions.h"
 #include "dac.h"
+#include "interval.h"
 
 #define PARSER          1
 #define MLX_INTERFACE   0
