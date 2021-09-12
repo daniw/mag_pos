@@ -77,7 +77,7 @@ uint16_t dummy = 0;
     uint8_t linear_fir_idx = 0;
 #endif // FILTER
 
-void main(void)
+int main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;       // stop watchdog timer
 
