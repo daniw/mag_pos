@@ -19,6 +19,8 @@ sim/*/*.txt
 
 # Code composer studio
 Debug
+Debug__GNU
+Debug__TI
 Release
 .xdchelp
 .config
