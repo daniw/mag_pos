@@ -8,8 +8,14 @@
 #include "isr.h"
 
 #ifdef __MSP430FR2355__
-#pragma vector=USCI_A1_VECTOR
-__interrupt void USCI_A1_ISR(void)
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+    #pragma vector=USCI_A1_VECTOR
+    __interrupt void USCI_A1_ISR(void)
+#elif defined(__GNUC__)
+    void __attribute__ ((interrupt(USCI_A1_VECTOR))) USCI_A1_ISR(void)
+#else
+    #error "Compiler not supported!"
+#endif
 {
     switch(__even_in_range(UART_IV, USCI_UART_UCTXCPTIFG)) {
         case USCI_NONE: // No interrupts
@@ -33,8 +39,14 @@ __interrupt void USCI_A1_ISR(void)
 }
 
 #if PL_HAS_SPI
-#pragma vector=SPI_VECTOR
-__interrupt void SPI_ISR(void)
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+    #pragma vector=SPI_VECTOR
+    __interrupt void SPI_ISR(void)
+#elif defined(__GNUC__)
+    void __attribute__ ((interrupt(SPI_VECTOR))) SPI_ISR(void)
+#else
+    #error "Compiler not supported!"
+#endif
 {
     switch(__even_in_range(SPI_IV, USCI_SPI_UCTXIFG)) {
         case USCI_NONE:
@@ -51,8 +63,14 @@ __interrupt void SPI_ISR(void)
 #endif /* PL_HAS_UART */
 
 #elif __MSP430G2553__
-#pragma vector=USCIAB0TX_VECTOR
-__interrupt void USCI0TX_ISR(void)
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+    #pragma vector=USCIAB0TX_VECTOR
+    __interrupt void USCI0TX_ISR(void)
+#elif defined(__GNUC__)
+    void __attribute__ ((interrupt(USCIAB0TX_VECTOR))) USCI0TX_ISR(void)
+#else
+    #error "Compiler not supported!"
+#endif
 {
     #if PL_HAS_UART
         if (UART_IFG & UART_TXIFG) {
