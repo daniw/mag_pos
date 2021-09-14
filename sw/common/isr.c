@@ -8,6 +8,7 @@
 #include "isr.h"
 
 #ifdef __MSP430FR2355__
+#if PL_HAS_UART
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
     #pragma vector=USCI_A1_VECTOR
     __interrupt void USCI_A1_ISR(void)
@@ -37,6 +38,7 @@
         default: break;
     }
 }
+#endif /* PL_HAS_UART */
 
 #if PL_HAS_SPI
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
@@ -60,7 +62,7 @@
         default: break;
     }
 }
-#endif /* PL_HAS_UART */
+#endif /* PL_HAS_SPI */
 
 #elif __MSP430G2553__
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
@@ -88,3 +90,18 @@
     #endif
 }
 #endif /* Microcontroller */
+
+#if PL_HAS_INTERVAL
+    #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+        #pragma vector=INTERVAL_VECTOR
+        __interrupt void INTERVAL_ISR(void)
+    #elif defined(__GNUC__)
+        void __attribute__ ((interrupt(INTERVAL_VECTOR))) INTERVAL_ISR(void)
+    #else
+        #error "Compiler not supported!"
+    #endif /* Compiler */
+{
+    LED_RED_TOGGLE;
+    return;
+}
+#endif /* PL_HAS_INTERVAL */

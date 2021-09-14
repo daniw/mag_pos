@@ -14,6 +14,7 @@
     #define PL_HAS_UART         (0)
     #define PL_HAS_I2C          (0)
     #define PL_HAS_SPI          (0)
+    #define PL_HAS_INTERVAL     (0)
 #endif /* PL_IS_HELLO */
 
 #if PL_IS_DEMO
@@ -22,6 +23,7 @@
     #define PL_HAS_UART         (1)
     #define PL_HAS_I2C          (1)
     #define PL_HAS_SPI          (0)
+    #define PL_HAS_INTERVAL     (0)
 #endif /* PL_IS_DEMO */
 
 #if PL_IS_DEMO_FR
@@ -30,6 +32,7 @@
     #define PL_HAS_UART         (0)
     #define PL_HAS_I2C          (0)
     #define PL_HAS_SPI          (0)
+    #define PL_HAS_INTERVAL     (0)
 #endif /* PL_IS_DEMO_FR */
 
 #if PL_IS_MAG_POS_FR
@@ -40,6 +43,7 @@
     #define PL_HAS_I2C          (0)
     #define PL_HAS_SAC          (1)
     #define PL_HAS_SPI          (1)
+    #define PL_HAS_INTERVAL     (1)
 #endif /* PL_IS_DEMO_FR */
 
 #if PL_HW_G2_LAUNCHPAD

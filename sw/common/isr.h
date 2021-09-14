@@ -10,7 +10,14 @@
 
 #include <msp430.h>
 #include <stdint.h>
+#if PL_HAS_UART
 #include "uart.h"
+#endif /* PL_HAS_UART */
+#if PL_HAS_SPI
 #include "spi.h"
+#endif /* PL_HAS_SPI */
+#if PL_HAS_INTERVAL
+#include "interval.h"
+#endif /* PL_HAS_INTERVAL */
 
 #endif /* ISR_H_ */
