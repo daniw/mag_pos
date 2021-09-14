@@ -13,6 +13,9 @@
 #include "platform.h"
 #include "gpio.h"
 #include "clock.h"
+#if defined(__GNUC__)
+    #include "preprocessor_output.h"
+#endif
 
 /* Timer module selection */
 #if PL_HW_MAG_POS_V1
@@ -27,7 +30,7 @@
     #define INTERVAL_USE_FREQ           0
 #endif /* INTERVAL_USE_FREQ */
 #ifndef INTERVAL_TIME_US /*            ,  ,  */
-    #define INTERVAL_TIME_US            1000000
+    #define INTERVAL_TIME_US            1000000LL
 #endif /* INTERVAL_TIME_US */
 #ifndef INTERVAL_FREQ
     #define INTERVAL_FREQ               100
@@ -35,10 +38,10 @@
 
 /* Interval Timer configuration */
 #ifndef INTERVAL_CLK_SRC_SMCLK
-    #define INTERVAL_CLK_SRC_SMCLK      1
+    #define INTERVAL_CLK_SRC_SMCLK      0
 #endif /* INTERVAL_CLK_SRC_SMCLK */
 #ifndef INTERVAL_CLK_SRC_ACLK
-    #define INTERVAL_CLK_SRC_ACLK       0
+    #define INTERVAL_CLK_SRC_ACLK       1
 #endif /* INTERVAL_CLK_SRC_ACLK */
 #ifndef INTERVAL_CLK_SRC_TCLK
     #define INTERVAL_CLK_SRC_TCLK       0
@@ -699,22 +702,22 @@
 #define INTERVAL_TBCLR_INIT     0
 #define INTERVAL_TBIE_INIT      TBIE_1
 #define INTERVAL_TBIFG_INIT     TBIFG_0
-#define INTERVAL_CTL_INIT       (INTERVAL_TBCLGRP_INIT | \\
-                                 INTERVAL_CNTL_INIT | \\
-                                 INTERVAL_TBSSEL_INIT | \\
-                                 INTERVAL_ID_INIT | \\
-                                 INTERVAL_MC_INIT | \\
-                                 INTERVAL_TBCLR_INIT | \\
-                                 INTERVAL_TBIE_INIT | \\
+#define INTERVAL_CTL_INIT       (INTERVAL_TBCLGRP_INIT | \
+                                 INTERVAL_CNTL_INIT | \
+                                 INTERVAL_TBSSEL_INIT | \
+                                 INTERVAL_ID_INIT | \
+                                 INTERVAL_MC_INIT | \
+                                 INTERVAL_TBCLR_INIT | \
+                                 INTERVAL_TBIE_INIT | \
                                  INTERVAL_TBIFG_INIT)
 
 #define INTERVAL_TBEX0_INIT     INTERVAL_IDEX_INIT
 
-#if ((INTERVAL_TMR_VALUE < (1<<16)) & (INTERVAL_TMR_VALUE > 0))
-    #define INTERVAL_CCR0_INIT  INTERVAL_TMR_VALUE
+#if ((INTERVAL_TMR_VALUE <= (1<<16)) & (INTERVAL_TMR_VALUE > 0))
+    #define INTERVAL_CCR0_INIT  (INTERVAL_TMR_VALUE - 1)
 #else
     #error "Invalid interval timer CCR0 value"
-#endif /* INTERVAL_TMR_VALUE < (2^16) */
+#endif /* INTERVAL_TMR_VALUE <= (2^16) */
 #define INTERVAL_CCR1_INIT      0
 #define INTERVAL_CCR2_INIT      0
 #define INTERVAL_CCR3_INIT      0
@@ -730,11 +733,13 @@
 #define INTERVAL_CCTL5_INIT     0
 #define INTERVAL_CCTL6_INIT     0
 
-//#define PREPROCESSOR_OUTPUT     INTERVAL_PRESCALER_TOTAL
-//#include "preprocessor_output.h"
+//#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+//    #define PREPROCESSOR_OUTPUT     INTERVAL_PRESCALER_TOTAL
+//    #include "preprocessor_output.h"
+//#endif
 //
 //#if defined(__GNUC__)
-//#pragma message(VAR_NAME_VALUE(INTERVAL_PRESCALER_TOTAL))
+//    #pragma message(VAR_NAME_VALUE(INTERVAL_PRESCALER_TOTAL))
 //#endif
 
 /* IE */

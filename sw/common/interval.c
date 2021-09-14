@@ -10,7 +10,6 @@
 #if PL_HAS_INTERVAL
 
 /* Variables */
-static uint8_t interval_variable;
 
 /* Functions */
 void init_interval(void){
@@ -66,10 +65,6 @@ void init_interval(void){
     #if INTERVAL_CTL_INIT != 0
         INTERVAL_CTL = INTERVAL_CTL_INIT;
     #endif
-    /* Release SPI module for normal operation */
-    SPI_CTLW0 &= ~UCSWRST;
-    /* Enable interrupts */
-    SPI_IE = SPI_IE_INIT;
     return;
 }
 
