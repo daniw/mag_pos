@@ -38,6 +38,9 @@
         #define SMCLK_FREQ 7372800 /* Multiple by 2^n of baud rate (115200) */
         //#define SMCLK_FREQ 1000000 /* Multiple by 2^n of baud rate (115200) */
     #endif
+    #ifndef ACLK_FREQ
+        #define ACLK_FREQ 32768
+    #endif
 #else
     #error "No clock module specified"
 #endif
@@ -239,7 +242,11 @@
     #define DCOFTRIM_INIT (DCOFTRIM0 | DCOFTRIM1) /* Set DCO FTRIM to a central value for the start of the software calibration */
     #define DCOFTRIMEN_INIT DCOFTRIMEN_1 /* Enable FTRIM */
     #define REFOLP_INIT REFOLP_0 /* REFO Low power mode disabled (High Power mode) */
-    #define SELA_INIT SELA__REFOCLK /* REFO as reference for ACLK */
+    #if ACLK_FREQ == REFO_FREQ
+        #define SELA_INIT SELA__REFOCLK /* REFO as reference for ACLK */
+    #else
+        #error "ACLK frequency does not match REFO frequency, XT1  and VLO as source for ACLK not implemented yet"
+    #endif
     #define SMCLKOFF_INIT SMCLKOFF_0
     #define VLOAUTOOFF_INIT VLOAUTOOFF_1
     #define XT1AUTOOFF_INIT XT1AUTOOFF_1 /* XT1 turned off when not used */
@@ -248,7 +255,7 @@
     #define XT1BYPASS_INIT XT1BYPASS_0 /* XT1 source internally */
     #define XTS_INIT XTS_0 /* Low frequency mode */
     #define XT1DRIVE_INIT XT1DRIVE_3 /* Highest drive strength */
-    #define DIVA_INIT DIVA__768 /* Divider set to / 768 for ACLK */
+    #define DIVA_INIT DIVA__768 /* Divider set to (XT1 / 768) for ACLK */
     #define XT1FAULTOFF_INIT XT1AUTOOFF_0 /* Switch to REFLO when XT1 failure */
     /* CSCTL Register initial values */
     #define CSCTL0_INIT (DCO_INIT | MOD_INIT)
