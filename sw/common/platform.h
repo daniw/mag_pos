@@ -44,6 +44,7 @@
     #define PL_HAS_SAC          (1)
     #define PL_HAS_SPI          (1)
     #define PL_HAS_INTERVAL     (1)
+    #define INTERVAL_MODULE     B0
 #endif /* PL_IS_DEMO_FR */
 
 #if PL_HW_G2_LAUNCHPAD
@@ -54,6 +55,7 @@
     #define PL_HAS_LED_WHITE    (1)
 
     #define PL_HAS_SW0          (1)
+    #define UART_MODULE         A0
 #endif /* PL_HW_G2_LAUNCHPAD */
 
 #if PL_HW_FR2_LAUNCHPAD
@@ -68,6 +70,7 @@
     #define PL_HAS_SW0          (1)
     #define PL_HAS_SW1          (1)
     #define SPI_MODULE          B1
+    #define UART_MODULE         A1
 #endif /* PL_HW_FR2_LAUNCHPAD */
 
 #if PL_HW_MAG_POS_V1
@@ -76,6 +79,8 @@
     #define PL_HAS_LED_BLUE     (1)
 
     #define PL_HAS_MLX90393     (1)
+    #define SPI_MODULE          B0
+    #define UART_MODULE         A1
 #endif /* PL_HW_MAG_POS_V1 */
 
 #ifdef __MSP430G2553__

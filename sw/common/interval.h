@@ -18,9 +18,9 @@
 #endif
 
 /* Timer module selection */
-#if PL_HW_MAG_POS_V1
+#ifndef INTERVAL_MODULE
     #define INTERVAL_MODULE             B0
-#endif /* PL_HW_MAG_POS_V1 */
+#endif /* INTERVAL_MODULE */
 
 /* Interval time selection */
 #ifndef INTERVAL_USE_TIME

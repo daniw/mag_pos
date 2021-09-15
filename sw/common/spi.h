@@ -15,9 +15,9 @@
 #include "clock.h"
 
 /* USCI module selection */
-#if PL_HW_MAG_POS_V1
+#ifndef SPI_MODULE
     #define SPI_MODULE          B0
-#endif /* PL_HW_MAG_POS_V1 */
+#endif /* SPI_MODULE */
 
 /* Baud rate selection */
 #ifndef SPI_BAUD
