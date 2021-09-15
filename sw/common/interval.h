@@ -733,6 +733,12 @@
 #define INTERVAL_CCTL5_INIT     0
 #define INTERVAL_CCTL6_INIT     0
 
+#define INTERVAL_CTL_DEFAULT    0
+#define INTERVAL_CCTL_DEFAULT   0
+#define INTERVAL_R_DEFAULT      0
+#define INTERVAL_CCR_DEFAULT    0
+#define INTERVAL_EX0_DEFAULT    0
+
 //#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
 //    #define PREPROCESSOR_OUTPUT     INTERVAL_PRESCALER_TOTAL
 //    #include "preprocessor_output.h"
