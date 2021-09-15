@@ -88,7 +88,7 @@
 #elif __MSP430FR2355__
     #define PL_HAS_CLOCK_SYSTEM 1
 #else
-    #error "No microcontroller selected of selected microcontroller not implemented yet"
+    #error "No microcontroller selected or selected microcontroller not implemented yet"
 #endif /* Microcontroller selection */
 
 // Calibration selection
