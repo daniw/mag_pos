@@ -58,6 +58,18 @@ void init_spi(void){
     return;
 }
 
+void spi_disable(void)
+{
+    SPI_CTLW0 |= USCWRST__ENABLE;
+    return;
+}
+
+void spi_enable(void)
+{
+    SPI_CTLW0 &= ~USCWRST__ENABLE;
+    return;
+}
+
 uint8_t spi_write(uint8_t *data, uint8_t len){
     uint8_t retval = 0;
     if (spi_comm_act == 0) {

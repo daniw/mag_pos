@@ -190,6 +190,8 @@
                          (SPI_TX_INTERRUPT?UCTXIE:0))
 
 void init_spi(void);
+void spi_disable(void);
+void spi_enable(void);
 uint8_t spi_write(uint8_t *data, uint8_t len);
 uint8_t spi_read(uint8_t *data, uint8_t len);
 void spi_tx_isr(void);

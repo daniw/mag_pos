@@ -68,6 +68,18 @@ void init_uart(void){
 #endif /* Microcontroller */
 }
 
+void uart_disable(void)
+{
+    UART_CTLW0 |= USCWRST__ENABLE;
+    return;
+}
+
+void uart_enable(void)
+{
+    UART_CTLW0 &= ~USCWRST__ENABLE;
+    return;
+}
+
 void uart_transmit(uint8_t *data, uint8_t count)
 {
     uart_tx_busy = 1;

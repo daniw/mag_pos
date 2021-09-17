@@ -381,6 +381,8 @@
 
 
 void init_uart(void);
+void uart_disable(void);
+void uart_enable(void);
 void uart_rx_isr(void);
 void uart_tx_isr(void);
 void uart_transmit(uint8_t *data, uint8_t count);
