@@ -60,13 +60,13 @@ void init_spi(void){
 
 void spi_disable(void)
 {
-    SPI_CTLW0 |= USCWRST__ENABLE;
+    SPI_CTLW0 |= UCSWRST__ENABLE;
     return;
 }
 
 void spi_enable(void)
 {
-    SPI_CTLW0 &= ~USCWRST__ENABLE;
+    SPI_CTLW0 &= ~UCSWRST__ENABLE;
     return;
 }
 

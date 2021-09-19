@@ -70,13 +70,13 @@ void init_uart(void){
 
 void uart_disable(void)
 {
-    UART_CTLW0 |= USCWRST__ENABLE;
+    UART_CTLW0 |= UCSWRST__ENABLE;
     return;
 }
 
 void uart_enable(void)
 {
-    UART_CTLW0 &= ~USCWRST__ENABLE;
+    UART_CTLW0 &= ~UCSWRST__ENABLE;
     return;
 }
 
