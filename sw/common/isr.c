@@ -101,7 +101,8 @@
         #error "Compiler not supported!"
     #endif /* Compiler */
 {
-    LED_RED_TOGGLE;
-    return;
+    //LED_RED_TOGGLE();
+    INTERVAL_CTL &= ~TBIFG;
+    LPM3_EXIT;
 }
 #endif /* PL_HAS_INTERVAL */

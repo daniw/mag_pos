@@ -95,6 +95,7 @@ int main(void)
     //init_spi(); // SPI initialized inside init_mlx90393
     #endif // PL_HAS_SPI
     init_mlx90393();
+    init_interval();
     __bis_SR_register(GIE);         // Enable global interrupts
     led_off();
     uint16_t counter = 0;
@@ -308,9 +309,9 @@ int main(void)
             dummy = flux_x + flux_y;
 
             counter++;
-            if (counter > 250)
+            if (counter >= 250)
             {
-                LED_GREEN_TOGGLE();
+                //LED_GREEN_TOGGLE();
                 uint16_t inp_lin_lower = get_lower_lin();
                 lowerlim[0] = inp_lin_lower >> 8;
                 lowerlim[1] = inp_lin_lower & 0xFF;
@@ -451,6 +452,14 @@ int main(void)
                 #endif // PARSER
             #endif // PL_HAS_UART
         #endif // MLX_Interface
+
+        //uart_disable();
+        //spi_disable();
+        LED_GREEN_OFF();
+        LPM3;
+        LED_GREEN_ON();
+        //spi_enable();
+        //uart_enable();
     }
 }
 

@@ -10,6 +10,8 @@
 
 #include <msp430.h>
 #include <stdint.h>
+#include "platform.h"
+#include "gpio.h"
 #if PL_HAS_UART
 #include "uart.h"
 #endif /* PL_HAS_UART */
