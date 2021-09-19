@@ -45,6 +45,8 @@
     #define PL_HAS_SPI          (1)
     #define PL_HAS_INTERVAL     (1)
     #define INTERVAL_MODULE     0
+    #define INTERVAL_USE_TIME   1
+    #define INTERVAL_TIME_US    100000LL
 #endif /* PL_IS_DEMO_FR */
 
 #if PL_HW_G2_LAUNCHPAD

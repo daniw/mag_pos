@@ -23,12 +23,17 @@
 #endif /* INTERVAL_MODULE */
 
 /* Interval time selection */
-#ifndef INTERVAL_USE_TIME
+#if (defined(INTERVAL_USE_TIME) | defined(INTERVAL_USE_FREQ))
+    #ifndef INTERVAL_USE_TIME
+        #define INTERVAL_USE_TIME           0
+    #endif /* INTERVAL_USE_TIME */
+    #ifndef INTERVAL_USE_FREQ
+        #define INTERVAL_USE_FREQ           0
+    #endif /* INTERVAL_USE_FREQ */
+#else
     #define INTERVAL_USE_TIME           1
-#endif /* INTERVAL_USE_TIME */
-#ifndef INTERVAL_USE_FREQ
     #define INTERVAL_USE_FREQ           0
-#endif /* INTERVAL_USE_FREQ */
+#endif /* (defined(INTERVAL_USE_TIME) | defined(INTERVAL_USE_FREQ)) */
 #ifndef INTERVAL_TIME_US /*            ,  ,  */
     #define INTERVAL_TIME_US            1000000LL
 #endif /* INTERVAL_TIME_US */
