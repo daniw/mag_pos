@@ -44,7 +44,7 @@
     #define PL_HAS_SAC          (1)
     #define PL_HAS_SPI          (1)
     #define PL_HAS_INTERVAL     (1)
-    #define INTERVAL_MODULE     B0
+    #define INTERVAL_MODULE     0
 #endif /* PL_IS_DEMO_FR */
 
 #if PL_HW_G2_LAUNCHPAD

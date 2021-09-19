@@ -19,7 +19,7 @@
 
 /* Timer module selection */
 #ifndef INTERVAL_MODULE
-    #define INTERVAL_MODULE             B0
+    #define INTERVAL_MODULE             0
 #endif /* INTERVAL_MODULE */
 
 /* Interval time selection */
@@ -94,79 +94,79 @@
 /* Timer register redefinition */
 /* CTL */
 #define INTERVAL_CTL_(module)       INTERVAL_CTL__(module)
-#define INTERVAL_CTL__(module)      T##module##CTL
+#define INTERVAL_CTL__(module)      TB##module##CTL
 #define INTERVAL_CTL                INTERVAL_CTL_(INTERVAL_MODULE)
 /* INTERVAL_CCTL0 */
 #define INTERVAL_CCTL0_(module)     INTERVAL_CCTL0__(module)
-#define INTERVAL_CCTL0__(module)    T##module##CCTL0
+#define INTERVAL_CCTL0__(module)    TB##module##CCTL0
 #define INTERVAL_CCTL0              INTERVAL_CCTL0_(INTERVAL_MODULE)
 /* INTERVAL_CCTL1 */
 #define INTERVAL_CCTL1_(module)     INTERVAL_CCTL1__(module)
-#define INTERVAL_CCTL1__(module)    T##module##CCTL1
+#define INTERVAL_CCTL1__(module)    TB##module##CCTL1
 #define INTERVAL_CCTL1              INTERVAL_CCTL1_(INTERVAL_MODULE)
 /* INTERVAL_CCTL2 */
 #define INTERVAL_CCTL2_(module)     INTERVAL_CCTL2__(module)
-#define INTERVAL_CCTL2__(module)    T##module##CCTL2
+#define INTERVAL_CCTL2__(module)    TB##module##CCTL2
 #define INTERVAL_CCTL2              INTERVAL_CCTL2_(INTERVAL_MODULE)
 /* INTERVAL_CCTL3 */
 #define INTERVAL_CCTL3_(module)     INTERVAL_CCTL3__(module)
-#define INTERVAL_CCTL3__(module)    T##module##CCTL3
+#define INTERVAL_CCTL3__(module)    TB##module##CCTL3
 #define INTERVAL_CCTL3              INTERVAL_CCTL3_(INTERVAL_MODULE)
 /* INTERVAL_CCTL4 */
 #define INTERVAL_CCTL4_(module)     INTERVAL_CCTL4__(module)
-#define INTERVAL_CCTL4__(module)    T##module##CCTL4
+#define INTERVAL_CCTL4__(module)    TB##module##CCTL4
 #define INTERVAL_CCTL4              INTERVAL_CCTL4_(INTERVAL_MODULE)
 /* INTERVAL_CCTL5 */
 #define INTERVAL_CCTL5_(module)     INTERVAL_CCTL5__(module)
-#define INTERVAL_CCTL5__(module)    T##module##CCTL5
+#define INTERVAL_CCTL5__(module)    TB##module##CCTL5
 #define INTERVAL_CCTL5              INTERVAL_CCTL5_(INTERVAL_MODULE)
 /* INTERVAL_CCTL6 */
 #define INTERVAL_CCTL6_(module)     INTERVAL_CCTL6__(module)
-#define INTERVAL_CCTL6__(module)    T##module##CCTL6
+#define INTERVAL_CCTL6__(module)    TB##module##CCTL6
 #define INTERVAL_CCTL6              INTERVAL_CCTL6_(INTERVAL_MODULE)
 /* INTERVAL_R */
 #define INTERVAL_R_(module)         INTERVAL_R__(module)
-#define INTERVAL_R__(module)        T##module##R
+#define INTERVAL_R__(module)        TB##module##R
 #define INTERVAL_R                  INTERVAL_R_(INTERVAL_MODULE)
 /* INTERVAL_CCR0 */
 #define INTERVAL_CCR0_(module)      INTERVAL_CCR0__(module)
-#define INTERVAL_CCR0__(module)     T##module##CCR0
+#define INTERVAL_CCR0__(module)     TB##module##CCR0
 #define INTERVAL_CCR0               INTERVAL_CCR0_(INTERVAL_MODULE)
 /* INTERVAL_CCR1 */
 #define INTERVAL_CCR1_(module)      INTERVAL_CCR1__(module)
-#define INTERVAL_CCR1__(module)     T##module##CCR1
+#define INTERVAL_CCR1__(module)     TB##module##CCR1
 #define INTERVAL_CCR1               INTERVAL_CCR1_(INTERVAL_MODULE)
 /* INTERVAL_CCR2 */
 #define INTERVAL_CCR2_(module)      INTERVAL_CCR2__(module)
-#define INTERVAL_CCR2__(module)     T##module##CCR2
+#define INTERVAL_CCR2__(module)     TB##module##CCR2
 #define INTERVAL_CCR2               INTERVAL_CCR2_(INTERVAL_MODULE)
 /* INTERVAL_CCR3 */
 #define INTERVAL_CCR3_(module)      INTERVAL_CCR3__(module)
-#define INTERVAL_CCR3__(module)     T##module##CCR3
+#define INTERVAL_CCR3__(module)     TB##module##CCR3
 #define INTERVAL_CCR3               INTERVAL_CCR3_(INTERVAL_MODULE)
 /* INTERVAL_CCR4 */
 #define INTERVAL_CCR4_(module)      INTERVAL_CCR4__(module)
-#define INTERVAL_CCR4__(module)     T##module##CCR4
+#define INTERVAL_CCR4__(module)     TB##module##CCR4
 #define INTERVAL_CCR4               INTERVAL_CCR4_(INTERVAL_MODULE)
 /* INTERVAL_CCR5 */
 #define INTERVAL_CCR5_(module)      INTERVAL_CCR5__(module)
-#define INTERVAL_CCR5__(module)     T##module##CCR5
+#define INTERVAL_CCR5__(module)     TB##module##CCR5
 #define INTERVAL_CCR5               INTERVAL_CCR5_(INTERVAL_MODULE)
 /* INTERVAL_CCR6 */
 #define INTERVAL_CCR6_(module)      INTERVAL_CCR6__(module)
-#define INTERVAL_CCR6__(module)     T##module##CCR6
+#define INTERVAL_CCR6__(module)     TB##module##CCR6
 #define INTERVAL_CCR6               INTERVAL_CCR6_(INTERVAL_MODULE)
 /* INTERVAL_IV */
 #define INTERVAL_IV_(module)        INTERVAL_IV__(module)
-#define INTERVAL_IV__(module)       T##module##IV
+#define INTERVAL_IV__(module)       TB##module##IV
 #define INTERVAL_IV                 INTERVAL_IV_(INTERVAL_MODULE)
 /* INTERVAL_EX0 */
 #define INTERVAL_EX0_(module)       INTERVAL_EX0__(module)
-#define INTERVAL_EX0__(module)      T##module##EX0
+#define INTERVAL_EX0__(module)      TB##module##EX0
 #define INTERVAL_EX0                INTERVAL_EX0_(INTERVAL_MODULE)
 /* INTERVAL_VECTOR */
 #define INTERVAL_VECTOR_(module)    INTERVAL_VECTOR__(module)
-#define INTERVAL_VECTOR__(module)   T_##module##_VECTOR
+#define INTERVAL_VECTOR__(module)   TIMER##module##_B1_VECTOR
 #define INTERVAL_VECTOR             INTERVAL_VECTOR_(INTERVAL_MODULE)
 
 /* Interval time calculation */
