@@ -11,6 +11,7 @@ In this repository two projects are combined:
 ### Joystick
 
 ## Structure
+* [Mechanics](mech/README.md)
 * [Hardware](hw/README.md)
 * [Software](sw/README.md)
 * [Simulations](sim/README.md)

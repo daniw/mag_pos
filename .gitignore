@@ -31,6 +31,11 @@ targetConfigs
 sw/.jxbrowser-data
 sw/RemoteSystemsTempFiles
 
+# Freecad
+*.FCStd1
+*.FCStd2
+mech/*.pdf
+
 # Datasheets
 datasheet/*/
 
