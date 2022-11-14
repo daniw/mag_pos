@@ -8,6 +8,9 @@ Project Logs*
 Project Outputs*
 *.NET
 *.htm
+*.Harness
+*.PrjPCBStructure
+*.x_t
 
 # FEMM output
 *.ans
